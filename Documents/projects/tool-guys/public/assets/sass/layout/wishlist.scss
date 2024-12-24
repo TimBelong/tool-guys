@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as *;
+
 .rts-wishlist-section {
     padding: 100px 0;
     @media(max-width:900px){

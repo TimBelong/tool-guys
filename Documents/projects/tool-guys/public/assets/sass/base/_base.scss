@@ -1,6 +1,8 @@
 // -----------------------------------------------------------------------------
 // Base Start Here
 // -----------------------------------------------------------------------------
+@use '../abstracts/variables' as *;
+
 * {
   margin: 0;
   padding: 0;
@@ -3077,9 +3079,11 @@ i {
       padding-bottom: 20px;
       background: $white-color;
       border-radius: 7px;
-
+      display: flex;
+      gap: 20px;
+      max-width: 200px;
       span {
-        font-size: 12px;
+        font-size: 16px;
         color: $black-pearl;
         display: block;
       }

@@ -246,6 +246,19 @@
       clickable: true,
     }
   });
+
+  //banner slider
+
+  var swiper = new Swiper(".bannerSlider", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    speed: 1500,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    }
+  });
+
   // Common-slider-over
   var swiper = new Swiper(".rts-sixSlide-over", {
     slidesPerView: 4,

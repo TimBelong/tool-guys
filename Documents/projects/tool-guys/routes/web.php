@@ -10,7 +10,6 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'indexFive')->name('indexFive');
 });
 
-    // demos
 Route::prefix('home')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/index', 'index')->name('index');

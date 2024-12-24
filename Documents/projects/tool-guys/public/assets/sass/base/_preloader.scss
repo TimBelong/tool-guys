@@ -1,6 +1,9 @@
 /**------------------------------------------------------------------
  * Preloader Start Here
  */
+
+@use '../abstracts/variables' as *;
+
 #rts__preloader {
   position: fixed;
   top: 0;

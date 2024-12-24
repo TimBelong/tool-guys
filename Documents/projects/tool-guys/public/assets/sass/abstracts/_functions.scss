@@ -2,6 +2,8 @@
  * Fucntion Start Here
  */
 // Custom Checkbox
+@use 'variables' as *;
+
 .check-option {
 	display: block;
 	margin-bottom: 15px;
@@ -94,7 +96,7 @@
 	padding: 10px 15px;
 	padding-top: 15px;
 	border-radius: 7px 0 0 7px;
-	max-width: 150px;
+	max-width: 175px;
 	border: none;
 
 	&:after {

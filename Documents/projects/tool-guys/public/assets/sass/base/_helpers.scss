@@ -5,6 +5,9 @@
 /**
  * Clear inner floats
  */
+
+@use '../abstracts/variables' as *;
+
 .clearfix::after {
   clear: both;
   content: '';

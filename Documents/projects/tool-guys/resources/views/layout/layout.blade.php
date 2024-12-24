@@ -11,7 +11,7 @@
 
     <div class="anywere"></div>
 
-        <?php 
+        <?php
 
             if (!isset($header)) {
                 ?>
@@ -22,7 +22,7 @@
 
         @yield('content')
 
-        <?php 
+        <?php
 
             if (!isset($footer)) {
                 ?>

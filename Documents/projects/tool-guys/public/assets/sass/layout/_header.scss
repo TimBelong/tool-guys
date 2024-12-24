@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as *;
+
 #rtsHeader {
     position: relative;
 }
@@ -7,7 +9,6 @@
     padding-top: 16px;
     padding-bottom: 20px;
     text-align: center;
-
     .header-top-inner {
         display: flex;
         justify-content: space-between;
@@ -68,7 +69,7 @@
                             margin: 0;
                             margin-right: 20px;
                         }
-                        position: relative;
+                        //position: relative;
                         i{
                             margin-right: 5px;
                         }
@@ -1235,9 +1236,9 @@
             justify-content: space-between;
         }
     }
-    padding: 30px 0 0 0;
-    width: 100%;
-    position: relative;
+    //padding: 30px 0 0 0;
+    //width: 100%;
+    //position: relative;
     @media(max-width:991px){
         padding: 20px 0;
     }
@@ -1536,9 +1537,10 @@
         }
     }
 
+
     .navbar-inner {
         padding: 25px 0;
-        justify-content: start;
+        justify-content: space-between !important;
 
         .header-action-items {
             margin-left: auto;
@@ -1614,8 +1616,6 @@
     }
 
     .navbar-inner {
-        justify-content: start;
-
         .logo {
             display: none;
         }
@@ -1773,6 +1773,7 @@
         .select {
             .select-styled {
                 padding-left: 18px;
+                width: 200px;
             }
         }
 
@@ -1812,6 +1813,11 @@
 
     .logo {
         margin-left: 60px;
+        color: #fff;
+        font-size: 38px;
+        span{
+            color: var(--theme-color);
+        }
     }
 
     .navbar-select-area {
@@ -1824,6 +1830,7 @@
 
     .navbar-search-area {
         .select {
+
             .select-styled {
                 background: var(--theme-color);
                 font-weight: 700;
@@ -1833,6 +1840,7 @@
 
     .navbar-select-area {
         .select {
+            width: 100%;
             .select-styled {
                 background: var(--theme-color);
                 border: none;
@@ -2060,7 +2068,7 @@
                 @media(max-width:576px){
                     display: none;
                 }
-                background: none;
+                //background: none;
                 @media(max-width:1200px){
                     margin-right: 0;
                 }

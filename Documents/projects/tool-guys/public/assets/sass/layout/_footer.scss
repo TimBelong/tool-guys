@@ -1,6 +1,8 @@
 /**------------------------------------------------------------------
  * Footer Start Here
  */
+@use '../abstracts/variables' as *;
+
 .footer {
     background: $bg--base1;
 

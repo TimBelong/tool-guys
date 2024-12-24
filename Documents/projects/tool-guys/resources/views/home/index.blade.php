@@ -3,7 +3,7 @@
 @php
 $css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable1.css') . '" />';
 $header='flase';
-$script='<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';   
+$script='<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
 @endphp
 
 @section('content')

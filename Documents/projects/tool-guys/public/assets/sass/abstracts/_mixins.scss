@@ -3,6 +3,8 @@
 // -----------------------------------------------------------------------------
 
 /// Event wrapper
+@use 'variables' as *;
+
 @mixin on-event($self: false) {
   @if $self {
 
