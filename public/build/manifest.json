@@ -1,0 +1,89 @@
+{
+  "public/assets/images/background/banner-slide-bg.jpg": {
+    "file": "assets/banner-slide-bg.jpg",
+    "src": "public/assets/images/background/banner-slide-bg.jpg"
+  },
+  "public/assets/images/background/banner-slide-bg2.png": {
+    "file": "assets/banner-slide-bg2.png",
+    "src": "public/assets/images/background/banner-slide-bg2.png"
+  },
+  "public/assets/images/background/bg.webp": {
+    "file": "assets/bg.webp",
+    "src": "public/assets/images/background/bg.webp"
+  },
+  "public/assets/images/background/furniture-banner.webp": {
+    "file": "assets/furniture-banner.webp",
+    "src": "public/assets/images/background/furniture-banner.webp"
+  },
+  "public/assets/images/background/productbg.webp": {
+    "file": "assets/productbg.webp",
+    "src": "public/assets/images/background/productbg.webp"
+  },
+  "public/assets/images/background/productbghover.webp": {
+    "file": "assets/productbghover.webp",
+    "src": "public/assets/images/background/productbghover.webp"
+  },
+  "public/assets/images/banner/banner4bg.jpg": {
+    "file": "assets/banner4bg.jpg",
+    "src": "public/assets/images/banner/banner4bg.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-1.jpg": {
+    "file": "assets/bg-pattern-1.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-2.jpg": {
+    "file": "assets/bg-pattern-1.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-3.jpg": {
+    "file": "assets/bg-pattern-1.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-9.jpg": {
+    "file": "assets/bg-pattern-1.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/cod.webp": {
+    "file": "assets/cod.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/banner/craftbg.jpg": {
+    "file": "assets/craftbg.jpg",
+    "src": "public/assets/images/banner/craftbg.jpg"
+  },
+  "public/assets/images/banner/fashion-home-two-bg.jpg": {
+    "file": "assets/fashion-home-two-bg.jpg",
+    "src": "public/assets/images/banner/fashion-home-two-bg.jpg"
+  },
+  "public/assets/images/banner/offer-bg.jpg": {
+    "file": "assets/offer-bg.jpg",
+    "src": "public/assets/images/banner/offer-bg.jpg"
+  },
+  "public/assets/images/banner/shadow-fight.webp": {
+    "file": "assets/cod.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/banner/slider-bg9.png": {
+    "file": "assets/slider-bg9.png",
+    "src": "public/assets/images/banner/slider-bg9.png"
+  },
+  "public/assets/images/banner/zombie-land.webp": {
+    "file": "assets/cod.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/icons/doubleplus.png": {
+    "file": "assets/doubleplus.png",
+    "src": "public/assets/images/icons/doubleplus.png"
+  },
+  "public/assets/js/main.js": {
+    "file": "assets/main-wnMufThV.js",
+    "name": "main",
+    "src": "public/assets/js/main.js",
+    "isEntry": true
+  },
+  "public/assets/sass/main.scss": {
+    "file": "assets/css/main.css",
+    "src": "public/assets/sass/main.scss",
+    "isEntry": true
+  }
+}
