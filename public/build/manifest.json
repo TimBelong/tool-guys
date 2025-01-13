@@ -11,17 +11,49 @@
     "file": "assets/bg.webp",
     "src": "public/assets/images/background/bg.webp"
   },
+  "public/assets/images/background/dark.webp": {
+    "file": "assets/dark.webp",
+    "src": "public/assets/images/background/dark.webp"
+  },
+  "public/assets/images/background/deal-bg-foot.webp": {
+    "file": "assets/deal-bg-foot.webp",
+    "src": "public/assets/images/background/deal-bg-foot.webp"
+  },
+  "public/assets/images/background/female-friends-out-shopping-together.jpg": {
+    "file": "assets/female-friends-out-shopping-together.jpg",
+    "src": "public/assets/images/background/female-friends-out-shopping-together.jpg"
+  },
   "public/assets/images/background/furniture-banner.webp": {
     "file": "assets/furniture-banner.webp",
     "src": "public/assets/images/background/furniture-banner.webp"
+  },
+  "public/assets/images/background/newsletter.jpg": {
+    "file": "assets/newsletter.jpg",
+    "src": "public/assets/images/background/newsletter.jpg"
+  },
+  "public/assets/images/background/poster-bg1.png": {
+    "file": "assets/poster-bg1.png",
+    "src": "public/assets/images/background/poster-bg1.png"
+  },
+  "public/assets/images/background/poster-bg2.png": {
+    "file": "assets/poster-bg2.png",
+    "src": "public/assets/images/background/poster-bg2.png"
   },
   "public/assets/images/background/productbg.webp": {
     "file": "assets/productbg.webp",
     "src": "public/assets/images/background/productbg.webp"
   },
+  "public/assets/images/background/productbgegg.png": {
+    "file": "assets/productbgegg.png",
+    "src": "public/assets/images/background/productbgegg.png"
+  },
   "public/assets/images/background/productbghover.webp": {
     "file": "assets/productbghover.webp",
     "src": "public/assets/images/background/productbghover.webp"
+  },
+  "public/assets/images/background/video-bg.webp": {
+    "file": "assets/video-bg.webp",
+    "src": "public/assets/images/background/video-bg.webp"
   },
   "public/assets/images/banner/banner4bg.jpg": {
     "file": "assets/banner4bg.jpg",
@@ -71,9 +103,61 @@
     "file": "assets/cod.webp",
     "src": "public/assets/images/banner/cod.webp"
   },
+  "public/assets/images/brands/sponsor-overley-1.jpg": {
+    "file": "assets/sponsor-overley-1.jpg",
+    "src": "public/assets/images/brands/sponsor-overley-1.jpg"
+  },
+  "public/assets/images/hand-picked/counter-bg-1.jpg": {
+    "file": "assets/counter-bg-1.jpg",
+    "src": "public/assets/images/hand-picked/counter-bg-1.jpg"
+  },
   "public/assets/images/icons/doubleplus.png": {
     "file": "assets/doubleplus.png",
     "src": "public/assets/images/icons/doubleplus.png"
+  },
+  "public/assets/images/products/home10/cta-bg.jpg": {
+    "file": "assets/cta-bg.jpg",
+    "src": "public/assets/images/products/home10/cta-bg.jpg"
+  },
+  "public/assets/images/products/home10/offer-bg.png": {
+    "file": "assets/offer-bg.png",
+    "src": "public/assets/images/products/home10/offer-bg.png"
+  },
+  "public/assets/images/products/home10/offer-bg2.png": {
+    "file": "assets/offer-bg2.png",
+    "src": "public/assets/images/products/home10/offer-bg2.png"
+  },
+  "public/assets/images/products/home10/offer-bg3.png": {
+    "file": "assets/offer-bg3.png",
+    "src": "public/assets/images/products/home10/offer-bg3.png"
+  },
+  "public/assets/images/products/home3/Group-39.webp": {
+    "file": "assets/bg-2.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/bg-2.webp": {
+    "file": "assets/bg-2.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/bg-3.webp": {
+    "file": "assets/bg-2.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/img.webp": {
+    "file": "assets/img.webp",
+    "src": "public/assets/images/products/home3/img.webp"
+  },
+  "public/assets/images/products/home9/featured-bg1.png": {
+    "file": "assets/featured-bg1.png",
+    "src": "public/assets/images/products/home9/featured-bg1.png"
+  },
+  "public/assets/images/products/home9/featured-bg2.png": {
+    "file": "assets/featured-bg2.png",
+    "src": "public/assets/images/products/home9/featured-bg2.png"
+  },
+  "public/assets/images/slider/testimonial-bg.jpg": {
+    "file": "assets/testimonial-bg.jpg",
+    "src": "public/assets/images/slider/testimonial-bg.jpg"
   },
   "public/assets/js/main.js": {
     "file": "assets/main-wnMufThV.js",

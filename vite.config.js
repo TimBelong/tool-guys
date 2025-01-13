@@ -5,25 +5,25 @@ import path from 'path';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['public/assets/sass/main.scss', 'public/assets/js/main.js'], // Укажите SCSS и JS точки входа
+            input: ['public/assets/sass/main.scss', 'public/assets/js/main.js'],
             refresh: true,
         }),
     ],
     resolve: {
         alias: {
-            '~': path.resolve(__dirname, 'public/assets'), // Удобный алиас для доступа к файлам в public/assets
+            '~': path.resolve(__dirname, 'public/assets'),
         },
     },
     optimizeDeps: {
-        include: ['axios'], // Добавьте библиотеки, которые нужно предварительно обработать
+        include: ['axios'],
     },
     build: {
         rollupOptions: {
             output: {
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-                        // Указываем, куда сохранить итоговый CSS
-                        return 'assets/css/[name][extname]'; // Переместить main.css в public/assets/css/
+                        
+                        return 'assets/css/[name][extname]';
                     }
                     return 'assets/[name][extname]';
                 },
