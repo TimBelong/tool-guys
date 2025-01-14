@@ -30,7 +30,7 @@
     <!-- ..::Main Stylesheet::.. -->
     <?php echo (isset($css) ? $css   : '')?>
             <!-- ..::Main Stylesheet::.. -->
-    <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" type="text/css"  href="{{ secure_asset('assets/css/main.css') }}">
 
     @vite(['public/assets/sass/main.scss', 'public/assets/js/main.js'])
 </head>

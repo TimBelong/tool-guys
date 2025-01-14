@@ -52,6 +52,7 @@ return [
     |
     */
 
+//    'url' => env('APP_URL', 'https://localhost'),
     'url' => env('APP_URL', 'https://afternoon-citadel-74821-9b4b0cbe34e6.herokuapp.com/'),
 
     /*
