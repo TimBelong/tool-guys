@@ -30,7 +30,8 @@
     <!-- ..::Main Stylesheet::.. -->
     <?php echo (isset($css) ? $css   : '')?>
     <!-- ..::Main Stylesheet::.. -->
-    <link rel="stylesheet" type="text/css" href="{{ str_replace(['http://', 'https://'], '//', asset('assets/css/main.css')) }}">
+{{--    <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/main.css') }}">--}}
+    <link rel="stylesheet" type="text/css"  href="https://afternoon-citadel-74821-9b4b0cbe34e6.herokuapp.com/build/assets/css/main.css">
 
     @vite(['public/assets/sass/main.scss', 'public/assets/js/main.js'])
 </head>
