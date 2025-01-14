@@ -5,8 +5,6 @@
     $subTitle = 'Shop';
     $subTitle2 = 'Product';
     $script= '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
-    
-    
 @endphp
 
 @section('content')
@@ -20,7 +18,7 @@
                     <div class="thumb-wrapper one filterd-items figure">
                         <div class="product-thumb zoom" onmousemove="zoom(event)"
                             style="background-image: url('{{ asset('assets/images/products/product-details.jpg') }}')"><img
-                                src="{{ asset('assets/images/products/product-details.jpg') }}" alt="product-thumb">
+                                src="https://gorrent.ru/upload/resize_cache/iblock/116/250_250_1/3smfcm15p0m2bc2eqyxbua2j672aq4jn.png" alt="product-thumb">
                         </div>
                     </div>
                     <div class="thumb-wrapper two filterd-items hide">
@@ -35,32 +33,19 @@
                                 src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb">
                         </div>
                     </div>
-                    <div class="product-thumb-filter-group">
-                        <div class="thumb-filter filter-btn active" data-show=".one"><img
-                                src="{{ asset('assets/images/products/product-filt1.jpg') }}" alt="product-thumb-filter"></div>
-                        <div class="thumb-filter filter-btn" data-show=".two"><img
-                                src="{{ asset('assets/images/products/product-filt2.jpg') }}" alt="product-thumb-filter"></div>
-                        <div class="thumb-filter filter-btn" data-show=".three"><img
-                                src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb-filter"></div>
-                    </div>
                 </div>
                 <div class="contents">
                     <div class="product-status">
-                        <span class="product-catagory">Dress</span>
-                        <div class="rating-stars-group">
-                            <div class="rating-star"><i class="fas fa-star"></i></div>
-                            <div class="rating-star"><i class="fas fa-star"></i></div>
-                            <div class="rating-star"><i class="fas fa-star-half-alt"></i></div>
-                            <span>10 Reviews</span>
-                        </div>
+                        <span class="product-catagory">Категория</span>
+{{--                        <div class="rating-stars-group">--}}
+{{--                            <div class="rating-star"><i class="fas fa-star"></i></div>--}}
+{{--                            <div class="rating-star"><i class="fas fa-star"></i></div>--}}
+{{--                            <div class="rating-star"><i class="fas fa-star-half-alt"></i></div>--}}
+{{--                            <span>10 Reviews</span>--}}
+{{--                        </div>--}}
                     </div>
-                    <h2 class="product-title">Wide Cotton Tunic Dress <span class="stock">In Stock</span></h2>
-                    <span class="product-price"><span class="old-price">$9.35</span> $7.25</span>
-                    <p>
-                        Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23. It is a
-                        completely modern design and you feel comfortable to put on this hijab.
-                        Buy it at the best price.
-                    </p>
+                    <h2 class="product-title">Генератор бензиновый Fubag BS6600 6,0 кВт <span class="stock">Доступен</span></h2>
+                    <span class="product-price"><span class="old-price">от</span> 1 100 ₽</span>
                     <div class="product-bottom-action">
                         <div class="cart-edit">
                             <div class="quantity-edit action-item">
@@ -69,137 +54,118 @@
                                 <button class="button plus">+<i class="fal fa-plus plus"></i></button>
                             </div>
                         </div>
-                        <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i class="rt-basket-shopping"></i> Add To
+                        <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i class="rt-basket-shopping"></i>
                             Cart</a>
-                        <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>
+{{--                        <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>--}}
                     </div>
                     <div class="product-uniques">
-                        <span class="sku product-unipue"><span>SKU: </span> BO1D0MX8SJ</span>
-                        <span class="catagorys product-unipue"><span>Categories: </span> T-Shirts, Tops, Mens</span>
-                        <span class="tags product-unipue"><span>Tags: </span> fashion, t-shirts, Men</span>
+                        <span class="sku product-unipue"><span>Тип: </span> Бензиновый генератор</span>
+                        <span class="catagorys product-unipue"><span>Мощность: </span> Вт 6600</span>
+                        <span class="tags product-unipue"><span>Вес, кг: </span>  83,9</span>
+                        <span class="tags product-unipue"><span>Объем топливного бака. л: </span>  25</span>
                     </div>
-                    <div class="share-social">
-                        <span>Share:</span>
-                        <a class="platform" href="http://facebook.com" target="_blank"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="platform" href="http://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a class="platform" href="http://behance.com" target="_blank"><i class="fab fa-behance"></i></a>
-                        <a class="platform" href="http://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a class="platform" href="http://linkedin.com" target="_blank"><i
-                                class="fab fa-linkedin"></i></a>
-                    </div>
+
                 </div>
             </div>
             <div class="product-full-details-area">
                 <div class="details-filter-bar2">
-                    <button class="details-filter filter-btn active" data-show=".dls-one">Description</button>
-                    <button class="details-filter filter-btn" data-show=".dls-two">Additional information</button>
-                    <button class="details-filter filter-btn" data-show=".dls-three">Reviews (0)</button>
+                    <button class="details-filter filter-btn active" data-show=".dls-one">Описание</button>
+                    <button class="details-filter filter-btn" data-show=".dls-two">Технические характеристики</button>
+{{--                    <button class="details-filter filter-btn" data-show=".dls-three">Reviews (0)</button>--}}
                 </div>
                 <div class="full-details dls-one filterd-items">
                     <div class="full-details-inner">
-                        <p class="mb--30">In marketing a product is an object or system made available for consumer use
-                            it is anything that can be offered to a market to satisfy the desire or need of a customer.
-                            In retailing, products are
-                            merchandise, and in manufacturing, products are bought as raw materials and then sold as
-                            finished goods. A service is also regarded to as a type of product. Commodities are usually
-                            raw material
-                            and agricultural products, but a commodity can also be anything widely available in the open
-                            market. In project management, products are the formal definition of the project
-                            deliverables that
-                            to delivering the objectives of the project.</p>
-                        <p>A product can be classified as tangible or intangible. A tangible product is a physical
-                            object that can be perceived by touch such as a building, vehicle, gadget, or clothing. An
-                            intangible product is
-                            can only be perceived indirectly such as an insurance policy. Services can be broadly
-                            classified under intangible products which can be durable or non durable. A product line is
-                            "a group of
-                            closely related, either because they function in a similar manner, are sold to the same
-                            customer groups, are marketed through the same types of outlets, or fall within given price
-                            ranges."Many
-                            range of product lines which may be unique to a single organisation or may be common across
-                            the business's industry. In 2002 the US Census compiled revenue figures for the finance and
-                            various product lines such as "accident, health and medical insurance premiums" and "income
-                            from secured consumer loans.</p>
+                        <p class="mb--30">  Бензиновый генератор Fubag BS6600 мощностью 6,0 кВт - это надежный и удобный инструмент для обеспечения электричеством в любых условиях. Он идеально подходит для использования на строительных площадках, во время отключения электричества или на открытых мероприятиях. Генератор оснащен мощным двигателем, который обеспечивает стабильную работу и высокую производительность. Он может использоваться для питания различных электроинструментов, светильников, бытовой техники и других устройств. Бензиновый генератор Fubag BS6600 - это надежный и удобный инструмент, который обеспечит вас электричеством в любых условиях.</p>
+
                     </div>
                 </div>
                 <div class="full-details dls-two filterd-items hide">
                     <div class="full-details-inner">
-                        <p class="mb--30">In marketing a product is an object or system made available for consumer use
-                            it is anything that can be offered to a market to satisfy the desire or need of a customer.
-                            In retailing, products are
-                            merchandise, and in manufacturing, products are bought as raw materials and then sold as
-                            finished goods. A service is also regarded to as a type of product. Commodities are usually
-                            raw material
-                            and agricultural products, but a commodity can also be anything widely available in the open
-                            market. In project management, products are the formal definition of the project
-                            deliverables that
-                            to delivering the objectives of the project.</p>
-                        <p>A product can be classified as tangible or intangible. A tangible product is a physical
-                            object that can be perceived by touch such as a building, vehicle, gadget, or clothing. An
-                            intangible product is
-                            can only be perceived indirectly such as an insurance policy. Services can be broadly
-                            classified under intangible products which can be durable or non durable. A product line is
-                            "a group of
-                            closely related, either because they function in a similar manner.</p>
+                        <p class="mb--30">
+                            3 розетки – 2 для стандартных потребителей (16A) и 1 для силовая (32A)
+                            Мультифункциональный цифровой дисплей для контроля основных параметров работы станции
+                            Система защиты от перегрузки, короткого замыкания и низкого уровня масла
+                            Мощность (кВт), кВт 6,0
+                            Объем бака, л 25
+                            Объем двигателя, см3 420
+                            Способ запуска Ручной стартер
+                            Рекомендуемое топливо АИ-92
+                            Количество фаз 1
+                            Время работы на полном баке, ч 8
+                            Напряжение, В 230
+                            Объем маслянного картера, л 1,0
+                            Номинальный ток, А 26
+                            Кол-во розеток 230 В (16 А/32 А) 2/1
+                            Датчик уровня масла Да
+                            Номинальная частота, Гц 50
+                            Мощность (л.с.) 10,9
+                            Мощность (Вт) 6000
+                            Класс защиты IP23
+                            Уровень шума, дБ 80
+                            Функция сварки Нет
+                            Охлаждение двигателя Воздушное
+                            Тактность двигателя 4-х тактный
+                            Температура эксплуатации, °С От -20 до +40
+                            Размеры, мм 694х540х575
+                        </p>
                     </div>
                 </div>
-                <div class="full-details dls-three filterd-items hide">
-                    <div class="full-details-inner">
-                        <p>There are no reveiws yet.</p>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 mr-10">
-                                <div class="reveiw-form">
-                                    <h2 class="section-title">
-                                        Be the first to reveiw <strong> <a href="{{ route('productDetails') }}">"Wide Cotton Tunic Dress"</a></strong></h2>
-                                        <h4 class="sect-title">Your email address will not be published. Required fields are marked* </h4>
-                                        <div class="reveiw-form-main mb-10">
-                                            <div class="contact-form">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-sm-12">
-                                                        <div class="input-box text-input mb-20">
-                                                            <textarea name="Message" id="validationDefault01"  cols="30" rows="10"
-                                                                placeholder="Your Review*" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-sm-12">
-                                                        <div class="col-lg-12">
-                                                            <div class="input-box mb-20">
-                                                                <input type="text" id="validationDefault02" placeholder="Name*" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="input-box mail-input mb-20">
-                                                                <input type="text" id="validationDefault03" placeholder="E-mail*" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="rating">
-                                                                <p>Your Rating :</p>
-                                                                <div class="rating-icon">
-                                                                    <span class="one"><a href="#"> <i class="fal fa-star"></i></a></span>
-                                                                    <span class="two"><a href="#"> <i class="fal fa-star"></i></a></span>
-                                                                    <span class="three"><a href="#"> <i class="fal fa-star"></i></a></span>
-                                                                    <span class="four"><a href="#"> <i class="fal fa-star"></i></a></span>
-                                                                    <span class="five"><a href="#"> <i class="fal fa-star"></i></a></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 mb-15">
-                                                            <button class="form-btn form-btn4">
-                                                                Submit <i class="fal fa-long-arrow-right"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-            
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="full-details dls-three filterd-items hide">--}}
+{{--                    <div class="full-details-inner">--}}
+{{--                        <p>There are no reveiws yet.</p>--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-lg-12 col-md-12 mr-10">--}}
+{{--                                <div class="reveiw-form">--}}
+{{--                                    <h2 class="section-title">--}}
+{{--                                        Be the first to reveiw <strong> <a href="{{ route('productDetails') }}">"Wide Cotton Tunic Dress"</a></strong></h2>--}}
+{{--                                        <h4 class="sect-title">Your email address will not be published. Required fields are marked* </h4>--}}
+{{--                                        <div class="reveiw-form-main mb-10">--}}
+{{--                                            <div class="contact-form">--}}
+{{--                                                <div class="row">--}}
+{{--                                                    <div class="col-lg-6 col-sm-12">--}}
+{{--                                                        <div class="input-box text-input mb-20">--}}
+{{--                                                            <textarea name="Message" id="validationDefault01"  cols="30" rows="10"--}}
+{{--                                                                placeholder="Your Review*" required></textarea>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-lg-6 col-sm-12">--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            <div class="input-box mb-20">--}}
+{{--                                                                <input type="text" id="validationDefault02" placeholder="Name*" required>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            <div class="input-box mail-input mb-20">--}}
+{{--                                                                <input type="text" id="validationDefault03" placeholder="E-mail*" required>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="col-lg-12">--}}
+{{--                                                            <div class="rating">--}}
+{{--                                                                <p>Your Rating :</p>--}}
+{{--                                                                <div class="rating-icon">--}}
+{{--                                                                    <span class="one"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
+{{--                                                                    <span class="two"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
+{{--                                                                    <span class="three"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
+{{--                                                                    <span class="four"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
+{{--                                                                    <span class="five"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="col-12 mb-15">--}}
+{{--                                                            <button class="form-btn form-btn4">--}}
+{{--                                                                Submit <i class="fal fa-long-arrow-right"></i>--}}
+{{--                                                            </button>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--            --}}
+{{--                                        </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -208,184 +174,97 @@
     <!-- ..::Related Product Section Start Here::.. -->
     <div class="rts-featured-product-section1 related-product related-product1">
         <div class="container">
-            <div class="rts-featured-product-section-inner">
-                <div class="section-header section-header3 section-header6">
-                    <div class="wrapper">
-                        <h2 class="title">RELATED PRODUCT</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-12">
-                        <div class="product-item element-item1">
-                            <a href="{{ route('productDetails') }}" class="product-image image-hover-variations">
-                                <div class="image-vari1 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img13-1.webp') }}" alt="product-image">
-                                </div>
-                                <div class="image-vari2 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img13.webp') }}" alt="product-image">
-                                </div>
-                            </a>
-                            <div class="bottom-content">
-                                <div class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <a href="{{ route('productDetails') }}" class="product-name">Girl's Sport Bra</a>
-                                <div class="action-wrap">
-                                    <span class="price">$31.00</span>
-                                </div>
-                            </div>
-                            <div class="quick-action-button">
-                                <div class="cta-single cta-plus">
-                                    <a href="#"><i class="rt-plus"></i></a>
-                                </div>
-                                <div class="cta-single cta-quickview">
-                                    <a href="#"><i class="far fa-eye"></i></a>
-                                </div>
-                                <div class="cta-single cta-wishlist">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="cta-single cta-addtocart">
-                                    <a href="#"><i class="rt-basket-shopping"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-12">
-                        <div class="product-item element-item1">
-                            <a href="{{ route('productDetails') }}" class="product-image image-hover-variations">
-                                <div class="image-vari1 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img14.webp') }}" alt="product-image">
-                                </div>
-                                <div class="image-vari2 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img14-1.webp') }}" alt="product-image">
-                                </div>
-                            </a>
-                            <div class="bottom-content">
-                                <div class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <a href="{{ route('productDetails') }}" class="product-name">Girl's Sport Bra</a>
-                                <div class="action-wrap">
-                                    <span class="price">$31.00</span>
-                                </div>
-                            </div>
-                            <div class="quick-action-button">
-                                <div class="cta-single cta-plus">
-                                    <a href="#"><i class="rt-plus"></i></a>
-                                </div>
-                                <div class="cta-single cta-quickview">
-                                    <a href="#"><i class="far fa-eye"></i></a>
-                                </div>
-                                <div class="cta-single cta-wishlist">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="cta-single cta-addtocart">
-                                    <a href="#"><i class="rt-basket-shopping"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-12">
-                        <div class="product-item element-item2">
-                            <a href="{{ route('productDetails') }}" class="product-image image-slider-variations">
-                                <div class="swiper productSlide">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="image-vari1 image-vari"><img
-                                                    src="{{ asset('assets/images/hand-picked/slider-img12-1.webp') }}"
-                                                    alt="product-image">
-                                            </div>
+            <div class="section-header section-header4">
+                <span class="section-title section-title-2 mb--5 ">Похожие товары</span>
+                <a href="shop-main" class="go-btn"> <i class="fal fa-long-arrow-right"></i></a>
+            </div>
+            <div class="products-area">
+                <div class="swiper rts-fiveSlide">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="product-item product-item4">
+                                <a href="{{ route('productDetails') }}" class="product-image">
+                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/6e0/250_250_1/6ns0asz5owoiqh38p276p2d3wlmvpzrl.webp') }}" alt="product-image">
+                                </a>
+                                <div class="bottom-content">
+                                    <span class="product-catagory">Инструмент</span>
+                                    <a href="{{ route('productDetails') }}" class="product-name">Генератор бензиновый Fubag BS6600 6,0 кВт в аренду</a>
+                                    <div class="flex-wrap">
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 200 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart"><i class="fal fa-shopping-cart"></i> В корзину</a>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="image-vari2 image-vari"><img
-                                                    src="{{ asset('assets/images/hand-picked/slider-img11_1.webp') }}"
-                                                    alt="product-image">
-                                            </div>
+                                        {{--                                        <button class="wishlist-btn"><i class="rt-heart"></i></button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="product-item product-item4">
+                                <a href="{{ route('productDetails') }}" class="product-image">
+                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/158/250_250_1/o0sf1q1tw7cs11pd325btaje621xbn9y.png') }}" alt="product-image">
+                                </a>
+                                <div class="bottom-content">
+                                    <span class="product-catagory">Инструмент</span>
+                                    <a href="{{ route('productDetails') }}" class="product-name">Инверторный цифровой генератор FUBAG TI 2000 в аренду</a>
+                                    <div class="flex-wrap">
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 750 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart"><i class="fal fa-shopping-cart"></i> В корзину</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="slider-buttons">
-                                    <div class="button-prev slider-btn"><i class="rt-arrow-left-long"></i></div>
-                                    <div class="button-next slider-btn"><i class="rt-arrow-right-long"></i></div>
-                                </div>
-                            </a>
-                            <div class="bottom-content">
-                                <div class="star-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <a href="{{ route('productDetails') }}" class="product-name">Maidenform Bra</a>
-                                <div class="action-wrap">
-                                    <span class="price">$31.00</span>
-                                </div>
                             </div>
-                            <div class="quick-action-button">
-                                <div class="cta-single cta-plus">
-                                    <a href="#"><i class="rt-plus"></i></a>
-                                </div>
-                                <div class="cta-single cta-quickview">
-                                    <a href="#"><i class="far fa-eye"></i></a>
-                                </div>
-                                <div class="cta-single cta-wishlist">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="cta-single cta-addtocart">
-                                    <a href="#"><i class="rt-basket-shopping"></i></a>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="product-item product-item4">
+                                <a href="{{ route('productDetails') }}" class="product-image">
+                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/116/250_250_1/3smfcm15p0m2bc2eqyxbua2j672aq4jn.png') }}" alt="product-image">
+                                </a>
+                                <div class="bottom-content">
+                                    <span class="product-catagory">Инструмент</span>
+                                    <a href="{{ route('productDetails') }}" class="product-name">Генератор бензиновый с электростартером FUBAG BS 5500 A ES в аренду</a>
+                                    <div class="flex-wrap">
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 100 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart"><i class="fal fa-shopping-cart"></i> В корзину</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-md-4 col-sm-6 col-12">
-                        <div class="product-item element-item1">
-                            <a href="{{ route('productDetails') }}" class="product-image image-hover-variations">
-                                <div class="image-vari1 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img12.webp') }}" alt="product-image">
-                                </div>
-                                <div class="image-vari2 image-vari"><img
-                                        src="{{ asset('assets/images/hand-picked/slider-img12-3.webp') }}" alt="product-image">
-                                </div>
-                            </a>
-                            <div class="bottom-content">
-                                <div class="star-rating">
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <a href="{{ route('productDetails') }}" class="product-name">Hanes Women's Bra</a>
-                                <div class="action-wrap">
-                                    <span class="price">$31.00</span>
+                        <div class="swiper-slide">
+                            <div class="product-item product-item4">
+                                <a href="{{ route('productDetails') }}" class="product-image">
+                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg') }}" alt="product-image">
+                                </a>
+                                <div class="bottom-content">
+                                    <span class="product-catagory">Инструмент</span>
+                                    <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000 в аренду</a>
+                                    <div class="flex-wrap">
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart"><i class="fal fa-shopping-cart"></i> В корзину</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="quick-action-button">
-                                <div class="cta-single cta-plus">
-                                    <a href="#"><i class="rt-plus"></i></a>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="product-item product-item4">
+                                <a href="{{ route('productDetails') }}" class="product-image">
+                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/96d/250_250_1/7rdx6u8o1dnknj3fij8w38elw53hrwu6.png') }}" alt="product-image">
+                                </a>
+                                <div class="bottom-content">
+                                    <span class="product-catagory">Инструмент</span>
+                                    <a href="{{ route('productDetails') }}" class="product-name">Скарификатор-аэратор Patriot бензиновый в аренду</a>
+                                    <div class="flex-wrap">
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 2 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart"><i class="fal fa-shopping-cart"></i> В корзину</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="cta-single cta-quickview">
-                                    <a href="#"><i class="far fa-eye"></i></a>
-                                </div>
-                                <div class="cta-single cta-wishlist">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="cta-single cta-addtocart">
-                                    <a href="#"><i class="rt-basket-shopping"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-features">
-                                <div class="discount-tag product-tag">-38%</div>
-                                <div class="new-tag product-tag">HOT</div>
                             </div>
                         </div>
                     </div>

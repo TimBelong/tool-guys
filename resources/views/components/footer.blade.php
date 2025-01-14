@@ -37,24 +37,25 @@
                 </div>
                 <div class="col-lg-13 col-md-6 col-sm-6">
                     <div class="footer-widget">
-                        <h3 class="footer-widget-title">Information</h3>
+                        <h3 class="footer-widget-title">Каталог</h3>
                         <ul class="widget-items cata-widget">
-                            <li class="widget-list-item"><a href="#0">Custom Service</a></li>
-                            <li class="widget-list-item"><a href="#0">FAQs</a></li>
-                            <li class="widget-list-item"><a href="#0">Ordering Tracking</a></li>
-                            <li class="widget-list-item"><a href="#0">Contacts</a></li>
-                            <li class="widget-list-item"><a href="#0">Events</a></li>
+                            <li class="widget-list-item"><a href="#0">Инструмент</a></li>
+                            <li class="widget-list-item"><a href="#0">Строительное оборудование</a></li>
+                            <li class="widget-list-item"><a href="#0">Алмазное сверление</a></li>
+                            <li class="widget-list-item"><a href="#0">Расходные материалы</a></li>
+                            <li class="widget-list-item"><a href="#0">Аккумуляторный инструмент</a></li>
+                            <li class="widget-list-item"><a href="#0">Измерительный инструмент</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-13 col-md-6 col-sm-6">
-                    <h3 class="footer-widget-title">My Account</h3>
+                    <h3 class="footer-widget-title">Покупателям</h3>
                     <ul class="footer-widget">
-                        <li class="widget-list-item"><a href="#0">Delivery Infomation</a></li>
-                        <li class="widget-list-item"><a href="#0">Privacy Policy</a></li>
-                        <li class="widget-list-item"><a href="#0">Discount</a></li>
-                        <li class="widget-list-item"><a href="#0">Custom Service</a></li>
-                        <li class="widget-list-item"><a href="#0">Terms & Condition</a></li>
+                        <li class="widget-list-item"><a href="#0">О компании</a></li>
+                        <li class="widget-list-item"><a href="#0">Доставка</a></li>
+                        <li class="widget-list-item"><a href="#0">Условия аренды</a></li>
+                        <li class="widget-list-item"><a href="#0">Производители</a></li>
+                        <li class="widget-list-item"><a href="#0">Пункт проката</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-25 col-md-6 col-sm-6">

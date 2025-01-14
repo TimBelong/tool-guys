@@ -7,9 +7,9 @@
 @use 'abstracts/functions' as *;
 
 // Остальные файлы подключаются стандартно
-@use 'base/base';
-@use 'abstracts/animation';
-@use 'abstracts/mainMenu';
+@use 'base/_base';
+@use 'abstracts/_animation';
+@use 'abstracts/_mainMenu';
 @use 'base/fonts';
 @use 'base/typography';
 @use 'base/helpers';
@@ -19,6 +19,9 @@
 @use 'layout/about';
 @use 'layout/_section';
 @use 'layout/banner';
+@use 'layout/product-details';
 @use 'layout/footer';
+@use 'layout/faq';
+@use 'layout/shop';
 @use 'components/button';
 @use 'components/floating';

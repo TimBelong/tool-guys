@@ -685,93 +685,93 @@ $footer='flase';
     <!-- ..::Newsletter Popup End Here::.. -->
 
     <!-- ..::Product-details Section Start Here::.. -->
-    <div class="product-details-popup-wrapper">
-        <div class="rts-product-details-section rts-product-details-section2 product-details-popup-section">
-            <div class="product-details-popup">
-                <button class="product-details-close-btn"><i class="fal fa-times"></i></button>
-                <div class="details-product-area">
-                    <div class="product-thumb-area">
-                        <div class="cursor"></div>
-                        <div class="thumb-wrapper one filterd-items figure">
-                            <div class="product-thumb zoom" onmousemove="zoom(event)"
-                                 style="background-image: url('{{ asset('assets/images/products/product-details.jpg') }}')"><img
-                                        src="{{ asset('assets/images/products/product-details.jpg') }}" alt="product-thumb">
-                            </div>
-                        </div>
-                        <div class="thumb-wrapper two filterd-items hide">
-                            <div class="product-thumb zoom" onmousemove="zoom(event)"
-                                 style="background-image: url('{{ asset('assets/images/products/product-filt2.jpg') }}')"><img
-                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}" alt="product-thumb">
-                            </div>
-                        </div>
-                        <div class="thumb-wrapper three filterd-items hide">
-                            <div class="product-thumb zoom" onmousemove="zoom(event)"
-                                 style="background-image: url('{{ asset('assets/images/products/product-filt3.jpg') }}')"><img
-                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb">
-                            </div>
-                        </div>
-                        <div class="product-thumb-filter-group">
-                            <div class="thumb-filter filter-btn active" data-show=".one"><img
-                                        src="{{ asset('assets/images/products/product-filt1.jpg') }}" alt="product-thumb-filter"></div>
-                            <div class="thumb-filter filter-btn" data-show=".two"><img
-                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}" alt="product-thumb-filter"></div>
-                            <div class="thumb-filter filter-btn" data-show=".three"><img
-                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb-filter"></div>
-                        </div>
-                    </div>
-                    <div class="contents">
-                        <div class="product-status">
-                            <span class="product-catagory">Dress</span>
-                            <div class="rating-stars-group">
-                                <div class="rating-star"><i class="fas fa-star"></i></div>
-                                <div class="rating-star"><i class="fas fa-star"></i></div>
-                                <div class="rating-star"><i class="fas fa-star-half-alt"></i></div>
-                                <span>10 Reviews</span>
-                            </div>
-                        </div>
-                        <h2 class="product-title">Wide Cotton Tunic Dress <span class="stock">In Stock</span></h2>
-                        <span class="product-price"><span class="old-price">$9.35</span> $7.25</span>
-                        <p>
-                            Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23. It is a
-                            completely modern design and you feel comfortable to put on this hijab.
-                            Buy it at the best price.
-                        </p>
-                        <div class="product-bottom-action">
-                            <div class="cart-edit">
-                                <div class="quantity-edit action-item">
-                                    <button class="button minus"><i class="fal fa-minus minus"></i></button>
-                                    <input type="text" class="input" value="01" />
-                                    <button class="button plus">+<i class="fal fa-plus plus"></i></button>
-                                </div>
-                            </div>
-                            <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i class="rt-basket-shopping"></i>
-                                Add To
-                                Cart</a>
-                            <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>
-                        </div>
-                        <div class="product-uniques">
-                            <span class="sku product-unipue"><span>SKU: </span> BO1D0MX8SJ</span>
-                            <span class="catagorys product-unipue"><span>Categories: </span> T-Shirts, Tops, Mens</span>
-                            <span class="tags product-unipue"><span>Tags: </span> fashion, t-shirts, Men</span>
-                        </div>
-                        <div class="share-social">
-                            <span>Share:</span>
-                            <a class="platform" href="http://facebook.com" target="_blank"><i
-                                        class="fab fa-facebook-f"></i></a>
-                            <a class="platform" href="http://twitter.com" target="_blank"><i
-                                        class="fab fa-twitter"></i></a>
-                            <a class="platform" href="http://behance.com" target="_blank"><i
-                                        class="fab fa-behance"></i></a>
-                            <a class="platform" href="http://youtube.com" target="_blank"><i
-                                        class="fab fa-youtube"></i></a>
-                            <a class="platform" href="http://linkedin.com" target="_blank"><i
-                                        class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="product-details-popup-wrapper">--}}
+{{--        <div class="rts-product-details-section rts-product-details-section2 product-details-popup-section">--}}
+{{--            <div class="product-details-popup">--}}
+{{--                <button class="product-details-close-btn"><i class="fal fa-times"></i></button>--}}
+{{--                <div class="details-product-area">--}}
+{{--                    <div class="product-thumb-area">--}}
+{{--                        <div class="cursor"></div>--}}
+{{--                        <div class="thumb-wrapper one filterd-items figure">--}}
+{{--                            <div class="product-thumb zoom" onmousemove="zoom(event)"--}}
+{{--                                 style="background-image: url('{{ asset('assets/images/products/product-details.jpg') }}')"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-details.jpg') }}" alt="product-thumb">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="thumb-wrapper two filterd-items hide">--}}
+{{--                            <div class="product-thumb zoom" onmousemove="zoom(event)"--}}
+{{--                                 style="background-image: url('{{ asset('assets/images/products/product-filt2.jpg') }}')"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}" alt="product-thumb">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="thumb-wrapper three filterd-items hide">--}}
+{{--                            <div class="product-thumb zoom" onmousemove="zoom(event)"--}}
+{{--                                 style="background-image: url('{{ asset('assets/images/products/product-filt3.jpg') }}')"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="product-thumb-filter-group">--}}
+{{--                            <div class="thumb-filter filter-btn active" data-show=".one"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-filt1.jpg') }}" alt="product-thumb-filter"></div>--}}
+{{--                            <div class="thumb-filter filter-btn" data-show=".two"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}" alt="product-thumb-filter"></div>--}}
+{{--                            <div class="thumb-filter filter-btn" data-show=".three"><img--}}
+{{--                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}" alt="product-thumb-filter"></div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="contents">--}}
+{{--                        <div class="product-status">--}}
+{{--                            <span class="product-catagory">Dress</span>--}}
+{{--                            <div class="rating-stars-group">--}}
+{{--                                <div class="rating-star"><i class="fas fa-star"></i></div>--}}
+{{--                                <div class="rating-star"><i class="fas fa-star"></i></div>--}}
+{{--                                <div class="rating-star"><i class="fas fa-star-half-alt"></i></div>--}}
+{{--                                <span>10 Reviews</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <h2 class="product-title">Wide Cotton Tunic Dress <span class="stock">In Stock</span></h2>--}}
+{{--                        <span class="product-price"><span class="old-price">$9.35</span> $7.25</span>--}}
+{{--                        <p>--}}
+{{--                            Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23. It is a--}}
+{{--                            completely modern design and you feel comfortable to put on this hijab.--}}
+{{--                            Buy it at the best price.--}}
+{{--                        </p>--}}
+{{--                        <div class="product-bottom-action">--}}
+{{--                            <div class="cart-edit">--}}
+{{--                                <div class="quantity-edit action-item">--}}
+{{--                                    <button class="button minus"><i class="fal fa-minus minus"></i></button>--}}
+{{--                                    <input type="text" class="input" value="01" />--}}
+{{--                                    <button class="button plus">+<i class="fal fa-plus plus"></i></button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i class="rt-basket-shopping"></i>--}}
+{{--                                Add To--}}
+{{--                                Cart</a>--}}
+{{--                            <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>--}}
+{{--                        </div>--}}
+{{--                        <div class="product-uniques">--}}
+{{--                            <span class="sku product-unipue"><span>SKU: </span> BO1D0MX8SJ</span>--}}
+{{--                            <span class="catagorys product-unipue"><span>Categories: </span> T-Shirts, Tops, Mens</span>--}}
+{{--                            <span class="tags product-unipue"><span>Tags: </span> fashion, t-shirts, Men</span>--}}
+{{--                        </div>--}}
+{{--                        <div class="share-social">--}}
+{{--                            <span>Share:</span>--}}
+{{--                            <a class="platform" href="http://facebook.com" target="_blank"><i--}}
+{{--                                        class="fab fa-facebook-f"></i></a>--}}
+{{--                            <a class="platform" href="http://twitter.com" target="_blank"><i--}}
+{{--                                        class="fab fa-twitter"></i></a>--}}
+{{--                            <a class="platform" href="http://behance.com" target="_blank"><i--}}
+{{--                                        class="fab fa-behance"></i></a>--}}
+{{--                            <a class="platform" href="http://youtube.com" target="_blank"><i--}}
+{{--                                        class="fab fa-youtube"></i></a>--}}
+{{--                            <a class="platform" href="http://linkedin.com" target="_blank"><i--}}
+{{--                                        class="fab fa-linkedin"></i></a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- ..::Product-details Section End Here::.. -->
     <section class="faq-area pt-120 pb-90 pt-md-55 pb-md-30 pt-xs-55 pb-xs-30">
         <div class="container">
@@ -786,17 +786,13 @@ $footer='flase';
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        How do I get in touch with WooCommerce?
+                                       Перый вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dicta dolorum incidunt ipsa odio sunt. Accusantium earum illo laborum libero minus, quasi reprehenderit sint? Ab aspernatur dolorum in rem sit.</p>
                                     </div>
                                 </div>
                             </div>
@@ -804,17 +800,13 @@ $footer='flase';
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        How do I get in touch with WooCommerce?
+                                        Второй вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                      data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nam nobis tempora. Aperiam consequuntur delectus esse exercitationem laborum nisi non numquam optio quibusdam, reiciendis repudiandae, sequi, sit sunt vel voluptatum.</p>
                                     </div>
                                 </div>
                             </div>
@@ -823,17 +815,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseThree" aria-expanded="false"
                                             aria-controls="collapseThree">
-                                        How do you prioritize your work?
+                                        третий вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse"
                                      aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi maiores placeat porro! Aliquid dolorem doloremque ex fugit harum molestiae odit, officia quaerat quia reprehenderit unde velit voluptatibus. Consectetur, labore, quo.</p>
                                     </div>
                                 </div>
                             </div>
@@ -842,17 +830,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseFour" aria-expanded="false"
                                             aria-controls="collapseFour">
-                                        How do you prioritize your work?
+                                        Четвертый вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                      data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi autem beatae blanditiis corporis cumque ducimus ea harum ipsam iusto maiores neque nulla porro quam, quas ratione sapiente unde veritatis.</p>
                                     </div>
                                 </div>
                             </div>
@@ -861,17 +845,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseFive" aria-expanded="false"
                                             aria-controls="collapseFive">
-                                        How do I get in touch with WooCommerce?
+                                        Пятый вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                      data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem, beatae cum doloribus, fugiat ipsam laboriosam laborum nisi odit quibusdam ratione tempora voluptas? Dolores illo incidunt nihil porro quas velit?</p>
                                     </div>
                                 </div>
                             </div>
@@ -885,17 +865,13 @@ $footer='flase';
                                 <h2 class="accordion-header" id="headingSix">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                        What is your pricing strategy and why?
+                                        Шестой вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseSix" class="accordion-collapse collapse show"
                                      aria-labelledby="headingSix" data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, asperiores blanditiis corporis culpa fugiat iste non possimus quidem rem voluptatum? Adipisci beatae dolorem, inventore nihil officiis quibusdam rerum unde voluptatibus.</p>
                                     </div>
                                 </div>
                             </div>
@@ -904,17 +880,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseSeven" aria-expanded="false"
                                             aria-controls="collapseSeven">
-                                        Do you know anyone that works with our company?
+                                         Седьмой вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseSeven" class="accordion-collapse collapse"
                                      aria-labelledby="headingSeven" data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa distinctio dolores, dolorum eaque, eius, enim eos eum facilis laborum magnam nihil perferendis quaerat quasi quia saepe suscipit unde ut.</p>
                                     </div>
                                 </div>
                             </div>
@@ -923,17 +895,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseEight" aria-expanded="false"
                                             aria-controls="collapseEight">
-                                        How do I get in touch with WooCommerce?
+                                        Восьмой вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseEight" class="accordion-collapse collapse"
                                      aria-labelledby="headingEight" data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consectetur deleniti deserunt dolore facere fugit labore laboriosam libero molestiae molestias nesciunt non odit placeat possimus quis quo quos rerum tempore.</p>
                                     </div>
                                 </div>
                             </div>
@@ -942,17 +910,13 @@ $footer='flase';
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseNine" aria-expanded="false"
                                             aria-controls="collapseNine">
-                                        How do I get in touch with WooCommerce?
+                                        Девятый вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
                                      data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis enim excepturi facere fugiat iusto, laboriosam laborum nam numquam repellat sunt! Alias aliquam delectus enim nemo nisi porro quasi tempora, voluptate.</p>
                                     </div>
                                 </div>
                             </div>
@@ -960,17 +924,13 @@ $footer='flase';
                                 <h2 class="accordion-header" id="headingTen">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                        How do I get in touch with WooCommerce?
+                                        Десятый вопрос?
                                     </button>
                                 </h2>
                                 <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
                                      data-bs-parent="#accordionExample2">
                                     <div class="accordion-body">
-                                        <p>Happiness Engineer via our Help Desk. We provide support for extensions
-                                            developed by
-                                            and/or sold on WooCommerce.com, and Jetpack/WordPress.com customers. If you
-                                            are
-                                            not a customer, we recommend finding help</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa enim nemo neque perspiciatis quia repellendus voluptates voluptatibus. Eos eveniet facilis fuga fugit, ipsum iste itaque necessitatibus qui sequi vero voluptatibus.</p>
                                     </div>
                                 </div>
                             </div>

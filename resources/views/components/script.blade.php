@@ -17,5 +17,10 @@
     <script src="{{ asset('assets/js/vendors/isotope.pkgd.min.js') }}"></script>
     <!-- ..::Magnefic Popup Plugin::.. -->
     <script src="{{ asset('assets/js/vendors/jquery.magnific-popup.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/vendors/jquery.nstSlider.min.js')  }}"></script>
+
+    <script src="{{  asset('assets/js/vendors/zoom.js') }}"></script>
+
     <!-- ..::Main Script::.. -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

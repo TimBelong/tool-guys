@@ -1,5 +1,14 @@
 @use '../abstracts/variables' as *;
 
+.product-catagory {
+    background: $bg--base2;
+    padding: 0px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: $white-color;
+    margin-right: 20px;
+}
+
 .rts-new-collection-section {
     overflow: hidden;
     padding: 60px 0 100px 0;
@@ -708,8 +717,11 @@
     .product-image {
         position: relative;
         margin-bottom: 15px;
+        border-radius: 15px;
+        width: 100%;
         img{
             max-height: 150px;
+            width: 100%;
         }
     }
 
@@ -745,6 +757,15 @@
 
         i {
             color: $bg--base2;
+        }
+    }
+}
+
+.sidebar-left{
+    .product-image {
+        img{
+            max-height: 200px;
+            width: 100%;
         }
     }
 }
@@ -2874,6 +2895,7 @@
         }
     }
 
+
     .side-box {
         .product {
             display: flex;
@@ -2893,13 +2915,6 @@
             .contents {
                 width: 100%;
                 position: relative;
-
-                .product-catagory {
-                    font-size: 12px;
-                    color: $grey-color;
-                    margin-bottom: 0;
-                    font-weight: 400;
-                }
 
                 .product-title {
                     font-size: 16px;
@@ -4214,7 +4229,7 @@
                     border-radius: 100px;
                     transition: all 0.4s;
                     &:hover{
-                        height: 180px;
+                        height: 140px;
                         .cta-single{
                             &.cta-quickview,
                             &.cta-wishlist,

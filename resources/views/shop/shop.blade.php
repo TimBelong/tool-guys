@@ -1,13 +1,7 @@
-@extends('layout.layout')
-
 @php
-    $css = '<link rel="stylesheet" href="' . asset('assets/css/variables/variable6.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/jquery.nstSlider.min.css') . '"/>';
-    $title='Shop';
-    $subTitle = 'Shop';
-    $subTitle2 = 'Shop';
-    $script= '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>
-              <script src="' . asset('assets/js/vendors/jquery.nstSlider.min.js') . '"></script>';
+    $css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '" />';
+    $header='flase';
+    $footer='flase';
 @endphp
 
 @section('content')
