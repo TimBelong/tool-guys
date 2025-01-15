@@ -54,7 +54,7 @@ Route::prefix('pages')->group(function () {
             Route::get('/product-details','productDetails')->name('productDetails');
             Route::get('/product-details2','productDetails2')->name('productDetails2');
             Route::get('/shop','shop')->name('shop');
-            Route::get('/sidebar-left','groupedProducts')->name('sidebarLeft');
+            Route::get('/sidebar-left','groupedProducts')->name('groupedProducts');
             Route::get('/sidebar-right','sidebarRight')->name('sidebarRight');
             Route::get('/variable-products','variableProducts')->name('variableProducts');
             Route::get('/grouped-products','groupedProducts')->name('groupedProducts');
