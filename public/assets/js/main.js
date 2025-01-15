@@ -959,27 +959,53 @@
 
 
   // Sidebar open & close
-  $('.hamburger').on('click', function () {
-    $(".hamburger").toggleClass("active");
+  // $('.hamburger').on('click', function () {
+  //   $(this).toggleClass("active");
+  // });
+  //
+  // $('.hamburger').on('click', function () {
+  //   $(".slide-bar").toggleClass("show");
+  //   $(".anywere").addClass("bgshow");
+  //   $(".hamburger").addClass("move");
+  // });
+
+  // $('.mobile-hamburger').click('click', function () {
+  //   $(".slide-bar").removeClass("show");
+  //   $(".anywere").removeClass("bgshow");
+  //   $(".hamburger").addClass("move");
+  // });
+
+  // $('.anywere').on('click', function () {
+  //   $(".slide-bar").removeClass("show");
+  //   $(".anywere").removeClass("bgshow");
+  //   $(".hamburger").removeClass("active");
+  // });
+
+  let burgers = document.querySelectorAll('.hamburger'),
+      sidebar = document.querySelector('.slide-bar'),
+      anywere = document.querySelector('.anywere'),
+      mobileHamburger = document.getElementById('mobile-hamburger-1');
+
+  burgers.forEach(burger => {
+    burger.addEventListener('click', () => {
+      burger.classList.add('active');
+      sidebar.classList.add('show');
+      anywere.classList.add('bgshow');
+    });
   });
 
-  $('.hamburger').on('click', function () {
-    $(".slide-bar").toggleClass("show");
-    $(".anywere").addClass("bgshow");
-    $(".hamburger").addClass("move");
+  mobileHamburger.addEventListener('click', () => {
+    sidebar.classList.remove('show');
+    anywere.classList.remove('bgshow');
+    burgers.forEach(burger => burger.classList.remove('active'));
   });
 
-  $('.mobile-hamburger').click('click', function () {
-    $(".slide-bar").removeClass("show");
-    $(".anywere").removeClass("bgshow");
-    $(".hamburger").addClass("move");
+  anywere.addEventListener('click', () => {
+    sidebar.classList.remove('show');
+    anywere.classList.remove('bgshow');
+    burgers.forEach(burger => burger.classList.remove('active'));
   });
 
-  $('.anywere').on('click', function () {
-    $(".slide-bar").removeClass("show");
-    $(".anywere").removeClass("bgshow");
-    $(".hamburger").removeClass("active");
-  });
 
   $('.action-item').on('click', function () {
     $(".slide-bar").removeClass("show");

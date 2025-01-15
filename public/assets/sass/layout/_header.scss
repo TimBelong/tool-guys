@@ -1570,6 +1570,14 @@
 
 .lower-navbar-sticky {
     top: 0;
+    .logo {
+        margin-left: 60px;
+        color: #fff;
+        font-size: 28px;
+        span{
+            color: var(--theme-color);
+        }
+    }
 }
 .sticky-menu{
     .lower-navbar{
@@ -1817,6 +1825,9 @@
         font-size: 38px;
         span{
             color: var(--theme-color);
+        }
+        @media(max-width: 768px) {
+            font-size: 28px;
         }
     }
 

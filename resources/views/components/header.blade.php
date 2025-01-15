@@ -51,33 +51,40 @@
 {{--                        </select>--}}
                     </div>
                     <div class="header-action-items header-action-items1">
-                        <div class="search-part">
-                            <div class="search-icon action-item icon"><i class="rt-search"></i></div>
-                            <div class="search-input-area">
-                                <div class="container">
-                                    <div class="search-input-inner inner-2">
-                                        <div class="input-div">
-                                            <input class="search-input input4" type="text"
-                                                   placeholder="Search by keyword or #">
-                                        </div>
-                                        <div class="search-close-icon"><i class="rt-xmark"></i></div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                        <div class="search-part">--}}
+{{--                            <div class="search-icon action-item icon"><i class="rt-search"></i></div>--}}
+{{--                            <div class="search-input-area">--}}
+{{--                                <div class="container">--}}
+{{--                                    <div class="search-input-inner inner-2">--}}
+{{--                                        <div class="input-div">--}}
+{{--                                            <input class="search-input input4" type="text"--}}
+{{--                                                   placeholder="Search by keyword or #">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="search-close-icon"><i class="rt-xmark"></i></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <div class="cart-icon icon mx-4">
+                            <a href="{{ route('contact') }}">
+                                <i class="rt-phone-flip"></i>
+                            </a>
                         </div>
                         <div class="cart action-item">
                             <div class="cart-nav">
-                                <div class="cart-icon icon"><i class="rt-cart"></i><span
-                                            class="wishlist-dot icon-dot">3</span></div>
+                                <div class="cart-icon icon">
+                                    <i class="rt-cart"></i>
+                                    <span class="wishlist-dot icon-dot">3</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="wishlist action-item">
-                            <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>
-                            </div>
-                        </div>
+{{--                        <div class="wishlist action-item">--}}
+{{--                            <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
                     </div>
-                    <div class="hamburger"><span></span></div>
+                    <div class="hamburger" id="hamburger"><span></span></div>
                 </div>
             </div>
         </div>
@@ -86,7 +93,7 @@
         <div class="navbar-part navbar-part2 lower-navbar lower-navbar4">
             <div class="container">
                 <div class="navbar-inner">
-                    <a href="{{ route('index') }}" class="logo"><img src="{{ asset('assets/images/logo4.svg') }}" alt="umart-logo"></a>
+                    <a href="#" class="logo">ToolGuys<span>.</span></a>
                     <div class="navbar-coupon-code">
                         <div class="icon"><img src="{{ asset('assets/images/icons/percent-tag.png') }}" alt="tag-icon"></div>
                         <span class="title">Лучшие цены у нас</span>
@@ -100,69 +107,69 @@
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('shop') }}">Гайковерты</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Гайковерты</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarLeft') }}">Отбойные молотки</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Отбойные молотки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarRight') }}">Краскопульты</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Краскопульты</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('fullWidthShop') }}">Лобзики</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Лобзики</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Фрезеры</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Фрезеры</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Шуруповерты</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Шуруповерты</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Торцовочные пилы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Торцовочные пилы</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails') }}">Монтажные пилы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Монтажные пилы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails2') }}">Отбойные молотки</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Отбойные молотки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('variableProducts') }}">Перфораторы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Перфораторы</a>
                                                 </li>
                                                 <li class="dropdown-li">
                                                     <a class="dropdown-link" href="{{ route('groupedProducts') }}">Пила аллигаторная</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Шлифовальные машины</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Шлифовальные машины</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Штроборезы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Штроборезы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Фен строительный</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Фен строительный</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="mega-dropdown-li last-child">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Реноваторы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Реноваторы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Рубанки</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Рубанки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Сабельные пилы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Сабельные пилы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Миксеры</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Миксеры</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Циркулярные пилы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Циркулярные пилы</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -196,13 +203,13 @@
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails') }}">Виброрейки</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Виброрейки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails2') }}">Генераторы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Генераторы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('variableProducts') }}">Затирочные машины <br> по бетону</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Затирочные машины <br> по бетону</a>
                                                 </li>
                                                 <li class="dropdown-li">
                                                     <a class="dropdown-link" href="{{ route('groupedProducts') }}">Компрессоры</a>
@@ -218,19 +225,19 @@
                                         <li class="mega-dropdown-li last-child">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Осушители воздуха</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Осушители воздуха</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Плиткорезы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Плиткорезы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Пылесосы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Пылесосы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Тепловые пушки</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Тепловые пушки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('account') }}">Фрезеровальные <br> машины по бетону</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Фрезеровальные <br> машины по бетону</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -242,29 +249,29 @@
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('shop') }}">Бензобуры</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Бензобуры</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarLeft') }}">Бензопилы</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Бензопилы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarRight') }}">Высоторезы и кусторезы</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Высоторезы и кусторезы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('fullWidthShop') }}">Газонокосилка</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Газонокосилка</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails') }}">Измельчители</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Измельчители</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('productDetails2') }}">Культиваторы и мотоблоки</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Культиваторы и мотоблоки</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('variableProducts') }}">Мойки высокого давления</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Мойки высокого давления</a>
                                                 </li>
                                                 <li class="dropdown-li">
                                                     <a class="dropdown-link" href="{{ route('groupedProducts') }}">Скарификаторы</a>
@@ -274,10 +281,10 @@
                                         <li class="mega-dropdown-li last-child">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('cart') }}">Триммеры</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Триммеры</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('checkOut') }}">Цепные пилы</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Цепные пилы</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -288,46 +295,46 @@
                                     <a class="menu-item" href="#">Расходные материалы <i class="rt-plus"></i></a>
                                     <ul class="dropdown-ul">
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('news') }}">Мешки, пакеты, коробки, стретч</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Мешки, пакеты, коробки, стретч</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsGrid') }}">Аксессуары для гвоздезабивного инструмента</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Аксессуары для гвоздезабивного инструмента</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsDetails') }}">Аксессуары для сверлильных машин</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Аксессуары для сверлильных машин</a>
                                         </li>
 
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('news') }}">Алмазные коронки</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Алмазные коронки</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsGrid') }}">Алмазные коронки для подрозетников</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Алмазные коронки для подрозетников</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsDetails') }}">Диски алмазные</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Диски алмазные</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('news') }}">Круги отрезные</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Круги отрезные</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsGrid') }}">Пильные полотна для аллигаторных пил</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Пильные полотна для аллигаторных пил</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="has-dropdown">
-                                    <a class="menu-item" href="{{ route('contact') }}">Дополнительная оснастка <i class="rt-plus"></i></a>
+                                    <a class="menu-item" href="{{ route('groupedProducts') }}">Дополнительная оснастка <i class="rt-plus"></i></a>
                                     <ul class="dropdown-ul">
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('news') }}">Буры для перфораторов</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Буры для перфораторов</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsGrid') }}">Для алмазного бурения</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Для алмазного бурения</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsDetails') }}">Пневматический инструмент</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Пневматический инструмент</a>
                                         </li>
                                         <li class="dropdown-li">
-                                            <a class="dropdown-link" href="{{ route('newsDetails') }}">Принадлежности для бензобуров</a>
+                                            <a class="dropdown-link" href="{{ route('groupedProducts') }}">Принадлежности для бензобуров</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -345,7 +352,7 @@
     </div>
     <div class="cart-bar">
         <div class="cart-header">
-            <h3 class="cart-heading">MY CART (3 ITEMS)</h3>
+            <h3 class="cart-heading">К покупке</h3>
             <div class="close-cart"><i class="fal fa-times"></i></div>
         </div>
         <div class="product-area">
@@ -353,14 +360,14 @@
                 <div class="product-detail">
                     <div class="product-thumb"><img src="{{ asset('assets/images/slider/image1.jpg') }}" alt="product-thumb"></div>
                     <div class="item-wrapper">
-                        <span class="product-name">Parachute Jacket</span>
+                        <span class="product-name">Генератор бензиновый</span>
                         <div class="item-wrapper">
-                                <span class="product-variation"><span class="color">Green /</span>
-                                    <span class="size">XL</span></span>
+                                <span class="product-variation"><span class="color">Fubag BS6600 /</span>
+                                    <span class="size">6,0 кВт</span></span>
                         </div>
                         <div class="item-wrapper">
                             <span class="product-qnty">3 ×</span>
-                            <span class="product-price">$198.00</span>
+                            <span class="product-price">1200 ₽</span>
                         </div>
                     </div>
                 </div>
@@ -380,14 +387,14 @@
                 <div class="product-detail">
                     <div class="product-thumb"><img src="{{ asset('assets/images/slider/image2.jpg') }}" alt="product-thumb"></div>
                     <div class="item-wrapper">
-                        <span class="product-name">Narrow Trouser</span>
+                        <span class="product-name">Инверторный цифровой генератор</span>
                         <div class="item-wrapper">
-                                <span class="product-variation"><span class="color">Green /</span>
-                                    <span class="size">XL</span></span>
+                                <span class="product-variation"><span class="color">FUBAG /</span>
+                                    <span class="size">TI 2000</span></span>
                         </div>
                         <div class="item-wrapper">
                             <span class="product-qnty">2 ×</span>
-                            <span class="product-price">$88.00</span>
+                            <span class="product-price">750 ₽</span>
                         </div>
                     </div>
                 </div>
@@ -407,14 +414,14 @@
                 <div class="product-detail">
                     <div class="product-thumb"><img src="{{ asset('assets/images/slider/image5.jpg') }}" alt="product-thumb"></div>
                     <div class="item-wrapper">
-                        <span class="product-name">Bellyless Hoodie</span>
+                        <span class="product-name">Генератор бензиновый с электростартером</span>
                         <div class="item-wrapper">
-                                <span class="product-variation"><span class="color">Green /</span>
-                                    <span class="size">XL</span></span>
+                                <span class="product-variation"><span class="color">FUBAG /</span>
+                                    <span class="size">BS 5500 A ES</span></span>
                         </div>
                         <div class="item-wrapper">
                             <span class="product-qnty">1 ×</span>
-                            <span class="product-price">$289.00</span>
+                            <span class="product-price">1 100 ₽</span>
                         </div>
                     </div>
                 </div>
@@ -432,17 +439,17 @@
             </div>
         </div>
         <div class="cart-bottom-area">
-                <span class="spend-shipping"><i class="fal fa-truck"></i> SPENT <span class="amount">$199.00</span> MORE
-                    FOR FREE SHIPPING</span>
-            <span class="total-price">TOTAL: <span class="price">$556</span></span>
-            <a href="{{ route('checkOut') }}" class="checkout-btn cart-btn">PROCEED TO CHECKOUT</a>
-            <a href="{{ route('cart') }}" class="view-btn cart-btn">VIEW CART</a>
+{{--                <span class="spend-shipping"><i class="fal fa-truck"></i> SPENT <span class="amount">$199.00</span> MORE--}}
+{{--                    FOR FREE SHIPPING</span>--}}
+            <span class="total-price">ВСЕГО: <span class="price">10 100 ₽</span></span>
+            <a href="{{ route('checkOut') }}" class="checkout-btn cart-btn">К оплате</a>
+            <a href="{{ route('cart') }}" class="view-btn cart-btn">Корзина</a>
         </div>
     </div>
     <!-- slide-bar start -->
     <aside class="slide-bar">
         <div class="offset-sidebar">
-            <a class="hamburger-1 mobile-hamburger-1 mobile-hamburger-2 ml--30" href="#"><span><i class="rt-xmark"></i></span></a>
+            <a class="hamburger-1 mobile-hamburger-1 mobile-hamburger-2 ml--30" href="#" id="mobile-hamburger-1"><span><i class="rt-xmark"></i></span></a>
         </div>
         <!-- offset-sidebar start -->
         <div class="offset-sidebar-main">
@@ -481,90 +488,90 @@
         <nav class="side-mobile-menu side-mobile-menu1 side-mobile-menu2">
             <ul id="mobile-menu-active">
                 <li class="has-dropdown firstlvl">
-                    <a class="mm-link" href="{{ route('index') }}">Home <i class="rt-angle-down"></i></a>
+                    <a class="mm-link" href="#">Инструмент <i class="rt-angle-down"></i></a>
                     <ul class="sub-menu">
-                        <li><a href="{{ route('index') }}">Main Home</a></li>
-                        <li><a href="{{ route('indexTwo') }}">Fashion Home</a></li>
-                        <li><a href="{{ route('indexNine') }}">Fashion Home Two</a></li>
-                        <li><a href="{{ route('indexThree') }}">Furniture Home</a></li>
-                        <li><a href="{{ route('indexFour') }}">Decor Home</a></li>
-                        <li><a href="{{ route('indexFive') }}">Electronics Home</a></li>
-                        <li><a href="{{ route('indexSix') }}">Grocery Home</a></li>
-                        <li><a href="{{ route('indexSeven') }}">Footwear Home</a></li>
-                        <li><a href="{{ route('indexEight') }}">Gaming Home</a></li>
-                        <li><a href="{{ route('indexTen') }}">Sunglass Home</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Гайковерты</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Отбойные молотки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Краскопульты</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Лобзики</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Фрезеры</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Шуруповерты</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Торцовочные пилы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Монтажные пилы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Отбойные молотки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Перфораторы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Пила аллигаторная</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Шлифовальные машины</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Штроборезы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Фен строительный</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Реноваторы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Рубанки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Сабельные пилы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Миксеры</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Циркулярные пилы</a></li>
                     </ul>
                 </li>
                 <li class="has-dropdown firstlvl">
-                    <a class="mm-link" href="{{ route('shop') }}">Shop <i class="rt-angle-down"></i></a>
+                    <a class="mm-link" href="#">Строительное оборудование <i class="rt-angle-down"></i></a>
                     <ul class="sub-menu mega-dropdown-mobile">
-                        <li class="mega-dropdown-li">
-                            <ul class="mega-dropdown-ul mm-show">
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('shop') }}">Shop</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('sidebarLeft') }}">Left
-                                        Sidebar
-                                        Shop</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('sidebarRight') }}">Right
-                                        Sidebar
-                                        Shop</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('fullWidthShop') }}">Full
-                                        Width Shop</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mega-dropdown-li">
-                            <ul class="mega-dropdown-ul mm-show">
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('productDetails') }}">Single
-                                        Product
-                                        Layout
-                                        One</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('productDetails2') }}">Single
-                                        Product Layout
-                                        Two</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link"
-                                                           href="{{ route('variableProducts') }}">Variable Product</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link"
-                                                           href="{{ route('groupedProducts') }}">Grouped Product</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mega-dropdown-li">
-                            <ul class="mega-dropdown-ul mm-show">
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('cart') }}">Cart
-                                    </a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('checkOut') }}">Checkout</a>
-                                </li>
-                                <li class="dropdown-li"><a class="dropdown-link" href="{{ route('account') }}">My
-                                        Account</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('groupedProducts') }}">Алмазное бурение</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Бензорезы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Вибраторы глубинные</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Виброплиты</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Сантехнический инструмент</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Шлифовальное оборудование</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Виброрейки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Генераторы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Затирочные машины по бетону</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Компрессоры</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Сварочные аппараты</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Швонарезчик</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Осушители воздуха</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Плиткорезы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Пылесосы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Тепловые пушки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Фрезеровальные машины по бетону</a></li>
+
                     </ul>
                 </li>
                 <li class="has-dropdown firstlvl">
-                    <a class="mm-link" href="{{ route('index') }}">Pages <i class="rt-angle-down"></i></a>
+                    <a class="mm-link" href="#">Садовая техника <i class="rt-angle-down"></i></a>
                     <ul class="sub-menu">
-                        <li><a href="{{ route('about') }}">About</a></li>
-                        <li><a href="{{ route('faq') }}">FAQ's</a></li>
-                        <li><a href="{{ route('errorPage') }}">Error 404</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Бензобуры</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Бензопилы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Высоторезы и кусторезы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Газонокосилка</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Измельчители</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Культиваторы и мотоблоки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Мойки высокого давления</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Скарификаторы</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Триммеры</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Цепные пилы</a></li>
                     </ul>
                 </li>
                 <li class="has-dropdown firstlvl">
-                    <a class="mm-link" href="{{ route('news') }}">Blog <i class="rt-angle-down"></i></a>
+                    <a class="mm-link" href="#">Расходные материалы <i class="rt-angle-down"></i></a>
                     <ul class="sub-menu">
-                        <li><a href="{{ route('news') }}">Blog</a></li>
-                        <li><a href="{{ route('newsGrid') }}">Blog Grid</a></li>
-                        <li><a href="{{ route('newsDetails') }}">Blog Details</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Мешки, пакеты, коробки, стретч</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Аксессуары для гвоздезабивного инструмента</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Аксессуары для сверлильных машин</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Алмазные коронки</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Алмазные коронки для подрозетников</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Диски алмазные</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Круги отрезные</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Пильные полотна для аллигаторных пил</a></li>
+
                     </ul>
                 </li>
-                <li><a class="mm-link" href="{{ route('contact') }}">Contact</a></li>
+                <li class="has-dropdown firstlvl">
+                    <a class="mm-link" href="#">Дополнительная оснастка <i class="rt-angle-down"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="{{ route('groupedProducts') }}">Буры для перфораторов</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Для алмазного бурения</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Пневматический инструмент</a></li>
+                        <li><a href="{{ route('groupedProducts') }}">Принадлежности для бензобуров</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <div class="header-action-items header-action-items1 header-action-items-side">

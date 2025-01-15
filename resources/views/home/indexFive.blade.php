@@ -34,7 +34,7 @@ $footer='flase';
                             <div class="swiper-slide">
                                 <div class="product-box product-box-large">
                                     <div class="contents">
-                                        <span class="pretitle">Weekend Discount</span>
+                                        <span class="pretitle">Лучшее предложение</span>
                                         <h1 class="product-title">Инструменты для настоящего <br>
                                             <span>профессионала</span></h1>
                                         <span class="product-price">
