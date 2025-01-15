@@ -37,7 +37,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('index') }}" class="logo">ToolGuys<span>.</span></a>
+                    <a href="#" class="logo">ToolGuys<span>.</span></a>
                     <div class="navbar-select-area">
 {{--                        <select class="topbar-select custom-select">--}}
 {{--                            <option value="eng">Eng</option>--}}
