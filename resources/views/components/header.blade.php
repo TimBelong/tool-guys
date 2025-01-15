@@ -181,22 +181,22 @@
                                         <li class="mega-dropdown-li">
                                             <ul class="mega-dropdown-ul">
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('shop') }}">Алмазное бурение</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Алмазное бурение</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarLeft') }}">Бензорезы</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Бензорезы</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link"  href="{{ route('sidebarRight') }}">Вибраторы глубинные</a>
+                                                    <a class="dropdown-link"  href="{{ route('groupedProducts') }}">Вибраторы глубинные</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('fullWidthShop') }}">Виброплиты</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Виброплиты</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('fullWidthShop') }}">Сантехнический <br> инструмент</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Сантехнический <br> инструмент</a>
                                                 </li>
                                                 <li class="dropdown-li">
-                                                    <a class="dropdown-link" href="{{ route('fullWidthShop') }}">Шлифовальное <br> оборудование</a>
+                                                    <a class="dropdown-link" href="{{ route('groupedProducts') }}">Шлифовальное <br> оборудование</a>
                                                 </li>
                                             </ul>
                                         </li>
