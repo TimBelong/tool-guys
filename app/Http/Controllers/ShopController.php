@@ -57,7 +57,7 @@ class ShopController extends Controller
     }
     public function groupedProducts()
     {
-        return view('shop/groupedProducts');
+        return view('shop/sidebarLeft');
     }
     
 }
