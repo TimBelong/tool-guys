@@ -10,11 +10,14 @@
 @use 'base/_base';
 @use 'abstracts/_animation';
 @use 'abstracts/_mainMenu';
-@use 'base/fonts';
-@use 'base/typography';
-@use 'base/helpers';
-@use 'base/preloader';
-@use 'base/reset';
+@use 'abstracts/_functions';
+@use 'abstracts/_mixins';
+@use 'abstracts/_variables';
+@use 'base/_fonts';
+@use 'base/_typography';
+@use 'base/_helpers';
+@use 'base/_preloader';
+@use 'base/_reset';
 @use 'layout/_header';
 @use 'layout/about';
 @use 'layout/_section';
@@ -23,5 +26,5 @@
 @use 'layout/footer';
 @use 'layout/faq';
 @use 'layout/shop';
-@use 'components/button';
+@use 'components/_button';
 @use 'components/floating';

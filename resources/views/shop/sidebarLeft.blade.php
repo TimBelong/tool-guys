@@ -1,5 +1,6 @@
 @php
-    $css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '" />';
+    $css='<link rel="stylesheet" href="' . asset('assets/css/jquery.nstSlider.min.css') . '"/>
+          <link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
     $header='flase';
     $footer='flase';
 @endphp
@@ -115,7 +116,7 @@
                     <div class="shop-product-topbar justify-content-between">
                         <span class="items-onlist">Показано 1-12 из 70 рузультатов</span>
                         <div class="product-status">
-                            <span class="product-catagory">Категория</span>
+                            <span class="all-products-category ">Категория</span>
                             {{--                        <div class="rating-stars-group">--}}
                             {{--                            <div class="rating-star"><i class="fas fa-star"></i></div>--}}
                             {{--                            <div class="rating-star"><i class="fas fa-star"></i></div>--}}

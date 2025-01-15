@@ -27,8 +27,10 @@
 
     <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/variables/variable4.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.nstSlider.min.css')}}">
+
     <!-- ..::Main Stylesheet::.. -->
-    <?php echo (isset($css) ? $css   : '')?>
+    <?php echo ($css ?? '')?>
             <!-- ..::Main Stylesheet::.. -->
     <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/main.css') }}">
 

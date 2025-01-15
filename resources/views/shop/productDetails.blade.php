@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i class="rt-basket-shopping"></i>
-                            В корзинуgit remote -v
+                            В корзину
                         </a>
 {{--                        <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>--}}
                     </div>
