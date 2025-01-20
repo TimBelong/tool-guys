@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @php
-    $css = '<link rel="stylesheet" href="' . asset('assets/css/variables/variable6.css') . '"/>';
+    $css = '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
     $title='Cart';
     $subTitle = 'Shop';
     $subTitle2 = 'Cart';
@@ -13,7 +13,7 @@
     <!-- ..::Cart Section Start Here::.. -->
     <div class="rts-cart-section">
         <div class="container">
-            <h4 class="section-title">Product List</h4>
+            <h4 class="section-title">Список товаров</h4>
             <div class="row justify-content-between">
                 <div class="col-xl-7">
                     <div class="cart-table-area">
@@ -22,14 +22,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><div class="product-thumb"><img src="{{ asset('assets/images/products/inner/cart/1.jpg') }}" alt="product-thumb"></div></td>
+                                    <td><div class="product-thumb"><img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-thumb"></div></td>
                                     <td>
                                         <div class="product-title-area">
-                                            <span class="pretitle">Nighty</span>
-                                            <h4 class="product-title">Shimmer Sheer Tights</h4>
+                                            <span class="pretitle">Аренда</span>
+                                            <h4 class="product-title">Газовый монтажный пистолет
+                                                <br></br>GNG1000</h4>
                                         </div>
                                     </td>
-                                    <td><span class="product-price">$69.00</span></td>
+                                    <td><span class="product-price">3 000 ₽</span></td>
                                     <td>
                                         <div class="cart-edit">
                                             <div class="quantity-edit">
@@ -39,75 +40,16 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="last-td"><button class="remove-btn">Remove</button></td>
+                                    <td class="last-td"><button class="remove-btn">Удалить</button></td>
                                 </tr>
-                                <tr>
-                                    <td><div class="product-thumb"><img src="{{ asset('assets/images/products/inner/cart/2.jpg') }}" alt="product-thumb"></div></td>
-                                    <td>
-                                        <div class="product-title-area">
-                                            <span class="pretitle">Nighty</span>
-                                            <h4 class="product-title">Shimmer Sheer Tights</h4>
-                                        </div>
-                                    </td>
-                                    <td><span class="product-price">$69.00</span></td>
-                                    <td>
-                                        <div class="cart-edit">
-                                            <div class="quantity-edit">
-                                                <button class="button"><i class="fal fa-minus minus"></i></button>
-                                                <input type="text" class="input" value="3" />
-                                                <button class="button plus">+<i class="fal fa-plus plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="last-td"><button class="remove-btn">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="product-thumb"><img src="{{ asset('assets/images/products/inner/cart/3.jpg') }}" alt="product-thumb"></div></td>
-                                    <td>
-                                        <div class="product-title-area">
-                                            <span class="pretitle">Nighty</span>
-                                            <h4 class="product-title">Shimmer Sheer Tights</h4>
-                                        </div>
-                                    </td>
-                                    <td><span class="product-price">$69.00</span></td>
-                                    <td>
-                                        <div class="cart-edit">
-                                            <div class="quantity-edit">
-                                                <button class="button"><i class="fal fa-minus minus"></i></button>
-                                                <input type="text" class="input" value="3" />
-                                                <button class="button plus">+<i class="fal fa-plus plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="last-td"><button class="remove-btn">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="product-thumb"><img src="{{ asset('assets/images/products/inner/cart/4.jpg') }}" alt="product-thumb"></div></td>
-                                    <td>
-                                        <div class="product-title-area">
-                                            <span class="pretitle">Nighty</span>
-                                            <h4 class="product-title">Shimmer Sheer Tights</h4>
-                                        </div>
-                                    </td>
-                                    <td><span class="product-price">$69.00</span></td>
-                                    <td>
-                                        <div class="cart-edit">
-                                            <div class="quantity-edit">
-                                                <button class="button"><i class="fal fa-minus minus"></i></button>
-                                                <input type="text" class="input" value="3" />
-                                                <button class="button plus">+<i class="fal fa-plus plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="last-td"><button class="remove-btn">Remove</button></td>
-                                </tr>
+
                             </tbody>
                         </table>
                         <div class="coupon-apply">
-                            <span class="coupon-text">Coupon Code:</span>
+                            <span class="coupon-text">Промокод:</span>
                             <div class="apply-input">
-                                <input type="text" placeholder="Apply coupon here">
-                                <button type="submit" class="apply-btn">Apply </i></button>
+                                <input type="text" placeholder="Введите промо код">
+                                <button type="submit" class="apply-btn">Применить</button>
                             </div>
                         </div>
                     </div>
@@ -116,35 +58,31 @@
                     <div class="checkout-box">
                         <div class="checkout-box-inner">
                             <div class="subtotal-area">
-                                <span class="title">Subtotal</span>
-                                <span class="subtotal-price">$364.00</span>
+                                <span class="title">Стоимость товаров</span>
+                                <span class="subtotal-price">3 000 ₽</span>
                             </div>
                             <div class="shipping-check">
-                                <span class="title">Shipping</span>
                                 <div class="check-options">
                                     <form>
                                           <div class="form-group">
                                             <input type="checkbox" id="fltrt">
-                                            <label class="check-title" for="fltrt">Flat rate</label>
+                                            <label class="check-title" for="fltrt">Доставка</label>
                                           </div>
                                           <div class="form-group">
                                             <input type="checkbox" id="frsh">
-                                            <label class="check-title" for="frsh">Free shipping</label>
+                                            <label class="check-title" for="frsh">Самовывоз</label>
                                           </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="shipping-location">
-                                <span class="shipping-to">Shipping to <span>NY.</span></span>
-                                <span class="change-address"><i class="fal fa-map-marker-alt mr--5"></i>Change address</span>
-                            </div>
+
                             <div class="total-area">
-                                <span class="title">Total</span>
-                                <span class="total-price">$364.00</span>
+                                <span class="title">Всего</span>
+                                <span class="total-price">3 000 ₽</span>
                             </div>
                         </div>
-                        <a href="{{ route('checkOut') }}" class="procced-btn">Procced To Checkout</a>
-                        <a href="{{ route('shop') }}" class="continue-shopping"><i class="fal fa-long-arrow-left"></i> Continue Shopping</a>
+                        <a href="{{ route('checkOut') }}" class="procced-btn">Перейти к оплате</a>
+                        <a href="{{ route('indexFive') }}" class="continue-shopping"><i class="fal fa-long-arrow-left"></i>Вернуться к покупкам</a>
                     </div>
                 </div>
             </div>

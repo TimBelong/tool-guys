@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @php
-$css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable6.css') . '" />';
+$css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '" />';
 $title = 'Log In';
 $subTitle='Home';
 $subTitle2='Log In';
@@ -17,31 +17,31 @@ $script = '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
                 <div class="col-lg-6 col-md-12 mr-10">
                     <div class="login-form">
                         <div class="section-title">
-                            <h2>Login</h2>
+                            <h2>Вход</h2>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <form>
                                     <div class="form">
                                         <input type="text" class="form-control" id="username"
-                                            placeholder="Username or email address*" required />
+                                            placeholder="Логин*" required />
                                     </div>
                                     <div class="form">
 
                                         <div class="password-input">
                                             <input type="password" class="form-control" id="password"
-                                                placeholder="Password*" required />
+                                                placeholder="Пароль*" required />
                                             <span class="show-password-input"></span>
                                         </div>
                                     </div>
+{{--                                    <div class="form">--}}
+{{--                                        <input type="checkbox" class="form-check-input" id="remember" />--}}
+{{--                                        <label for="remember" class="form-label">Remember Me</label>--}}
+{{--                                    </div>--}}
                                     <div class="form">
-                                        <input type="checkbox" class="form-check-input" id="remember" />
-                                        <label for="remember" class="form-label">Remember Me</label>
+                                        <button type="submit" class="btn">Вход</button>
                                     </div>
-                                    <div class="form">
-                                        <button type="submit" class="btn">Login</button>
-                                    </div>
-                                    <a class="forgot-password" href="#">Lost your password?</a>
+                                    <a class="forgot-password" href="#">Забыли пароль?</a>
                                 </form>
                             </div>
                         </div>
@@ -50,29 +50,32 @@ $script = '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
                 <div class="col-lg-6 col-md-12 ml-10">
                     <div class="register-form">
                         <div class="section-title">
-                            <h2>Registration</h2>
+                            <h2>Регистрация</h2>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <form>
                                     <div class="form">
                                         <input type="text" class="form-control" id="username"
-                                            placeholder="Username or email address*" required />
+                                            placeholder="Имя*" required />
                                     </div>
                                     <div class="form">
-
+                                        <input type="text" class="form-control" id="username"
+                                               placeholder="Номер телефона*" required />
+                                    </div>
+                                    <div class="form">
                                         <input type="email" class="form-control" id="username"
-                                            placeholder="Email address*" required />
+                                            placeholder="Повторите Email*" required />
                                     </div>
                                     <div class="form">
                                         <div class="password-input">
                                             <input type="password" class="form-control" id="password"
-                                                placeholder="Password*" required />
+                                                placeholder="Пароль*" required />
                                             <span class="show-password-input"></span>
                                         </div>
                                     </div>
                                     <div class="form">
-                                        <button type="submit" class="btn">Register</button>
+                                        <button type="submit" class="btn">Регистрация</button>
                                     </div>
                                 </form>
                             </div>

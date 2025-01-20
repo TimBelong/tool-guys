@@ -72,9 +72,11 @@
                         </div>
                         <div class="cart action-item">
                             <div class="cart-nav">
-                                <div class="cart-icon icon">
-                                    <i class="rt-cart"></i>
-                                    <span class="wishlist-dot icon-dot">3</span>
+                                <div class="icon">
+                                    <a href="{{route('cart')}}">
+                                        <i class="rt-cart"></i>
+                                        <span class="wishlist-dot icon-dot">3</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
