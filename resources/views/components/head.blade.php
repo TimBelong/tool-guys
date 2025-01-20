@@ -34,5 +34,5 @@
             <!-- ..::Main Stylesheet::.. -->
     <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/main.css') }}">
 
-    @vite(['public/assets/sass/main.scss', 'public/assets/js/main.js'])
+{{--    @vite(['public/assets/sass/main.scss', 'public/assets/js/main.js'])--}}
 </head>
