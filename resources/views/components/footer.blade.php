@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-xl-3 col-md-6 col-sm-6 box-widget-col">
                     <div class="footer-widget footer-box-widget">
-                        <a href="#" class="footer-logo">ToolGuys<span>.</span></a>
+                        <a href="{{route('indexFive')}}" class="footer-logo">ToolGuys<span>.</span></a>
                         <p>Наш инструмент - для Вашего дела. Мы позаботимся о рутинных деталях.</p>
                         <div class="quick-contact">
                             <div class="phone contact-item">

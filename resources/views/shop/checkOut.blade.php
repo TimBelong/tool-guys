@@ -1,13 +1,5 @@
 @extends('layout.layout')
 
-@php
-    $css = '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
-    $title='Checkout';
-    $subTitle = 'Shop';
-    $subTitle2 = 'Checkout';
-    $script = '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
-@endphp
-
 @section('content')
 
     <div class="rts-checkout-section">

@@ -95,7 +95,7 @@
         <div class="navbar-part navbar-part2 lower-navbar lower-navbar4">
             <div class="container">
                 <div class="navbar-inner">
-                    <a href="#" class="logo">ToolGuys<span>.</span></a>
+                    <a href="{{route('indexFive')}}" class="logo">ToolGuys<span>.</span></a>
                     <div class="navbar-coupon-code">
                         <div class="icon"><img src="{{ asset('assets/images/icons/percent-tag.png') }}" alt="tag-icon"></div>
                         <span class="title">Лучшие цены у нас</span>

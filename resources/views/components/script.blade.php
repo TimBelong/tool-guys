@@ -9,7 +9,7 @@
     <!-- ..::Nice Select::.. -->
     <script src="{{ asset('assets/js/vendors/jquery.nice-select.js') }}"></script>
     <!-- ..::metisMenu Plugin::.. -->
-    <?php echo (isset($script) ? $script   : '')?>
+{{--    <?php echo (isset($script) ? $script   : '')?>--}}
     <script src="{{ asset('assets/js/vendors/metisMenu.min.js') }}"></script>
     <!-- ..::Main Menu Plugin::.. -->
     <script src="{{ asset('assets/js/vendors/rtsmenu.js') }}"></script>

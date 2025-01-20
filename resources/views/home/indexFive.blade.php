@@ -1,10 +1,4 @@
 
-@php
-$css= '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '" />';
-$header='flase';
-$footer='flase';
-@endphp
-
 <x-default-layout>
     <!-- ..::Header Section Start Here::.. -->
     <!-- ..::Header Section End Here::.. -->

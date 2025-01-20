@@ -1,12 +1,5 @@
 @extends('layout.layout')
 
-@php
-    $title='Thank You';
-    $subTitle = 'Home';
-    $subTitle2 = 'Thank You';
-    $script = '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
-@endphp
-
 @section('content')
 
     <!--thanks-area start-->

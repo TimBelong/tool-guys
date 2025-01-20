@@ -1,12 +1,5 @@
 @extends('layout.layout')
 
-@php
-    $title='Product';
-    $subTitle = 'Shop';
-    $subTitle2 = 'Product';
-    $script= '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
-@endphp
-
 @section('content')
 
     <!-- ..::Product-details Section Start Here::.. -->

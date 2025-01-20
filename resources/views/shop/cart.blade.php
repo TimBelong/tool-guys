@@ -1,13 +1,5 @@
 @extends('layout.layout')
 
-@php
-    $css = '<link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
-    $title='Cart';
-    $subTitle = 'Shop';
-    $subTitle2 = 'Cart';
-    $script = '<script src="' . asset('assets/js/vendors/zoom.js') . '"></script>';
-@endphp
-
 @section('content')
 
     <!-- ..::Cart Section Start Here::.. -->
