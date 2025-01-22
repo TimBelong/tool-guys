@@ -1,6 +1,177 @@
 {
+  "public/assets/images/background/banner-slide-bg.jpg": {
+    "file": "assets/banner-slide-bg-B8mtGVH1.jpg",
+    "src": "public/assets/images/background/banner-slide-bg.jpg"
+  },
+  "public/assets/images/background/banner-slide-bg2.png": {
+    "file": "assets/banner-slide-bg2-BnN1DqWx.png",
+    "src": "public/assets/images/background/banner-slide-bg2.png"
+  },
+  "public/assets/images/background/bg.webp": {
+    "file": "assets/bg-YEj_ZE0c.webp",
+    "src": "public/assets/images/background/bg.webp"
+  },
+  "public/assets/images/background/dark.webp": {
+    "file": "assets/dark-BRt6g6jq.webp",
+    "src": "public/assets/images/background/dark.webp"
+  },
+  "public/assets/images/background/deal-bg-foot.webp": {
+    "file": "assets/deal-bg-foot-BM1HWLTe.webp",
+    "src": "public/assets/images/background/deal-bg-foot.webp"
+  },
+  "public/assets/images/background/female-friends-out-shopping-together.jpg": {
+    "file": "assets/female-friends-out-shopping-together-BiOcqohO.jpg",
+    "src": "public/assets/images/background/female-friends-out-shopping-together.jpg"
+  },
+  "public/assets/images/background/furniture-banner.webp": {
+    "file": "assets/furniture-banner-CwcgVvmo.webp",
+    "src": "public/assets/images/background/furniture-banner.webp"
+  },
+  "public/assets/images/background/newsletter.jpg": {
+    "file": "assets/newsletter-CO57iobF.jpg",
+    "src": "public/assets/images/background/newsletter.jpg"
+  },
+  "public/assets/images/background/poster-bg1.png": {
+    "file": "assets/poster-bg1-D8TMzUpI.png",
+    "src": "public/assets/images/background/poster-bg1.png"
+  },
+  "public/assets/images/background/poster-bg2.png": {
+    "file": "assets/poster-bg2-PBbEk4d0.png",
+    "src": "public/assets/images/background/poster-bg2.png"
+  },
+  "public/assets/images/background/productbg.webp": {
+    "file": "assets/productbg-C06i0UCT.webp",
+    "src": "public/assets/images/background/productbg.webp"
+  },
+  "public/assets/images/background/productbgegg.png": {
+    "file": "assets/productbgegg-DcPqbwoN.png",
+    "src": "public/assets/images/background/productbgegg.png"
+  },
+  "public/assets/images/background/productbghover.webp": {
+    "file": "assets/productbghover-6bABwDFl.webp",
+    "src": "public/assets/images/background/productbghover.webp"
+  },
+  "public/assets/images/background/video-bg.webp": {
+    "file": "assets/video-bg-z1PNhJQY.webp",
+    "src": "public/assets/images/background/video-bg.webp"
+  },
+  "public/assets/images/banner/banner4bg.jpg": {
+    "file": "assets/banner4bg-CPO4I_zk.jpg",
+    "src": "public/assets/images/banner/banner4bg.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-1.jpg": {
+    "file": "assets/bg-pattern-1-DhIj1j8y.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-2.jpg": {
+    "file": "assets/bg-pattern-1-DhIj1j8y.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-3.jpg": {
+    "file": "assets/bg-pattern-1-DhIj1j8y.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/bg-pattern-9.jpg": {
+    "file": "assets/bg-pattern-1-DhIj1j8y.jpg",
+    "src": "public/assets/images/banner/bg-pattern-1.jpg"
+  },
+  "public/assets/images/banner/cod.webp": {
+    "file": "assets/cod-CY6F7h8F.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/banner/craftbg.jpg": {
+    "file": "assets/craftbg-Cu74D2qb.jpg",
+    "src": "public/assets/images/banner/craftbg.jpg"
+  },
+  "public/assets/images/banner/fashion-home-two-bg.jpg": {
+    "file": "assets/fashion-home-two-bg-77jWDozK.jpg",
+    "src": "public/assets/images/banner/fashion-home-two-bg.jpg"
+  },
+  "public/assets/images/banner/offer-bg.jpg": {
+    "file": "assets/offer-bg-Da4Hbc8m.jpg",
+    "src": "public/assets/images/banner/offer-bg.jpg"
+  },
+  "public/assets/images/banner/shadow-fight.webp": {
+    "file": "assets/cod-CY6F7h8F.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/banner/slider-bg9.png": {
+    "file": "assets/slider-bg9-D6F3ajQT.png",
+    "src": "public/assets/images/banner/slider-bg9.png"
+  },
+  "public/assets/images/banner/zombie-land.webp": {
+    "file": "assets/cod-CY6F7h8F.webp",
+    "src": "public/assets/images/banner/cod.webp"
+  },
+  "public/assets/images/brands/sponsor-overley-1.jpg": {
+    "file": "assets/sponsor-overley-1-B8fO2K0M.jpg",
+    "src": "public/assets/images/brands/sponsor-overley-1.jpg"
+  },
+  "public/assets/images/hand-picked/counter-bg-1.jpg": {
+    "file": "assets/counter-bg-1-CvJysZYV.jpg",
+    "src": "public/assets/images/hand-picked/counter-bg-1.jpg"
+  },
+  "public/assets/images/icons/doubleplus.png": {
+    "file": "assets/doubleplus-BBboJJU0.png",
+    "src": "public/assets/images/icons/doubleplus.png"
+  },
+  "public/assets/images/products/home10/cta-bg.jpg": {
+    "file": "assets/cta-bg-DeRCmMrq.jpg",
+    "src": "public/assets/images/products/home10/cta-bg.jpg"
+  },
+  "public/assets/images/products/home10/offer-bg.png": {
+    "file": "assets/offer-bg-_Wuh_Dke.png",
+    "src": "public/assets/images/products/home10/offer-bg.png"
+  },
+  "public/assets/images/products/home10/offer-bg2.png": {
+    "file": "assets/offer-bg2-Lpi5iKoA.png",
+    "src": "public/assets/images/products/home10/offer-bg2.png"
+  },
+  "public/assets/images/products/home10/offer-bg3.png": {
+    "file": "assets/offer-bg3-CEsfOpJ7.png",
+    "src": "public/assets/images/products/home10/offer-bg3.png"
+  },
+  "public/assets/images/products/home3/Group-39.webp": {
+    "file": "assets/bg-2-Bewt4aFV.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/bg-2.webp": {
+    "file": "assets/bg-2-Bewt4aFV.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/bg-3.webp": {
+    "file": "assets/bg-2-Bewt4aFV.webp",
+    "src": "public/assets/images/products/home3/bg-2.webp"
+  },
+  "public/assets/images/products/home3/img.webp": {
+    "file": "assets/img-iXa1KJXs.webp",
+    "src": "public/assets/images/products/home3/img.webp"
+  },
+  "public/assets/images/products/home9/featured-bg1.png": {
+    "file": "assets/featured-bg1-BWB08TK4.png",
+    "src": "public/assets/images/products/home9/featured-bg1.png"
+  },
+  "public/assets/images/products/home9/featured-bg2.png": {
+    "file": "assets/featured-bg2-C0CbxgNS.png",
+    "src": "public/assets/images/products/home9/featured-bg2.png"
+  },
+  "public/assets/images/slider/testimonial-bg.jpg": {
+    "file": "assets/testimonial-bg-CWs69Jzw.jpg",
+    "src": "public/assets/images/slider/testimonial-bg.jpg"
+  },
+  "public/assets/js/main.js": {
+    "file": "assets/main-CZrVZE5u.js",
+    "name": "main",
+    "src": "public/assets/js/main.js",
+    "isEntry": true
+  },
+  "public/assets/sass/main.scss": {
+    "file": "assets/main-HmszaKtg.css",
+    "src": "public/assets/sass/main.scss",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app-BL_I7Qj5.css",
+    "file": "assets/app-D3Wcrnpu.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },

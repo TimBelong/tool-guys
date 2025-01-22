@@ -12,7 +12,7 @@
                             <div class="swiper-slide">
                                 <a href="{{ route('productDetails') }}" class="product-box product-box-large">
                                     <div class="contents">
-                                        <span class="pretitle">Weekend Discount</span>
+                                        <span class="pretitle">Лучшее предложение</span>
                                         <h1 class="product-title">Инструменты для настоящего <br>
                                             <span>профессионала</span></h1>
                                         <span class="product-price">
@@ -20,8 +20,8 @@
                                              ₽3500
                                         </span>
                                     </div>
-                                    <div class="product-thumb"><img src="{{ asset('assets/images/slider/slider-1.png') }}"
-                                                                    alt="product-thumb"></div>
+                                    <div class="product-thumb">
+                                        <img src="{{ asset('assets/images/slider/slider-1.png') }}"alt="product-thumb"></div>
                                 </a>
                             </div>
                             <div class="swiper-slide">
