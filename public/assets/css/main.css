@@ -2536,15 +2536,15 @@ i {
   align-items: center;
 }
 
-.product-box {
-  background-image: url("../images/background/productbg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  border-radius: 7px;
-  overflow: hidden;
-}
+/*.product-box {*/
+/*  background-image: url("../images/background/productbg.webp");*/
+/*  background-size: cover;*/
+/*  background-repeat: no-repeat;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  border-radius: 7px;*/
+/*  overflow: hidden;*/
+/*}*/
 .product-box:hover .product-thumb {
   transform: scale(105%);
 }
