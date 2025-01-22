@@ -65,7 +65,7 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
-                        <div class="cart-icon icon mx-4">
+                        <div class="cart-icon icon mx-3">
                             <a href="{{ route('contact') }}">
                                 <i class="rt-phone-flip"></i>
                             </a>
@@ -80,10 +80,14 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="wishlist action-item">--}}
-{{--                            <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        <div class="wishlist action-item">
+                            <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>
+                            </div>
+                        </div>
+{{--                        <form method="POST" action="{{ route('logout') }}">--}}
+{{--                            @csrf--}}
+{{--                            <button type="submit">Выйти</button>--}}
+{{--                        </form>--}}
                         <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
                     </div>
                     <div class="hamburger" id="hamburger"><span></span></div>
