@@ -158,6 +158,15 @@ button {
   cursor: pointer;
 }
 
+.log-out-btn {
+  margin-left: 10px;
+  svg{
+    width: 16px ;
+    height: 25px ;
+    fill: #ffffff;
+  }
+}
+
 /**------------------------------------------------------------------
  * Buttons End Here
  */

@@ -20,9 +20,9 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'indexFive')->name('indexFive');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/profile', function () {
+    return view('edit');
+})->middleware(['auth', 'verified'])->name('profile.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

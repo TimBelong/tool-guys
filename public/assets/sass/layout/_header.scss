@@ -2495,11 +2495,10 @@
     }
 
     .input-div {
-        width: 68%;
+        width: 100%;
         position: relative;
         .input5{
             padding: 15px 20px;
-            padding-right: 100px;
         }
     }
 
@@ -2665,7 +2664,7 @@
 
     .search-input-icon {
         left: unset;
-        right: 40px;
+        right: 0px;
         font-size: 14px;
         color: $text-color1;
         font-style: normal;

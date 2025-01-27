@@ -22,15 +22,17 @@
                 <div class="navbar-inner navbar-inner5">
                     <div class="navbar-search-area">
                         <div class="search-input-inner">
-                            <select class="custom-select">
-                                <option value="hide">Каталог товаров</option>
-                                <option value="all">Инструмент</option>
-                                <option value="men">Строительное оборудование</option>
-                                <option value="women">Садовая техника</option>
-                                <option value="shoes">Дополнительная оснастка</option>
-                                <option value="shoes">Аккумуляторный инструмент</option>
-                                <option value="shoes">Измерительный инструмент</option>
-                            </select>
+{{--                            <select class="custom-select">--}}
+{{--                                <option value="hide">Каталог товаров</option>--}}
+{{--                                <option value="all" {{ route('groupedProducts') }}>--}}
+{{--                                    <a href="{{ route('groupedProducts') }}">Инструменты</a>--}}
+{{--                                </option>--}}
+{{--                                <option value="men"><a href="{{ route('groupedProducts') }}">Строительное оборудование</a></option>--}}
+{{--                                <option value="women"><a href="{{ route('groupedProducts') }}">Садовая техника</a></option>--}}
+{{--                                <option value="shoes"><a href="{{ route('groupedProducts') }}">Дополнительная оснастка</a></option>--}}
+{{--                                <option value="shoes"><a href="{{ route('groupedProducts') }}">Аккумуляторный инструмент</a></option>--}}
+{{--                                <option value="shoes"><a href="{{ route('groupedProducts') }}">Измерительный инструмент</a></option>--}}
+{{--                            </select>--}}
                             <div class="input-div">
                                 <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
                                 <input class="search-input input5" type="text" placeholder="Поиск товаров...">
@@ -84,11 +86,21 @@
                             <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>
                             </div>
                         </div>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit">Выйти</button>
-                        </form>
-                        <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
+                        @auth
+                            <a href="{{ route('profile.edit') }}" class="account"><i class="rt-user-2"></i></a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="log-out-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        @endauth
+
+                        @guest
+                            <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
+                        @endguest
                     </div>
                     <div class="hamburger" id="hamburger"><span></span></div>
                 </div>
