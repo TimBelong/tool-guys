@@ -1,0 +1,83 @@
+@use '../abstracts/variables' as *;
+
+.profile-section {
+  .tab-content{
+    margin: 40px 0 100px 0;
+  }
+
+  .nav-tabs {
+    display: flex;
+    margin: 10px 40px;
+    gap: 10px;
+    border-bottom: none;
+
+    .nav-link {
+      border: none;
+      border-radius: 5px;
+      background-color: #010d18;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: background-color 0.3s, color 0.3s;
+
+      &.active {
+        background-color: #ffbd27;
+        color: #000;
+      }
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .tab-pane{
+    .product-thumb{
+      img{
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .pretitle{
+    font-size: 12px;
+    color: #3F3F3F;
+    font-weight: 700;
+  }
+  .product-title{
+    font-size: 16px;
+    color: #3F3F3F;
+    font-weight: 700;
+  }
+  .status-badge{
+    color: #00a046;
+  }
+  .rts-wishlist-section{
+    img{
+        width: 100px;
+        height: 100px;
+    }
+  }
+}
+
+.profile_form{
+  form{
+    .form-control{
+      margin-top: 20px !important;
+    }
+    .form{
+      .btn{
+        text-align: center;
+        width: 150px;
+        height: 40px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        background-color: #ffbd27;
+        transition: all 0.3s ease-in-out;
+        margin-top: 20px;
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('/indexFive', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -53,6 +53,12 @@ Route::prefix('home')->group(function () {
         Route::get('/simple-products', 'simpleProducts')->name('simpleProducts');
         Route::get('/thank-you', 'thankYou')->name('thankYou');
         Route::get('/wishlist', 'wishlist')->name('wishlist');
+    });
+});
+
+Route::prefix('profile')->group(function () {
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/edit', 'edit')->name('profile.edit');
     });
 });
 

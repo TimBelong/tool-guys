@@ -1,5 +1,16 @@
 @use '../abstracts/variables' as *;
 
+.fc-today-button{
+    display: none !important;
+}
+.fc-button{
+    background-color:#ffbd27 !important;
+    border: 1px solid #fff !important;
+    .fc-icon{
+        color: #fff ;
+    }
+}
+
 .all-products-category {
     background: $bg--base2;
     padding: 0px 10px;

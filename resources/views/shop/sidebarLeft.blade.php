@@ -151,22 +151,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-4 col-sm-6">
-                                <div class="product-item product-item2 element-item3 sidebar-left">
-                                    <a href="{{ route('productDetails') }}" class="product-image">
-                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
-                                    </a>
-                                    <div class="bottom-content">
-                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
-                                        <div class="action-wrap">
-                                            <span class="product-price">от 1 000 ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
-                                        </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -185,22 +172,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-4 col-sm-6">
-                                <div class="product-item product-item2 element-item3 sidebar-left">
-                                    <a href="{{ route('productDetails') }}" class="product-image">
-                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
-                                    </a>
-                                    <div class="bottom-content">
-                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
-                                        <div class="action-wrap">
-                                            <span class="product-price">от 1 000 ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
-                                        </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -219,22 +193,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-4 col-sm-6">
-                                <div class="product-item product-item2 element-item3 sidebar-left">
-                                    <a href="{{ route('productDetails') }}" class="product-image">
-                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
-                                    </a>
-                                    <div class="bottom-content">
-                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
-                                        <div class="action-wrap">
-                                            <span class="product-price">от 1 000 ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
-                                        </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -253,22 +214,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-4 col-sm-6">
-                                <div class="product-item product-item2 element-item3 sidebar-left">
-                                    <a href="{{ route('productDetails') }}" class="product-image">
-                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
-                                    </a>
-                                    <div class="bottom-content">
-                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
-                                        <div class="action-wrap">
-                                            <span class="product-price">от 1 000 ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
-                                        </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -287,22 +235,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-3 col-md-4 col-sm-6">
-                                <div class="product-item product-item2 element-item3 sidebar-left">
-                                    <a href="{{ route('productDetails') }}" class="product-image">
-                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
-                                    </a>
-                                    <div class="bottom-content">
-                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
-                                        <div class="action-wrap">
-                                            <span class="product-price">от 1 000 ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
-                                        </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -321,6 +256,10 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -337,6 +276,112 @@
                                                 <i class="fal fa-shopping-cart"></i> В корзину
                                             </a>
                                         </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="product-item product-item2 element-item3 sidebar-left">
+                                    <a href="{{ route('productDetails') }}" class="product-image">
+                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
+                                    </a>
+                                    <div class="bottom-content">
+                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart">
+                                                <i class="fal fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="product-item product-item2 element-item3 sidebar-left">
+                                    <a href="{{ route('productDetails') }}" class="product-image">
+                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
+                                    </a>
+                                    <div class="bottom-content">
+                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart">
+                                                <i class="fal fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="product-item product-item2 element-item3 sidebar-left">
+                                    <a href="{{ route('productDetails') }}" class="product-image">
+                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
+                                    </a>
+                                    <div class="bottom-content">
+                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart">
+                                                <i class="fal fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="product-item product-item2 element-item3 sidebar-left">
+                                    <a href="{{ route('productDetails') }}" class="product-image">
+                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
+                                    </a>
+                                    <div class="bottom-content">
+                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart">
+                                                <i class="fal fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="product-item product-item2 element-item3 sidebar-left">
+                                    <a href="{{ route('productDetails') }}" class="product-image">
+                                        <img src="https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg" alt="product-image">
+                                    </a>
+                                    <div class="bottom-content">
+                                        <a href="{{ route('productDetails') }}" class="product-name">Газовый монтажный пистолет GNG1000</a>
+                                        <div class="action-wrap">
+                                            <span class="product-price">от 1 000 ₽</span>
+                                            <a href="{{ route('cart') }}" class="addto-cart">
+                                                <i class="fal fa-shopping-cart"></i> В корзину
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-actions">
+                                        <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                        <button class="product-action product-details-popup-btn"><i class="fal fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>

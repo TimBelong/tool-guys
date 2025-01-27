@@ -65,7 +65,7 @@
                 <div class="details-filter-bar2">
                     <button class="details-filter filter-btn active" data-show=".dls-one">Описание</button>
                     <button class="details-filter filter-btn" data-show=".dls-two">Технические характеристики</button>
-{{--                    <button class="details-filter filter-btn" data-show=".dls-three">Reviews (0)</button>--}}
+                    <button class="details-filter filter-btn" data-show=".dls-three">Календарь</button>
                 </div>
                 <div class="full-details dls-one filterd-items">
                     <div class="full-details-inner">
@@ -104,62 +104,9 @@
                         </p>
                     </div>
                 </div>
-{{--                <div class="full-details dls-three filterd-items hide">--}}
-{{--                    <div class="full-details-inner">--}}
-{{--                        <p>There are no reveiws yet.</p>--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-lg-12 col-md-12 mr-10">--}}
-{{--                                <div class="reveiw-form">--}}
-{{--                                    <h2 class="section-title">--}}
-{{--                                        Be the first to reveiw <strong> <a href="{{ route('productDetails') }}">"Wide Cotton Tunic Dress"</a></strong></h2>--}}
-{{--                                        <h4 class="sect-title">Your email address will not be published. Required fields are marked* </h4>--}}
-{{--                                        <div class="reveiw-form-main mb-10">--}}
-{{--                                            <div class="contact-form">--}}
-{{--                                                <div class="row">--}}
-{{--                                                    <div class="col-lg-6 col-sm-12">--}}
-{{--                                                        <div class="input-box text-input mb-20">--}}
-{{--                                                            <textarea name="Message" id="validationDefault01"  cols="30" rows="10"--}}
-{{--                                                                placeholder="Your Review*" required></textarea>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="col-lg-6 col-sm-12">--}}
-{{--                                                        <div class="col-lg-12">--}}
-{{--                                                            <div class="input-box mb-20">--}}
-{{--                                                                <input type="text" id="validationDefault02" placeholder="Name*" required>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-lg-12">--}}
-{{--                                                            <div class="input-box mail-input mb-20">--}}
-{{--                                                                <input type="text" id="validationDefault03" placeholder="E-mail*" required>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-lg-12">--}}
-{{--                                                            <div class="rating">--}}
-{{--                                                                <p>Your Rating :</p>--}}
-{{--                                                                <div class="rating-icon">--}}
-{{--                                                                    <span class="one"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
-{{--                                                                    <span class="two"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
-{{--                                                                    <span class="three"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
-{{--                                                                    <span class="four"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
-{{--                                                                    <span class="five"><a href="#"> <i class="fal fa-star"></i></a></span>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-12 mb-15">--}}
-{{--                                                            <button class="form-btn form-btn4">--}}
-{{--                                                                Submit <i class="fal fa-long-arrow-right"></i>--}}
-{{--                                                            </button>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--            --}}
-{{--                                        </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                <div class="full-details dls-three filterd-items hide">
+                    <div id="calendar" class="mt-4"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -271,3 +218,18 @@
     <div class="rts-account-section"></div>
 
 @endsection
+
+@push('script')
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar')
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'ru'
+            })
+            calendar.render()
+        })
+
+    </script>
+@endpush

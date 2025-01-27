@@ -29,6 +29,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.nstSlider.min.css')}}">
 
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+
     <!-- ..::Main Stylesheet::.. -->
     <?php echo ($css ?? '')?>
             <!-- ..::Main Stylesheet::.. -->

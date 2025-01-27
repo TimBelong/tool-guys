@@ -22,5 +22,8 @@
 
     <script src="{{  asset('assets/js/vendors/zoom.js') }}"></script>
 
+
+    @stack('script')
+
     <!-- ..::Main Script::.. -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

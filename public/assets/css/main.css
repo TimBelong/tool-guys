@@ -49,6 +49,9 @@
   padding: 0;
 }
 
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+
 html {
   box-sizing: border-box;
 }

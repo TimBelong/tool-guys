@@ -84,10 +84,10 @@
                             <div class="favourite-icon icon"><a href="{{ route('wishlist') }}"><i class="rt-heart"></i></a>
                             </div>
                         </div>
-{{--                        <form method="POST" action="{{ route('logout') }}">--}}
-{{--                            @csrf--}}
-{{--                            <button type="submit">Выйти</button>--}}
-{{--                        </form>--}}
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit">Выйти</button>
+                        </form>
                         <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
                     </div>
                     <div class="hamburger" id="hamburger"><span></span></div>
