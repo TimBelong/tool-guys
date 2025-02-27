@@ -137,28 +137,28 @@
                     @media(max-width:900px){
                         display: none;
                     }
-    
+
                     .select-div {
                         position: relative;
-    
+
                         &:focus {
                             i {
                                 transform: rotate(180deg);
                             }
                         }
-    
+
                         i {
                             position: absolute;
                             top: 0;
                             right: 10px;
                         }
                     }
-    
+
                     .select {
                         width: 75px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -169,10 +169,10 @@
                             padding: 0;
                             color: $white-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -184,7 +184,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: -8px;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -192,7 +192,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -206,7 +206,7 @@
                         width: 50px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -217,10 +217,10 @@
                             padding: 0;
                             color: $white-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -232,7 +232,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: 0;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -240,7 +240,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -250,7 +250,7 @@
                             }
                         }
                     }
-    
+
                     .select-options {
                         width: 100px;
                         margin-top: 40px;
@@ -611,28 +611,28 @@
                 }
                 .topbar-select-area {
                     margin-left: 25px;
-    
+
                     .select-div {
                         position: relative;
-    
+
                         &:focus {
                             i {
                                 transform: rotate(180deg);
                             }
                         }
-    
+
                         i {
                             position: absolute;
                             top: 0;
                             right: 10px;
                         }
                     }
-    
+
                     .select {
                         width: 75px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -643,10 +643,10 @@
                             padding: 0;
                             color: $grey-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -658,7 +658,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: 0;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -666,7 +666,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -680,7 +680,7 @@
                         width: 75px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -691,10 +691,10 @@
                             padding: 0;
                             color: $grey-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -706,7 +706,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: 17px;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -714,7 +714,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -724,7 +724,7 @@
                             }
                         }
                     }
-    
+
                     .select-options {
                         width: 100px;
                         margin-top: 40px;
@@ -789,28 +789,28 @@
                 }
                 .topbar-select-area {
                     margin-left: 25px;
-    
+
                     .select-div {
                         position: relative;
-    
+
                         &:focus {
                             i {
                                 transform: rotate(180deg);
                             }
                         }
-    
+
                         i {
                             position: absolute;
                             top: 0;
                             right: 10px;
                         }
                     }
-    
+
                     .select {
                         width: 75px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -821,10 +821,10 @@
                             padding: 0;
                             color: $white-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -836,7 +836,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: 0;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -844,7 +844,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -858,7 +858,7 @@
                         width: 50px;
                         height: 0;
                         position: relative;
-    
+
                         .select-styled {
                             background: transparent;
                             position: relative;
@@ -869,10 +869,10 @@
                             padding: 0;
                             color: $white-color;
                             width: 60px;
-    
+
                             &.active {
                                 background: transparent;
-    
+
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -884,7 +884,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 right: 17px;
                             }
-    
+
                             &:after {
                                 border-color: $white-color transparent transparent transparent;
                                 top: 6px;
@@ -892,7 +892,7 @@
                                 display: none;
                             }
                         }
-    
+
                         .select-options {
                             li {
                                 padding: 12px 25px;
@@ -902,7 +902,7 @@
                             }
                         }
                     }
-    
+
                     .select-options {
                         width: 100px;
                         margin-top: 40px;
@@ -953,6 +953,7 @@
         padding: 22px 0 !important;
     }
     .navbar-inner{
+        justify-content: space-between;
         @media(max-width:991px){
             justify-content: space-between;
         }
@@ -1044,7 +1045,7 @@
                    }
                 }
             }
-                
+
         }
         &.mega-dropdown{
             .mega-dropdown-li{
@@ -1061,7 +1062,7 @@
                             font-weight: 400;
                             position: relative;
                             transition: all 400ms ease;
-                            &::before{ 
+                            &::before{
                                 content: '';
                                 position: absolute;
                                 top: 17px;
@@ -1418,7 +1419,7 @@
                             }
                         }
                     }
-                        
+
                 }
                 &.mega-dropdown{
                     left: -129px;
@@ -1436,7 +1437,7 @@
                                     font-weight: 400;
                                     position: relative;
                                     transition: all 400ms ease;
-                                    &::before{ 
+                                    &::before{
                                         content: '';
                                         position: absolute;
                                         top: 17px;
@@ -1901,6 +1902,7 @@
         background: none;
 
         .rts-menu {
+            margin-left: 0;
             .mega-dropdown {
                 background: #031424;
 
@@ -1922,7 +1924,6 @@
     }
 
     .rts-menu {
-        margin-left: auto;
 
         .menu-item {
             color: $white-color;
@@ -1966,15 +1967,15 @@
     .navbar-part2{
         background: #fff;
         padding: 15px 0 15px 35px;
-        border-radius: 0 0 10px 10px;  
+        border-radius: 0 0 10px 10px;
         @media(max-width:1200px){
             padding: 15px 0;
-        } 
+        }
         .logo{
             &::before{
                 display: none;
             }
-        }  
+        }
         .rts-menu{
             @media(max-width:991px){
                 display: none;
@@ -2014,7 +2015,7 @@
                     }
                 }
             }
-        } 
+        }
         .header-action-items1{
             display: flex !important;
             .responsive-hamburger{
@@ -2085,7 +2086,7 @@
                 }
             }
         }
-         
+
     }
 
     &.sticky-menu {
@@ -2105,15 +2106,15 @@
     .navbar-part5{
         background: #fff;
         padding: 15px 0 15px 35px;
-        border-radius: 0 0 10px 10px;  
+        border-radius: 0 0 10px 10px;
         @media(max-width:1200px){
             padding: 15px 0;
-        } 
+        }
         .logo{
             &::before{
                 display: none;
             }
-        }  
+        }
         .rts-menu{
             @media(max-width:991px){
                 display: none;
@@ -2156,7 +2157,7 @@
                         }
                         }
                     }
-                        
+
                 }
                 &.mega-dropdown{
                     .mega-dropdown-li{
@@ -2173,7 +2174,7 @@
                                     font-weight: 400;
                                     position: relative;
                                     transition: all 400ms ease;
-                                    &::before{ 
+                                    &::before{
                                         content: '';
                                         position: absolute;
                                         top: 17px;
@@ -2198,7 +2199,7 @@
                         }
                     }
                 }
-    
+
             }
             .dropdown-li{
                 .dropdown-link{
@@ -2215,7 +2216,7 @@
                     }
                 }
             }
-        } 
+        }
         .header-action-items1{
             display: flex !important;
             .responsive-hamburger{
@@ -2288,7 +2289,7 @@
                     background: var(--theme-color);
                 }
             }
-        }         
+        }
     }
 }
 
@@ -2350,11 +2351,10 @@
 
 .navbar-inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     @media(max-width: 900px) {
-        justify-content: start;
+        justify-content: space-between;
 
         .header-action-items {
             margin-left: auto;
@@ -3130,16 +3130,22 @@
 }
 
 .rts-menu {
+    padding: 10px 0 10px 0;
+    .has-dropdown {
+        position: relative;
+
+        &:nth-of-type(3) .dropdown-ul,
+        &:nth-of-type(5) .dropdown-ul,
+        &:last-of-type .dropdown-ul {
+            left: -200px;
+        }
+    }
+
     .mega-dropdown {
         padding: 30px;
-        width: 650px;
-        left: -123px;
+        left: 0px;
         display: flex;
         flex-direction: row !important;
-
-        .mega-dropdown-li {
-            width: 33.333%;
-        }
 
         .parent-page-title {
             font-size: 19px;
@@ -3163,6 +3169,7 @@
         }
     }
 }
+
 
 .mega-dropdown-li{
     &.last-child{

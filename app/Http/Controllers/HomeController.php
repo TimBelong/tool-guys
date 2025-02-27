@@ -2,112 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\CategoriesRepository;
+use App\Repositories\InventoryRepository;
+use App\Services\InventoryService;
+use App\Services\MediaService;
+use App\Services\OptionsService;
+use App\Services\StateService;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use App\Services\CategoriesService;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(CategoriesRepository $categoriesRepository)
     {
-        return view('home/index');
+        $categories = $categoriesRepository->getParentCategories();
+
+        return view('home/index', compact('categories'));
     }
-    
-    public function indexTwo()
+
+    public function indexFive(InventoryRepository $inventoryRepository, OptionsService $optionsService)
     {
-        return view('home/indexTwo');
+        $latestInventories = $inventoryRepository->getLatestInventories(6);
+        $topInventories = $inventoryRepository->getTopRentedInventories(5);
+
+        return view('home/index', compact('latestInventories', 'topInventories'));
     }
-    
-    public function indexThree()
-    {
-        return view('home/indexThree');
-    }
-    
-    public function indexFour()
-    {
-        return view('home/indexFour');
-    }
-    
-    public function indexFive()
-    {
-        return view('home/indexFive');
-    }
-    
-    public function indexSix()
-    {
-        return view('home/indexSix');
-    }
-    
-    public function indexSeven()
-    {
-        return view('home/indexSeven');
-    }
-    
-    public function indexEight()
-    {
-        return view('home/indexEight');
-    }
-    
-    public function indexNine()
-    {
-        return view('home/indexNine');
-    }
-    
-    public function indexTen()
-    {
-        return view('home/indexTen');
-    }
-    
-    
+
     public function allCategory()
     {
         return view('home/allCategory');
     }
-    
-    
+
     public function category()
     {
         return view('home/category');
     }
-    
-    
+
     public function externalProducts()
     {
         return view('home/externalProducts');
     }
-    
-    
+
     public function outOfStockProducts()
     {
         return view('home/outOfStockProducts');
     }
-    
-    
+
     public function shopFiveColumn()
     {
         return view('home/shopFiveColumn');
     }
-    
-    
+
     public function simpleProducts()
     {
         return view('home/simpleProducts');
     }
-    
-    
+
     public function thankYou()
     {
         return view('home/thankYou');
     }
-    
-    
+
     public function wishlist()
     {
         return view('home/wishlist');
     }
-    
-    
+
     public function login()
     {
         return view('home/login');
     }
-    
 }

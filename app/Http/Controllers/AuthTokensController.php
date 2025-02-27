@@ -1,33 +1,32 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class AuthTokensController extends Controller
 {
     public function getTokens(Request $request)
     {
         try {
             $client = new Client([
-                                     'base_uri' => 'https://api.rentinhand.com/', // Уточни базовый URL
+                                     'base_uri' => 'https://api.rentinhand.ru/v2/', // Базовый URL API
                                      'headers' => [
                                          'Accept' => 'application/json',
                                          'Content-Type' => 'application/json',
                                      ],
                                  ]);
 
-            // Отправка POST-запроса с логином и паролем
-            $response = $client->post('v2/oauth/personal-access-tokens', [
+            $response = $client->post('login', [
                 'json' => [
-                    'login' => 'test',      // Укажи свои реальные данные
-                    'password' => '123123', // Укажи реальные данные
+                    'login' => 'toolguys_Tim',
+                    'password' => 'fjjkhdbflkqjwbrdn',
                 ],
             ]);
 
             $data = json_decode($response->getBody(), true);
-
             return response()->json($data);
         } catch (RequestException $e) {
             return response()->json([
@@ -37,3 +36,4 @@ class AuthController extends Controller
         }
     }
 }
+

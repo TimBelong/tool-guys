@@ -8,7 +8,7 @@ use App\Models\Categories;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriesRespository extends AbstractRepository
+class CategoriesRepository extends AbstractRepository
 {
     public function all(): Collection|array
     {
@@ -72,4 +72,15 @@ class CategoriesRespository extends AbstractRepository
         return Categories::whereNotIn('rent_in_hand_id', $existingRentInHandIds)->delete();
     }
 
+    public function getParentCategories()
+    {
+        return Categories::whereNull('parent_id')->get();
+    }
+
+    public function getChildCategories(int $parentRentInHandId)
+    {
+        return Categories::where('parent_id', $parentRentInHandId)
+            ->whereHas('inventories')
+            ->get();
+    }
 }

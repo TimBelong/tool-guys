@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthTokensController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -8,13 +10,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\BlogController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'indexFive')->name('indexFive');
@@ -35,16 +31,6 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('home')->group(function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/index', 'index')->name('index');
-        Route::get('/index-two', 'indexTwo')->name('indexTwo');
-        Route::get('/index-three', 'indexThree')->name('indexThree');
-        Route::get('/index-four', 'indexFour')->name('indexFour');
-        Route::get('/index-five', 'indexFive')->name('indexFive');
-        Route::get('/index-six', 'indexSix')->name('indexSix');
-        Route::get('/index-seven', 'indexSeven')->name('indexSeven');
-        Route::get('/index-eight', 'indexEight')->name('indexEight');
-        Route::get('/index-nine', 'indexNine')->name('indexNine');
-        Route::get('/index-ten', 'indexTen')->name('indexTen');
         Route::get('/all-category', 'allCategory')->name('allCategory');
         Route::get('/category', 'category')->name('category');
         Route::get('/external-products', 'externalProducts')->name('externalProducts');
@@ -79,13 +65,13 @@ Route::prefix('shop')->group(function () {
         Route::get('/check-out', 'checkOut')->name('checkOut');
         Route::get('/full-width-Shop', 'fullWidthShop')->name('fullWidthShop');
 //            Route::get('/grouped-products','groupedProducts')->name('groupedProducts');
-        Route::get('/product-details', 'productDetails')->name('productDetails');
+        Route::get('/product-details/{id}', 'productDetails')->name('productDetails');
         Route::get('/product-details2', 'productDetails2')->name('productDetails2');
         Route::get('/shop', 'shop')->name('shop');
-        Route::get('/sidebar-left', 'groupedProducts')->name('groupedProducts');
+        Route::get('/sidebar-left/{category}', 'groupedProducts')->name('groupedProducts');
         Route::get('/sidebar-right', 'sidebarRight')->name('sidebarRight');
         Route::get('/variable-products', 'variableProducts')->name('variableProducts');
-        Route::get('/grouped-products', 'groupedProducts')->name('groupedProducts');
+//        Route::get('/grouped-products', 'groupedProducts')->name('groupedProducts');
     });
 });
 
@@ -98,6 +84,10 @@ Route::prefix('blog')->group(function () {
         Route::get('/newsGrid', 'newsGrid')->name('newsGrid');
     });
 });
+
+Route::post('/get-tokens', [AuthTokensController::class, 'getTokens'])->name('get-tokens');
+Route::get('/inventory', [InventoryController::class, 'getInventory'])->name('inventory');
+
 
 require __DIR__.'/auth.php';
 

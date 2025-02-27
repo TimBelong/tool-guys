@@ -27,11 +27,11 @@
                             </div>
                         </div>
                         <ul class="social-links-footer2">
-                            <li><a class="platform fb" target="_blank" href="#"><i class="fab fa-telegram"></i></a></li>
-                            <li><a class="platform yt" target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a class="platform ttr" target="_blank" href="#"><i class="fab fa-vk"></i></a></li>
-                            <li><a class="platform lkd" target="_blank" href="#"><i class="fab fa-whatsapp"></i></a>
-                            </li>
+                            <li><a class="platform fb" target="_blank" href="https://t.me/toolguysrent"><i class="fab fa-telegram"></i></a></li>
+{{--                            <li><a class="platform yt" target="_blank" href="#"><i class="fab fa-instagram"></i></a></li>--}}
+                            <li><a class="platform yt" target="_blank" href="tel:+79852876543"><i class="rt-phone-flip"></i></a></li>
+                            <li><a class="platform ttr" target="_blank" href="https://vk.com/toolguysrent"><i class="fab fa-vk"></i></a></li>
+                            <li><a class="platform lkd" target="_blank" href="https://wa.me/79852876543"><i class="fab fa-whatsapp"></i></a></li>
                         </ul>
                     </div>
                 </div>
