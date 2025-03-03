@@ -140,9 +140,15 @@
                                             </div>
                                         </div>
                                         <div class="product-actions">
-                                            <a href="" class="product-action"><i class="fal fa-heart"></i></a>
+                                            <a class="product-action wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($product->getId()) ? 'active' : '' }}"
+                                               style="cursor:pointer;"
+                                               data-inventory-id="{{ $product->getId() }}">
+                                                <i class="rt-heart"></i>
+                                            </a>
                                             <button class="product-action product-details-popup-btn"><i
-                                                        class="fal fa-eye"></i></button>
+                                                        class="fal fa-eye">
+                                                </i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -152,9 +158,7 @@
                     <div class="product-pagination-area mt--20">
                         {{ $products->links() }}
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -171,8 +175,7 @@
                         <div class="thumb-wrapper one filterd-items figure">
                             <div class="product-thumb zoom" onmousemove="zoom(event)"
                                  style="background-image: url('{{ asset('assets/images/products/product-details.jpg') }}')">
-                                <img
-                                        src="{{ asset('assets/images/products/product-details.jpg') }}"
+                                <img src="{{ asset('assets/images/products/product-details.jpg') }}"
                                         alt="product-thumb">
                             </div>
                         </div>
@@ -259,4 +262,46 @@
         </div>
     </div>
     <!-- ..::Product-details Section End Here::.. -->
+    @push('script')
+        <script>
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    let inventoryId = this.dataset.inventoryId;
+                    console.log("Clicked inventory ID:", inventoryId);
+
+                    if (!inventoryId) {
+                        console.error("Inventory ID not found");
+                        return;
+                    }
+
+                    let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+                    if (!csrfTokenElement) {
+                        console.error("CSRF token meta tag not found");
+                        return;
+                    }
+
+                    let csrfToken = csrfTokenElement.getAttribute('content');
+
+                    fetch(`/favorites/${inventoryId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({})
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Server response:", data);
+                            if (data.status === 'added') {
+                                button.classList.add('active');
+                            } else if (data.status === 'removed') {
+                                button.classList.remove('active');
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
+                });
+            });
+        </script>
+    @endpush
 </x-default-layout>

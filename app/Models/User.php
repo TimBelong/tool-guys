@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -43,5 +44,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function favorites(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Inventory::class,
+            'user_has_favorites',
+            'user_id',
+            'inventory_id'
+        );
+    }
+
+    public function purchaseList(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Inventory::class,
+            'user_has_purchase_items',
+            'user_id',
+            'inventory_id'
+        );
     }
 }

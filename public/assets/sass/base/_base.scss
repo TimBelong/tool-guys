@@ -1641,8 +1641,7 @@ i {
 
   &:hover {
     &:before {
-      height: 100%;
-      ;
+      height: 100%;;
     }
   }
 
@@ -2209,7 +2208,8 @@ i {
 
 .scroll-top-btn1 {
   background: $bg--base2;
-  &.scroll-top-btn2{
+
+  &.scroll-top-btn2 {
     background: var(--theme-color);
   }
 }
@@ -2287,7 +2287,7 @@ i {
   align-items: center;
   padding: 20px 0;
 
-  .title{
+  .title {
     color: var(--theme-color) !important;
     font-size: 14px;
   }
@@ -3088,6 +3088,7 @@ i {
       display: flex;
       gap: 20px;
       max-width: 200px;
+
       span {
         font-size: 16px;
         color: $black-pearl;
@@ -3646,7 +3647,6 @@ i {
   z-index: 1000;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -3663,6 +3663,409 @@ i {
     color: white;
     font-size: 30px;
     cursor: pointer;
+  }
+}
+
+tr.fade-out {
+  opacity: 0;
+  transform: scaleY(0);
+  height: 0;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, height 0.5s ease-out;
+  overflow: hidden;
+}
+
+#calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: inherit;
+
+  // Общие стили для событий
+  .fc-event {
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Стиль кнопок
+  .fc-button {
+    background-color: #f8b64c !important;
+    border-color: #f8b64c !important;
+  }
+}
+
+// Адаптивные стили для мобильных устройств
+@media (max-width: 768px) {
+  #calendar {
+    // Принудительно скрываем сетку и показываем только список
+    .fc-dayGridMonth-view {
+      display: none !important;
+    }
+
+    // Стили для списочного представления
+    .fc-list {
+      border: none !important;
+
+      &-table {
+        border-collapse: separate !important;
+        border-spacing: 0 2px !important;
+        font-size: 14px !important;
+      }
+
+      &-day {
+        background-color: #f5f5f5 !important;
+        padding: 8px 12px !important;
+
+        &-cushion {
+          color: #333 !important;
+          font-weight: bold !important;
+        }
+      }
+
+      &-event {
+        cursor: pointer !important;
+        padding: 8px 12px !important;
+
+        &-dot {
+          display: inline-block !important;
+          margin-right: 6px !important;
+        }
+
+        &-title {
+          font-size: 14px !important;
+        }
+
+        &-time {
+          margin-right: 6px !important;
+        }
+
+        &:hover {
+          background-color: #f8f8f8 !important;
+        }
+      }
+    }
+
+    // Улучшаем заголовок
+    .fc-toolbar {
+      flex-wrap: wrap !important;
+      margin-bottom: 12px !important;
+
+      &-title {
+        font-size: 16px !important;
+        margin: 5px 0 !important;
+        width: 100% !important;
+        text-align: center !important;
+        order: 1 !important;
+      }
+
+      &-chunk {
+        // Левые кнопки навигации
+        &:first-child {
+          order: 2 !important;
+          flex: 1 !important;
+          display: flex !important;
+          justify-content: flex-start !important;
+        }
+
+        // Правые кнопки представления
+        &:last-child {
+          order: 3 !important;
+          flex: 1 !important;
+          display: flex !important;
+          justify-content: flex-end !important;
+        }
+      }
+
+      .fc-button {
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    // Улучшаем отображение пустого списка
+    .fc-list-empty {
+      background-color: #f9f9f9 !important;
+      padding: 20px !important;
+      text-align: center !important;
+
+      .fc-list-empty-cushion {
+        color: #666 !important;
+        font-style: italic !important;
+      }
+    }
+  }
+
+  // Дополнительные стили для занятых дат в списке
+  .fc-event {
+    &[style*="background-color: rgb(255, 107, 107)"] {
+      border-left: 4px solid #FF6B6B !important;
+      background-color: rgba(255, 107, 107, 0.1) !important;
+
+      .fc-list-event-title {
+        color: #e54343 !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+}
+
+// Исправление распространенных проблем с FullCalendar
+.fc {
+  .fc-scroller {
+    overflow: visible !important;
+  }
+
+  .fc-view-harness, .fc-view-harness-active {
+    height: auto !important;
+  }
+}
+
+// Убираем белое пространство при загрузке
+.fc-unthemed td, .fc-unthemed th, .fc-view, .fc-view > table {
+  border-color: #eaeaea !important;
+}
+
+.search-form {
+  width: 100%;
+  position: relative;
+
+  .input-div {
+    position: relative;
+    width: 100%;
+
+    .search-input-icon {
+      position: absolute;
+      right: 15px !important;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .search-input {
+      padding-left: 60px; // Отступ для иконки поиска
+    }
+
+    .search-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.6;
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// Стили для результатов поиска
+.empty-search-results {
+  text-align: center;
+  padding: 50px 0;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+}
+
+// Дополнительные стили для страницы поиска
+.product-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.search-input-inner {
+  position: relative;
+  width: 100%;
+
+  // Контейнер для выпадающих результатов
+  .live-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+
+    // Состояния загрузки, ошибки и отсутствия результатов
+    .live-search-loading,
+    .live-search-error,
+    .live-search-no-results {
+      padding: 15px;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+    }
+
+    .live-search-error {
+      color: #ff4a4a;
+    }
+
+    // Список результатов
+    .live-search-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .live-search-item {
+        border-bottom: 1px solid #f0f0f0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .live-search-link {
+          display: flex;
+          padding: 10px 15px;
+          text-decoration: none;
+          color: inherit;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #f9f9f9;
+          }
+        }
+
+        .live-search-image {
+          width: 60px;
+          height: 60px;
+          margin-right: 15px;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+          }
+        }
+
+        .live-search-info {
+          flex: 1;
+
+          .live-search-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          .live-search-category {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 4px;
+          }
+
+          .live-search-price {
+            font-weight: 600;
+            color: #f8b64c;
+          }
+        }
+      }
+    }
+
+    // Футер с ссылкой на все результаты
+    .live-search-footer {
+      padding: 10px 15px;
+      background-color: #f5f5f5;
+      text-align: center;
+      border-top: 1px solid #eee;
+
+      .live-search-all {
+        color: #f8b64c;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Стили для формы поиска
+.search-form {
+  width: 100%;
+
+  .input-div {
+    position: relative;
+    width: 100%;
+
+    .search-input-icon {
+      position: absolute;
+      right: 15px !important;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .search-input {
+      padding-left: 60px;
+    }
+
+    .search-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.6;
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// Адаптивные стили
+@media (max-width: 768px) {
+  .live-search-results {
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-height: 60vh !important;
+    z-index: 2000 !important;
+    border-radius: 0 !important;
   }
 }
 

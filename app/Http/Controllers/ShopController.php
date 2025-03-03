@@ -31,8 +31,9 @@ class ShopController extends Controller
     public function productDetails(int $id)
     {
         $product = Inventory::findOrFail($id);
+        $rents = $product->rents()->get(['id', 'time_start', 'time_end']);
 
-        return view('shop.productDetails', compact('product'));
+        return view('shop.productDetails', compact('product', 'rents'));
     }
 
 

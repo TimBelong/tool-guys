@@ -68,7 +68,6 @@ class InventoryRepository extends AbstractRepository
                 'children_count' => $data['children_count'] ?? null,
                 'sum_amount_payment' => $data['sum_amount_payment'] ?? null,
                 'is_group' => $data['is_group'] ?? false,
-                //                'children_id' => !empty($data['children']) ? $data['children'][0]['id'] : null,
                 'services' => $data['services'] ?? false,
                 'is_occupied' => $data['is_occupied'] ?? false,
             ]
@@ -100,7 +99,6 @@ class InventoryRepository extends AbstractRepository
                 'children_count' => $data['children_count'] ?? null,
                 'sum_amount_payment' => $data['sum_amount_payment'] ?? null,
                 'is_group' => $data['is_group'] ?? false,
-                //                'children_id' => !empty($data['children']) ? $data['children'][0]['id'] : null,
                 'services' => $data['services'] ?? false,
                 'is_occupied' => $data['is_occupied'] ?? false,
             ]

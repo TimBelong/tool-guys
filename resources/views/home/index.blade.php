@@ -123,6 +123,10 @@
                                                 <i class="fal fa-shopping-cart"></i> В корзину
                                             </a>
                                         </div>
+                                        <button class="wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($inventory->getId()) ? 'active' : '' }}"
+                                                data-inventory-id="{{ $inventory->getId() }}">
+                                            <i class="rt-heart"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +168,8 @@
                                                                 <button class="select-option-btn">
                                                                     <i class="fal fa-shopping-cart mr--5"></i> В корзину
                                                                 </button>
-                                                                <button class="wishlist-btn">
+                                                                <button class="wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($inventory->getId()) ? 'active' : '' }}"
+                                                                        data-inventory-id="{{ $inventory->getId() }}">
                                                                     <i class="rt-heart"></i>
                                                                 </button>
                                                             </div>
@@ -490,4 +495,47 @@
             </div>
         </section>
     </div>
+
+    @push('script')
+        <script>
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    let inventoryId = this.dataset.inventoryId;
+                    console.log("Clicked inventory ID:", inventoryId);
+
+                    if (!inventoryId) {
+                        console.error("Inventory ID not found");
+                        return;
+                    }
+
+                    let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+                    if (!csrfTokenElement) {
+                        console.error("CSRF token meta tag not found");
+                        return;
+                    }
+
+                    let csrfToken = csrfTokenElement.getAttribute('content');
+
+                    fetch(`/favorites/${inventoryId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({})
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log("Server response:", data);
+                            if (data.status === 'added') {
+                                button.classList.add('active');
+                            } else if (data.status === 'removed') {
+                                button.classList.remove('active');
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
+                });
+            });
+        </script>
+    @endpush
 </x-default-layout>

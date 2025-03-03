@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoriesRepository;
 use App\Repositories\InventoryRepository;
-use App\Services\InventoryService;
-use App\Services\MediaService;
-use App\Services\OptionsService;
-use App\Services\StateService;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use App\Services\CategoriesService;
+use App\Services\RentsService;
 
 class HomeController extends Controller
 {
@@ -21,7 +15,7 @@ class HomeController extends Controller
         return view('home/index', compact('categories'));
     }
 
-    public function indexFive(InventoryRepository $inventoryRepository, OptionsService $optionsService)
+    public function indexFive(InventoryRepository $inventoryRepository)
     {
         $latestInventories = $inventoryRepository->getLatestInventories(6);
         $topInventories = $inventoryRepository->getTopRentedInventories(5);

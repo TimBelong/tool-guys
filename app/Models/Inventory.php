@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -19,7 +21,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $description
  * @property int|null    $rent_number
  * @property Carbon|null $buy_date
- * @property string|null  $buy_price
+ * @property string|null $buy_price
  * @property float|null  $amount_rent_sum
  * @property float|null  $cash_deposit
  * @property int|null    $option_id
@@ -37,6 +39,7 @@ use Illuminate\Notifications\Notifiable;
  * @property int|null    $count_free_children
  * @property Carbon      $created_at
  * @property Carbon      $updated_at
+ * @property Rents       $rents
  */
 class Inventory extends Model
 {
@@ -115,6 +118,31 @@ class Inventory extends Model
     public function media()
     {
         return $this->hasMany(Media::class, 'inventory_id');
+    }
+
+    public function rents()
+    {
+        return $this->hasMany(Rents::class, 'inventory_id');
+    }
+
+    public function favorites(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'user_has_favorites',
+            'inventory_id',
+            'user_id'
+        );
+    }
+
+    public function purchaseList(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'user_has_purchase_items',
+            'inventory_id',
+            'user_id'
+        );
     }
 
     public function getId(): int

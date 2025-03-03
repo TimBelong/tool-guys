@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthTokensController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
@@ -63,14 +64,11 @@ Route::prefix('shop')->group(function () {
         Route::get('/account', 'account')->name('account');
         Route::get('/cart', 'cart')->name('cart');
         Route::get('/check-out', 'checkOut')->name('checkOut');
-        Route::get('/full-width-Shop', 'fullWidthShop')->name('fullWidthShop');
+
 //            Route::get('/grouped-products','groupedProducts')->name('groupedProducts');
         Route::get('/product-details/{id}', 'productDetails')->name('productDetails');
-        Route::get('/product-details2', 'productDetails2')->name('productDetails2');
-        Route::get('/shop', 'shop')->name('shop');
+
         Route::get('/sidebar-left/{category}', 'groupedProducts')->name('groupedProducts');
-        Route::get('/sidebar-right', 'sidebarRight')->name('sidebarRight');
-        Route::get('/variable-products', 'variableProducts')->name('variableProducts');
 //        Route::get('/grouped-products', 'groupedProducts')->name('groupedProducts');
     });
 });
@@ -87,7 +85,14 @@ Route::prefix('blog')->group(function () {
 
 Route::post('/get-tokens', [AuthTokensController::class, 'getTokens'])->name('get-tokens');
 Route::get('/inventory', [InventoryController::class, 'getInventory'])->name('inventory');
+Route::post('/favorites/{inventory}', [InventoryController::class, 'storeFavorite'])->middleware('auth')->name(
+    'favorites.stor'
+);
+Route::delete('/favorites/{inventory}', [InventoryController::class, 'removeFavorite'])->middleware('auth')->name(
+    'favorites.destroy'
+);
 
+Route::get('/api/search', [SearchController::class, 'search'])->name('search.inventory');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 

@@ -25611,4 +25611,16 @@ button {
     bottom: -20px;
 }
 
+.wishlist-btn.active i {
+    color: red;
+}
+
+tr.fade-out {
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.5s ease-out, height 0.5s ease-out;
+    overflow: hidden;
+}
+
+
 /*# sourceMappingURL=main.css.map */

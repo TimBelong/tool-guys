@@ -5,56 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a7b7242-7a6e-4692-9f3e-cb64e7240344" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthTokensController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Livewire/Categories/Categories.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Livewire/Categories/Component/CategoriesComponent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Livewire/Main/Component/MainComponent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Livewire/Main/RenderMain.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Categories.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Inventory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Options.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Points.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/States.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/AbstractRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CategoriesRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/InventoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/PointsRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/RepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/StatesRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/CategoriesService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/ClientService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/InventoryService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/StateService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/UserHasFavorites.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/UserHasPurchaseItems.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/FavoritesListRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/PurchaseListRepositoru.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/RentsRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Services/RentsService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/PointsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Rents.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/InventoryService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/InventoryService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/sass/layout/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/sass/layout/_section.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/sass/layout/_section.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/build/assets/main-CZQSy1Mr.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/sass/base/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/sass/base/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/assets/main-FuJ0pVVt.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/script.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexEight.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexFive.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexFour.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexNine.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexSeven.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexSix.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexTen.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexThree.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home/indexTwo.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/productDetails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/productDetails.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/sidebarLeft.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/sidebarLeft.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +51,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -471,14 +449,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Repositories" />
       <recent name="$PROJECT_DIR$/app/Livewire/Categories" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public/assets/js" />
       <recent name="$PROJECT_DIR$/resources/js" />
-      <recent name="$PROJECT_DIR$/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.Main">
+  <component name="RunManager" selected="PHPUnit.Documents/projects/tool-guys">
     <configuration name="Documents/projects/tool-guys" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/Documents/projects/tool-guys/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
@@ -539,6 +517,12 @@
       <workItem from="1739961075849" duration="5329000" />
       <workItem from="1740330695765" duration="17853000" />
       <workItem from="1740565908304" duration="14415000" />
+      <workItem from="1740674741561" duration="24685000" />
+      <workItem from="1740922763061" duration="25000" />
+      <workItem from="1740923058288" duration="3648000" />
+      <workItem from="1740933374480" duration="1048000" />
+      <workItem from="1740942017773" duration="1000" />
+      <workItem from="1741008022776" duration="656000" />
     </task>
     <servers />
   </component>
@@ -554,24 +538,14 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/profile/edit.blade.php</url>
-          <line>28</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/ProfileController.php</url>
-          <line>18</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php</url>
-          <line>18</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/AuthTokensController.php</url>
           <line>12</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/profile/edit.blade.php</url>
+          <line>189</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

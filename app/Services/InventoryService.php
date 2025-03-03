@@ -38,7 +38,6 @@ class InventoryService
             ]);
 
             $inventoryData = json_decode($inventoryResponse->getBody()->getContents(), true)['data'] ?? [];
-            dd($inventoryData[0]['media']);
             $existingRentInHandIds = [];
             $processedCount = 0;
 

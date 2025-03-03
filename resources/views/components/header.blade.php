@@ -29,10 +29,14 @@
                 <div class="navbar-inner navbar-inner5">
                     <div class="navbar-search-area">
                         <div class="search-input-inner">
-                            <div class="input-div">
-                                <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
-                                <input class="search-input input5" type="text" placeholder="Поиск товаров...">
-                            </div>
+                            <form action="{{ route('search.inventory') }}" method="GET" class="search-form">
+                                <div class="input-div">
+                                    <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
+                                    <input class="search-input input5" type="text" name="query" id="live-search-input" placeholder="Поиск товаров..." autocomplete="off">
+                                    <button type="submit" class="search-button"><i class="rt-search"></i></button>
+                                </div>
+                            </form>
+                            <div class="live-search-results" id="live-search-results"></div>
                         </div>
                     </div>
                     <a href="{{route('indexFive')}}" class="logo">ToolGuys<span>.</span></a>
@@ -43,20 +47,21 @@
                                 <i class="rt-phone-flip"></i>
                             </a>
                         </div>
-                        <div class="cart action-item">
-                            <div class="cart-nav">
-                                <div class="icon">
-                                    <a href="{{route('cart')}}">
-                                        <i class="rt-cart"></i>
-                                        <span class="wishlist-dot icon-dot">3</span>
-                                    </a>
+
+                        @auth
+                            <div class="cart action-item">
+                                <div class="cart-nav">
+                                    <div class="icon">
+                                        <a href="{{route('cart')}}">
+                                            <i class="rt-cart"></i>
+                                            <span class="wishlist-dot icon-dot">3</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="wishlist action-item">
-                            <div class="favourite-icon icon"><a href="{{ route('inventory') }}"><i class="rt-heart"></i></a></div>
-                        </div>
-                        @auth
+                            <div class="wishlist action-item">
+                                <div class="favourite-icon icon"><a href="{{ route('inventory') }}"><i class="rt-heart"></i></a></div>
+                            </div>
                             <a href="{{ route('profile.edit') }}" class="account"><i class="rt-user-2"></i></a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -69,6 +74,19 @@
                         @endauth
 
                         @guest
+                            <div class="cart action-item">
+                                <div class="cart-nav">
+                                    <div class="icon">
+                                        <a href="{{route('login')}}">
+                                            <i class="rt-cart"></i>
+                                            <span class="wishlist-dot icon-dot">3</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wishlist action-item">
+                                <div class="favourite-icon icon"><a href="{{ route('login') }}"><i class="rt-heart"></i></a></div>
+                            </div>
                             <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
                         @endguest
                     </div>
