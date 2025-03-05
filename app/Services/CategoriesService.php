@@ -7,6 +7,7 @@ namespace App\Services;
 use GuzzleHttp\Exception\RequestException;
 use App\Repositories\CategoriesRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class CategoriesService
 {
@@ -22,9 +23,12 @@ class CategoriesService
     public function syncCategories(): JsonResponse
     {
         try {
+            Log::info('Начинаем синхронизацию категорий');
+
             $token = $this->clientService->getAccessToken();
 
             if (!$token) {
+                Log::error('Не удалось получить токен для синхронизации категорий');
                 return response()->json(['error' => 'Не удалось получить токен'], 401);
             }
 
@@ -52,6 +56,11 @@ class CategoriesService
             }
 
             $deletedCount = $this->categoriesRepository->deleteMissingCategories($existingRentInHandIds);
+
+            Log::info('Синхронизация категорий завершена', [
+                'processed' => $processedCount,
+                'deleted' => $deletedCount
+            ]);
 
             return response()->json(
                 [

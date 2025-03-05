@@ -7,6 +7,7 @@ use App\Repositories\InventoryRepository;
 use App\Repositories\RentsRepository;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class RentsService
 {
@@ -24,9 +25,12 @@ class RentsService
     public function syncRents(): JsonResponse
     {
         try {
+            Log::info('Начинаем синхронизацию аренд');
+
             $token = $this->clientService->getAccessToken();
 
             if (!$token) {
+                Log::error('Не удалось получить токен для синхронизации аренд');
                 return response()->json(['error' => 'Не удалось получить токен'], 401);
             }
 
@@ -73,6 +77,12 @@ class RentsService
 
                 $timeStart = new \DateTime($rentData['time_start']);
                 $timeEnd = new \DateTime($rentData['time_end']);
+
+                Log::info('Синхронизация аренд завершена', [
+                    'created' => $createdCount,
+                    'skipped' => $skippedCount,
+                    'total' => count($rentsData)
+                ]);
 
                 $this->rentsRepository->create(
                     [

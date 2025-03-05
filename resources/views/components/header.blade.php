@@ -33,7 +33,6 @@
                                 <div class="input-div">
                                     <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
                                     <input class="search-input input5" type="text" name="query" id="live-search-input" placeholder="Поиск товаров..." autocomplete="off">
-                                    <button type="submit" class="search-button"><i class="rt-search"></i></button>
                                 </div>
                             </form>
                             <div class="live-search-results" id="live-search-results"></div>

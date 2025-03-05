@@ -11,13 +11,15 @@ class ClientService
 
     public function __construct()
     {
-        $this->client = new Client([
-                                       'base_uri' => 'https://api.rentinhand.ru/v2/',
-                                       'headers' => [
-                                           'Accept' => 'application/json',
-                                           'Content-Type' => 'application/json',
-                                       ],
-                                   ]);
+        $this->client = new Client(
+            [
+                'base_uri' => 'https://api.rentinhand.ru/v2/',
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ],
+            ]
+        );
     }
 
     public function getAccessToken(): ?string
@@ -31,6 +33,7 @@ class ClientService
             ]);
 
             $authData = json_decode($authResponse->getBody()->getContents(), true);
+
             return $authData['data']['access_token'] ?? null;
         } catch (RequestException $e) {
             return null;

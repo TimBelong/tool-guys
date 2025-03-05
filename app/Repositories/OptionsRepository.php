@@ -35,8 +35,25 @@ class OptionsRepository extends AbstractRepository
         return Options::find($id)->delete();
     }
 
-    public function findByRentInHandId(int $rentInHandId): ?Options
+    // Метод поиска опции по inventory_id и title
+    public function findByInventoryAndTitle(int $inventoryId, string $title): ?Options
     {
-        return Options::where('rent_in_hand_id', $rentInHandId)->first();
+        return Options::where('inventory_id', $inventoryId)
+            ->where('title', $title)
+            ->first();
+    }
+
+    // Удаляем все опции для конкретного инвентаря
+    public function deleteByInventoryId(int $inventoryId): int
+    {
+        return Options::where('inventory_id', $inventoryId)->delete();
+    }
+
+    // Удаляем опции по ID инвентаря, кроме тех, которые в списке названий
+    public function deleteOptionsNotInTitles(int $inventoryId, array $titles): int
+    {
+        return Options::where('inventory_id', $inventoryId)
+            ->whereNotIn('title', $titles)
+            ->delete();
     }
 }

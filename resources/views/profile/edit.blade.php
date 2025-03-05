@@ -1,5 +1,11 @@
 <x-default-layout>
     <div class="profile-section py-12">
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('status') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <!-- Табы -->
             <ul class="nav nav-tabs px-40" id="profileTabs" role="tablist">
@@ -30,6 +36,14 @@
                         Избранное
                     </button>
                 </li>
+                @if(auth()->user()->role === 'admin')
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="admin-panel-tab" data-bs-toggle="tab" data-bs-target="#admin-panel"
+                                type="button" role="tab" aria-controls="admin-panel" aria-selected="false">
+                            Панель Администратора
+                        </button>
+                    </li>
+                @endif
             </ul>
 
             <!-- Контент табов -->
@@ -209,10 +223,87 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Секция "Панель Администратора" (новая) -->
+                @if(auth()->user()->role === 'admin')
+                    <div class="tab-pane fade" id="admin-panel" role="tabpanel" aria-labelledby="admin-panel-tab">
+                        <div class="container mt-4">
+                            <div class="row">
+                                <!-- Блок синхронизации данных -->
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Синхронизация данных с CRM</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text mb-4">Запустите процесс синхронизации для обновления данных из внешней CRM системы.</p>
+                                            <div id="sync-status-container" class="mb-3">
+                                                @if(session('sync_status'))
+                                                    <div class="alert alert-info">
+                                                        <h6>Результаты последней синхронизации:</h6>
+                                                        <div>{!! session('sync_status') !!}</div>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <form action="{{ route('sync.all') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn cart-btn">
+                                                    <i class="fas fa-sync-alt"></i> Синхронизировать данные
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Блок создания пользователя -->
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Создать нового пользователя</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="{{ route('admin.users.store') }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Имя</label>
+                                                    <input type="text" class="form-control" id="name" name="name" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Пароль</label>
+                                                    <input type="password" class="form-control" id="password" name="password" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password_confirmation" class="form-label">Подтверждение пароля</label>
+                                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="role" class="form-label">Роль</label>
+                                                    <select class="form-select" id="role" name="role">
+                                                        <option value="">Выберите роль</option>
+                                                        @foreach(\App\Enums\UserRoles::listData() as $value => $label)
+                                                            <option value="{{ $value }}">{{ $label }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn cart-btn">
+                                                    <i class="fas fa-user-plus"></i> Создать пользователя
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-
     @push('script')
         <script>
             document.querySelectorAll('.remove-btn').forEach(button => {
@@ -272,5 +363,108 @@
                 });
             });
         </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const syncBtn = document.getElementById('sync-btn');
+                const syncLoading = document.getElementById('sync-loading');
+                const syncStatusContainer = document.getElementById('sync-status-container');
+
+                if (syncBtn) {
+                    syncBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        // Показываем индикатор загрузки
+                        syncLoading.classList.remove('d-none');
+                        syncBtn.disabled = true;
+
+                        // Получаем CSRF-токен
+                        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                        // Выполняем AJAX-запрос
+                        fetch('{{ route("sync.all") }}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Скрываем индикатор загрузки
+                                syncLoading.classList.add('d-none');
+                                syncBtn.disabled = false;
+
+                                // Создаем HTML с результатами синхронизации
+                                let statusHtml = '<div class="alert alert-success">';
+                                statusHtml += '<h6>Синхронизация успешно завершена!</h6>';
+
+                                if (data.details) {
+                                    statusHtml += '<ul class="mb-0">';
+
+                                    // Категории
+                                    if (data.details.categories) {
+                                        const cats = data.details.categories;
+                                        statusHtml += `<li>Категории: обработано ${cats.processed || 0}, удалено ${cats.deleted || 0}</li>`;
+                                    }
+
+                                    // Состояния
+                                    if (data.details.states) {
+                                        const states = data.details.states;
+                                        statusHtml += `<li>Состояния: обработано ${states.processed || 0}</li>`;
+                                    }
+
+                                    // Инвентарь
+                                    if (data.details.inventory) {
+                                        const inv = data.details.inventory;
+                                        statusHtml += `<li>Инвентарь: обработано ${inv.processed || 0}, удалено ${inv.deleted || 0}</li>`;
+                                    }
+
+                                    // Медиа
+                                    if (data.details.media) {
+                                        const media = data.details.media;
+                                        statusHtml += `<li>Медиа: обработано ${media.processed || 0}, удалено ${media.deleted || 0}</li>`;
+                                    }
+
+                                    // Опции
+                                    if (data.details.options) {
+                                        const options = data.details.options;
+                                        statusHtml += `<li>Опции: обработано ${options.processed || 0}, удалено ${options.deleted || 0}</li>`;
+                                    }
+
+                                    // Аренды
+                                    if (data.details.rents) {
+                                        const rents = data.details.rents;
+                                        statusHtml += `<li>Аренды: создано ${rents.created || 0}, пропущено ${rents.skipped || 0}</li>`;
+                                    }
+
+                                    statusHtml += '</ul>';
+                                }
+
+                                statusHtml += '</div>';
+
+                                // Отображаем результаты
+                                syncStatusContainer.innerHTML = statusHtml;
+                            })
+                            .catch(error => {
+                                // Скрываем индикатор загрузки
+                                syncLoading.classList.add('d-none');
+                                syncBtn.disabled = false;
+
+                                // Выводим сообщение об ошибке
+                                syncStatusContainer.innerHTML = `
+                            <div class="alert alert-danger">
+                                <h6>Ошибка синхронизации</h6>
+                                <p>${error.message}</p>
+                            </div>
+                        `;
+                                console.error('Error:', error);
+                            });
+                    });
+                }
+            });
+        </script>
+
     @endpush
 </x-default-layout>

@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Repositories\StatesRepository;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class StateService
 {
@@ -22,9 +23,13 @@ class StateService
     public function syncStates(): JsonResponse
     {
         try {
+            Log::info('Начинаем синхронизацию состояний');
+
             $token = $this->clientService->getAccessToken();
 
             if (!$token) {
+                Log::error('Не удалось получить токен для синхронизации состояний');
+
                 return response()->json(['error' => 'Не удалось получить токен'], 401);
             }
 
@@ -50,6 +55,10 @@ class StateService
                 $this->processStatesItem($item, $existingRentInHandIds, $processedCount);
             }
 
+            Log::info('Синхронизация состояний завершена', [
+                'processed' => $processedCount,
+            ]);
+
             return response()->json(
                 [
                     'message' => 'Синхронизация завершена',
@@ -66,6 +75,7 @@ class StateService
             );
         }
     }
+
     private function processStatesItem(
         array $item,
         array &$existingRentInHandIds,

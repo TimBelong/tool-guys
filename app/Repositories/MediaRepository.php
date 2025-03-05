@@ -41,4 +41,9 @@ class MediaRepository extends AbstractRepository
         return Media::where('rent_in_hand_id', $rentInHandId)->first();
     }
 
+    public function deleteMissingMedia(array $existingRentInHandIds): int
+    {
+        return Media::whereNotIn('rent_in_hand_id', $existingRentInHandIds)->delete();
+    }
+
 }

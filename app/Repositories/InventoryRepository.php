@@ -42,10 +42,18 @@ class InventoryRepository extends AbstractRepository
 
     public function createFromApiData(array $data): Inventory
     {
-        $category = app(CategoriesRepository::class)->findByRentInHandId($data['category']['id']);
-        $state = isset($data['state']['id'])
-            ? app(StatesRepository::class)->findByRentInHandId($data['state']['id'])
-            : null;
+        $category = null;
+        $state = null;
+
+        // Проверяем наличие категории перед доступом к её ID
+        if (isset($data['category']) && is_array($data['category']) && isset($data['category']['id'])) {
+            $category = app(CategoriesRepository::class)->findByRentInHandId($data['category']['id']);
+        }
+
+        // Проверяем наличие состояния перед доступом к его ID
+        if (isset($data['state']) && is_array($data['state']) && isset($data['state']['id'])) {
+            $state = app(StatesRepository::class)->findByRentInHandId($data['state']['id']);
+        }
 
         return Inventory::create(
             [
@@ -59,11 +67,9 @@ class InventoryRepository extends AbstractRepository
                 'buy_price' => $data['buy_price'] ?? null,
                 'amount_rent_sum' => $data['amount_rent_sum'] ?? null,
                 'cash_deposit' => $data['cash_deposit'] ?? null,
-                'option_id' => $data['option']['id'] ?? null,
+                'option_id' => isset($data['option']) && is_array($data['option']) && isset($data['option']['id']) ? $data['option']['id'] : null,
                 'category_id' => $category?->getId(),
                 'state_id' => $state?->getId(),
-                //                'point_id' => $data['point']['id'] ?? null,
-                //                'discounts' => !empty($data['discounts']) ? $data['discounts'][0] : null,
                 'another' => $data['another'] ?? null,
                 'children_count' => $data['children_count'] ?? null,
                 'sum_amount_payment' => $data['sum_amount_payment'] ?? null,
@@ -76,8 +82,16 @@ class InventoryRepository extends AbstractRepository
 
     public function updateFromApiData(Inventory $inventory, array $data): bool
     {
-        $category = app(CategoriesRepository::class)->findByRentInHandId($data['category']['id']);
-        $state = app(StatesRepository::class)->findByRentInHandId($data['state']['id']);
+        $category = null;
+        $state = null;
+
+        if (isset($data['category']) && is_array($data['category']) && isset($data['category']['id'])) {
+            $category = app(CategoriesRepository::class)->findByRentInHandId($data['category']['id']);
+        }
+
+        if (isset($data['state']) && is_array($data['state']) && isset($data['state']['id'])) {
+            $state = app(StatesRepository::class)->findByRentInHandId($data['state']['id']);
+        }
 
         return $inventory->update(
             [
@@ -90,11 +104,9 @@ class InventoryRepository extends AbstractRepository
                 'buy_price' => $data['buy_price'] ?? null,
                 'amount_rent_sum' => $data['amount_rent_sum'] ?? null,
                 'cash_deposit' => $data['cash_deposit'] ?? null,
-                'option_id' => $data['option']['id'] ?? null,
-                'category_id' => $category->getId(),
-                'state_id' => $state->getId(),
-                //                'point_id' => $data['point']['id'] ?? null,
-                //                'discounts' => !empty($data['discounts']) ? $data['discounts'][0] : null,
+                'option_id' => isset($data['option']) && is_array($data['option']) && isset($data['option']['id']) ? $data['option']['id'] : null,
+                'category_id' => $category?->getId(),
+                'state_id' => $state?->getId(),
                 'another' => $data['another'] ?? null,
                 'children_count' => $data['children_count'] ?? null,
                 'sum_amount_payment' => $data['sum_amount_payment'] ?? null,

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthTokensController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SyncController;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
@@ -93,6 +96,15 @@ Route::delete('/favorites/{inventory}', [InventoryController::class, 'removeFavo
 );
 
 Route::get('/api/search', [SearchController::class, 'search'])->name('search.inventory');
+
+Route::post('/sync-all', [SyncController::class, 'syncAll'])->name('sync.all');
+
+// В routes/web.php
+Route::middleware(['auth'])->group(function () {
+    Route::post('/admin/users', [App\Http\Controllers\AdminUserController::class, 'store'])
+        ->middleware(CheckRole::class . ':admin')
+        ->name('admin.users.store');
+});
 
 require __DIR__ . '/auth.php';
 
