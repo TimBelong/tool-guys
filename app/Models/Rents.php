@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \DateTime $time_end
  * @property int       $user_id
  * @property int       $inventory_id
+ * @property float     $total_amount
  * @property User      $user
  * @property Inventory $inventory
  */
@@ -23,19 +24,21 @@ class Rents extends Model
     use HasFactory;
 
     protected $table = 'rents';
-
-    protected $fillable = [
-        'rent_in_hand_id',
-        'time_start',
-        'time_end',
-        'user_id',
-        'inventory_id',
-    ];
-
-    protected $casts = [
-        'time_start' => 'datetime',
-        'time_end' => 'datetime',
-    ];
+    protected $fillable
+        = [
+            'rent_in_hand_id',
+            'time_start',
+            'time_end',
+            'user_id',
+            'inventory_id',
+            'total_amount',
+        ];
+    protected $casts
+        = [
+            'time_start' => 'datetime',
+            'time_end' => 'datetime',
+            'total_amount' => 'decimal:2'
+        ];
 
     public function user(): BelongsTo
     {
@@ -100,5 +103,15 @@ class Rents extends Model
     public function setInventoryId(int $inventory_id): void
     {
         $this->inventory_id = $inventory_id;
+    }
+
+    public function getTotalAmount(): ?float
+    {
+        return $this->total_amount;
+    }
+
+    public function setTotalAmount(?float $total_amount): void
+    {
+        $this->total_amount = $total_amount;
     }
 }

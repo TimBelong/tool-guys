@@ -74,6 +74,7 @@ class RentsService
                 }
 
                 $userId = 1;
+                $totalAmount = $rentData['payed'] ?? $inventory->getAmountRentSum();
 
                 $timeStart = new \DateTime($rentData['time_start']);
                 $timeEnd = new \DateTime($rentData['time_end']);
@@ -91,6 +92,7 @@ class RentsService
                         'time_end' => $timeEnd,
                         'user_id' => $userId,
                         'inventory_id' => $inventory->getId(),
+                        'total_amount' => $totalAmount,
                     ]
                 );
 
@@ -115,4 +117,5 @@ class RentsService
             );
         }
     }
+
 }

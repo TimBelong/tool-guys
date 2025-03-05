@@ -46,9 +46,7 @@
                 @endif
             </ul>
 
-            <!-- Контент табов -->
             <div class="tab-content" id="profileTabsContent">
-                <!-- Секция "Обновить профиль" -->
                 <div class="tab-pane fade show active" id="update-profile" role="tabpanel"
                      aria-labelledby="update-profile-tab">
                     <div class="d-flex justify-content-center mt-100">
@@ -60,7 +58,6 @@
                     </div>
                 </div>
 
-                <!-- Секция "Обновить пароль" -->
                 <div class="tab-pane fade" id="update-password" role="tabpanel" aria-labelledby="update-password-tab">
                     <div class="d-flex justify-content-center mt-100">
                         <div class="col-lg-4 p-4 sm:p-8">
@@ -178,7 +175,6 @@
                                 <tbody>
                                 @foreach($favorites as $inventory)
                                     <tr>
-                                        <!-- Кнопка удаления из избранного -->
                                         <td class="first-td">
                                             <button class="remove-btn wishlist-btn active"
                                                     data-inventory-id="{{ $inventory->getId() }}">
@@ -186,7 +182,6 @@
                                             </button>
                                         </td>
 
-                                        <!-- Изображение и название -->
                                         <td class="first-child">
                                             <a href="{{ route('productDetails', ['id' => $inventory->id]) }}">
                                                 <img src="{{ asset($inventory->getAvatar()) }}"
@@ -198,19 +193,16 @@
                                             </a>
                                         </td>
 
-                                        <!-- Цена -->
                                         <td>
                                             <span class="product-price">
                                                 {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽
                                             </span>
                                         </td>
 
-                                        <!-- Статус наличия -->
                                         <td class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'stock' : 'stock1' }}">
                                             {{ $inventory->state?->getTitle() }}
                                         </td>
 
-                                        <!-- Кнопка добавления в корзину -->
                                         <td class="last-td">
                                             <button class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'cart-btn' : 'cart-btn1' }}">
                                                 <i class="rt-basket-shopping"></i> В корзину
@@ -224,20 +216,18 @@
                     </div>
                 </div>
 
-
-                <!-- Секция "Панель Администратора" (новая) -->
                 @if(auth()->user()->role === 'admin')
                     <div class="tab-pane fade" id="admin-panel" role="tabpanel" aria-labelledby="admin-panel-tab">
                         <div class="container mt-4">
                             <div class="row">
-                                <!-- Блок синхронизации данных -->
                                 <div class="col-lg-6 mb-4">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title">Синхронизация данных с CRM</h5>
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text mb-4">Запустите процесс синхронизации для обновления данных из внешней CRM системы.</p>
+                                            <p class="card-text mb-4">Запустите процесс синхронизации для обновления
+                                                данных из внешней CRM системы.</p>
                                             <div id="sync-status-container" class="mb-3">
                                                 @if(session('sync_status'))
                                                     <div class="alert alert-info">
@@ -256,7 +246,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Блок создания пользователя -->
+
                                 <div class="col-lg-6">
                                     <div class="card">
                                         <div class="card-header">
@@ -267,28 +257,50 @@
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Имя</label>
-                                                    <input type="text" class="form-control" id="name" name="name" required>
+                                                    <input type="text"
+                                                           class="form-control @error('name') is-invalid @enderror"
+                                                           id="name" name="name" value="{{ old('name') }}" required>
+                                                    @error('name')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" required>
+                                                    <input type="email"
+                                                           class="form-control @error('email') is-invalid @enderror"
+                                                           id="email" name="email" value="{{ old('email') }}" required>
+                                                    @error('email')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="password" class="form-label">Пароль</label>
-                                                    <input type="password" class="form-control" id="password" name="password" required>
+                                                    <input type="password"
+                                                           class="form-control @error('password') is-invalid @enderror"
+                                                           id="password" name="password" required>
+                                                    @error('password')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="password_confirmation" class="form-label">Подтверждение пароля</label>
-                                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                                    <label for="password_confirmation" class="form-label">Подтверждение
+                                                        пароля</label>
+                                                    <input type="password" class="form-control"
+                                                           id="password_confirmation" name="password_confirmation"
+                                                           required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="role" class="form-label">Роль</label>
-                                                    <select class="form-select" id="role" name="role">
+                                                    <select class="form-select @error('role') is-invalid @enderror"
+                                                            id="role" name="role">
                                                         <option value="">Выберите роль</option>
                                                         @foreach(\App\Enums\UserRoles::listData() as $value => $label)
-                                                            <option value="{{ $value }}">{{ $label }}</option>
+                                                            <option value="{{ $value }}" {{ old('role') == $value ? 'selected' : '' }}>{{ $label }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('role')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <button type="submit" class="btn cart-btn">
                                                     <i class="fas fa-user-plus"></i> Создать пользователя
@@ -365,23 +377,20 @@
         </script>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const syncBtn = document.getElementById('sync-btn');
                 const syncLoading = document.getElementById('sync-loading');
                 const syncStatusContainer = document.getElementById('sync-status-container');
 
                 if (syncBtn) {
-                    syncBtn.addEventListener('click', function(e) {
+                    syncBtn.addEventListener('click', function (e) {
                         e.preventDefault();
 
-                        // Показываем индикатор загрузки
                         syncLoading.classList.remove('d-none');
                         syncBtn.disabled = true;
 
-                        // Получаем CSRF-токен
                         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-                        // Выполняем AJAX-запрос
                         fetch('{{ route("sync.all") }}', {
                             method: 'POST',
                             headers: {
@@ -392,48 +401,40 @@
                         })
                             .then(response => response.json())
                             .then(data => {
-                                // Скрываем индикатор загрузки
                                 syncLoading.classList.add('d-none');
                                 syncBtn.disabled = false;
 
-                                // Создаем HTML с результатами синхронизации
                                 let statusHtml = '<div class="alert alert-success">';
                                 statusHtml += '<h6>Синхронизация успешно завершена!</h6>';
 
                                 if (data.details) {
                                     statusHtml += '<ul class="mb-0">';
 
-                                    // Категории
                                     if (data.details.categories) {
                                         const cats = data.details.categories;
                                         statusHtml += `<li>Категории: обработано ${cats.processed || 0}, удалено ${cats.deleted || 0}</li>`;
                                     }
 
-                                    // Состояния
                                     if (data.details.states) {
                                         const states = data.details.states;
                                         statusHtml += `<li>Состояния: обработано ${states.processed || 0}</li>`;
                                     }
 
-                                    // Инвентарь
                                     if (data.details.inventory) {
                                         const inv = data.details.inventory;
                                         statusHtml += `<li>Инвентарь: обработано ${inv.processed || 0}, удалено ${inv.deleted || 0}</li>`;
                                     }
 
-                                    // Медиа
                                     if (data.details.media) {
                                         const media = data.details.media;
                                         statusHtml += `<li>Медиа: обработано ${media.processed || 0}, удалено ${media.deleted || 0}</li>`;
                                     }
 
-                                    // Опции
                                     if (data.details.options) {
                                         const options = data.details.options;
                                         statusHtml += `<li>Опции: обработано ${options.processed || 0}, удалено ${options.deleted || 0}</li>`;
                                     }
 
-                                    // Аренды
                                     if (data.details.rents) {
                                         const rents = data.details.rents;
                                         statusHtml += `<li>Аренды: создано ${rents.created || 0}, пропущено ${rents.skipped || 0}</li>`;
@@ -444,15 +445,12 @@
 
                                 statusHtml += '</div>';
 
-                                // Отображаем результаты
                                 syncStatusContainer.innerHTML = statusHtml;
                             })
                             .catch(error => {
-                                // Скрываем индикатор загрузки
                                 syncLoading.classList.add('d-none');
                                 syncBtn.disabled = false;
 
-                                // Выводим сообщение об ошибке
                                 syncStatusContainer.innerHTML = `
                             <div class="alert alert-danger">
                                 <h6>Ошибка синхронизации</h6>

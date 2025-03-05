@@ -101,7 +101,7 @@ Route::post('/sync-all', [SyncController::class, 'syncAll'])->name('sync.all');
 
 // В routes/web.php
 Route::middleware(['auth'])->group(function () {
-    Route::post('/admin/users', [App\Http\Controllers\AdminUserController::class, 'store'])
+    Route::post('/admin/users', [AdminUserController::class, 'store'])
         ->middleware(CheckRole::class . ':admin')
         ->name('admin.users.store');
 });

@@ -18,24 +18,29 @@ class AdminUserController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $request->validate(
-            [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'confirmed', Password::defaults()],
-                'role' => ['nullable', 'string'],
-            ]
-        );
+        try {
+            $validated = $request->validate(
+                [
+                    'name' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', 'confirmed', Password::defaults()],
+                    'role' => ['nullable', 'string'],
+                ]
+            );
 
-        $user = User::create(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => $request->role,
-            ]
-        );
+            $user = User::create
+            (
+                [
+                    'name' => $validated['name'],
+                    'email' => $validated['email'],
+                    'password' => Hash::make($validated['password']),
+                    'role' => $validated['role'],
+                ]
+            );
 
-        return redirect()->back()->with('status', 'Пользователь успешно создан');
+            return redirect()->back()->with('status', 'Пользователь успешно создан');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        }
     }
 }
