@@ -66,7 +66,6 @@ Route::prefix('shop')->group(function () {
     Route::controller(ShopController::class)->group(function () {
         Route::get('/account', 'account')->name('account');
         Route::get('/cart', 'cart')->name('cart');
-        Route::get('/check-out', 'checkOut')->name('checkOut');
 
 //            Route::get('/grouped-products','groupedProducts')->name('groupedProducts');
         Route::get('/product-details/{id}', 'productDetails')->name('productDetails');
@@ -75,6 +74,13 @@ Route::prefix('shop')->group(function () {
 //        Route::get('/grouped-products', 'groupedProducts')->name('groupedProducts');
     });
 });
+
+Route::post('shop/add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('shop.add-to-cart')->middleware('auth');
+Route::delete('shop/remove-from-cart/{id}', [ShopController::class, 'removeFromCart'])->name('shop.remove-from-cart')->middleware('auth');
+Route::post('/shop/update-cart-dates', [ShopController::class, 'updateCartDates'])->name('shop.update-cart-dates');
+Route::match(['get', 'post'], '/checkout', [ShopController::class, 'checkOut'])->name('checkOut');
+Route::post('/process-order', [ShopController::class, 'processOrder'])->name('processOrder');
+
 
 // blog
 Route::prefix('blog')->group(function () {

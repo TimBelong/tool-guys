@@ -7,6 +7,18 @@
                         <div class="section-title">
                             <h2>Регистрация</h2>
                         </div>
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger mb-4">
+                                <strong>Ошибка!</strong> Пожалуйста, проверьте введенные данные.
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="card">
                             <div class="card-body">
                                 <form method="POST" action="{{ route('register') }}">
@@ -15,56 +27,83 @@
                                     <!-- Name -->
                                     <div class="form">
                                         <x-text-input id="name"
-                                                      class="form-control"
+                                                      class="form-control @error('name') is-invalid @enderror"
                                                       type="text" name="name"
                                                       :value="old('name')"
                                                       required autofocus autocomplete="name"
                                                       placeholder="Имя*"
                                         />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    </div>
+
+                                    <!-- Surname -->
+                                    <div class="form">
+                                        <x-text-input id="surname"
+                                                      class="form-control @error('surname') is-invalid @enderror"
+                                                      type="text" name="surname"
+                                                      :value="old('surname')"
+                                                      required autocomplete="surname"
+                                                      placeholder="Фамилия*"
+                                        />
                                     </div>
 
                                     <!-- Email Address -->
                                     <div class="form">
                                         <x-text-input id="email"
-                                                      class="form-control"
+                                                      class="form-control @error('email') is-invalid @enderror"
                                                       type="email" name="email"
                                                       :value="old('email')"
                                                       required autocomplete="username"
                                                       placeholder="Email*"
                                         />
-                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+
+                                    <!-- Passport ID -->
+                                    <div class="form">
+                                        <x-text-input id="passport_id"
+                                                      class="form-control @error('passport_id') is-invalid @enderror"
+                                                      type="text" name="passport_id"
+                                                      :value="old('passport_id')"
+                                                      required
+                                                      placeholder="Номер паспорта*"
+                                        />
+                                    </div>
+
+                                    <!-- Phone -->
+                                    <div class="form">
+                                        <x-text-input id="phone"
+                                                      class="form-control @error('phone') is-invalid @enderror"
+                                                      type="tel" name="phone"
+                                                      :value="old('phone')"
+                                                      required
+                                                      placeholder="Телефон*"
+                                        />
                                     </div>
 
                                     <!-- Password -->
                                     <div class="form">
                                         <x-text-input id="password"
-                                                      class="form-control"
+                                                      class="form-control @error('password') is-invalid @enderror"
                                                       type="password"
                                                       name="password"
                                                       required autocomplete="new-password"
                                                       placeholder="Пароль*"
                                         />
-
-                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
 
                                     <!-- Confirm Password -->
                                     <div class="form">
                                         <x-text-input id="password_confirmation"
-                                                      class="form-control"
+                                                      class="form-control @error('password_confirmation') is-invalid @enderror"
                                                       type="password"
                                                       name="password_confirmation"
                                                       required autocomplete="new-password"
                                                       placeholder="Повторите пароль*"
                                         />
-
-                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>
 
                                     <div class="form">
                                         <x-primary-button class="btn">
-                                            {{ __('Register') }}
+                                            {{ __('Регистрация') }}
                                         </x-primary-button>
                                     </div>
 

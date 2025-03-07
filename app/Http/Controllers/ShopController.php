@@ -4,10 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Inventory;
+use App\Models\Rents;
+use App\Models\UserHasPurchaseItems;
+use App\Repositories\PurchaseListRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
+    private PurchaseListRepository $purchaseListRepository;
+
+    public function __construct(PurchaseListRepository $purchaseListRepository)
+    {
+        $this->purchaseListRepository = $purchaseListRepository;
+    }
+
     public function account()
     {
         return view('shop/account');
@@ -15,12 +29,468 @@ class ShopController extends Controller
 
     public function cart()
     {
-        return view('shop/cart');
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::id();
+
+        $cartItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId);
+
+        $inventories = [];
+        $totalPrice = 0;
+
+        foreach ($cartItems as $item) {
+            $inventory = Inventory::find($item->inventory_id);
+            if ($inventory) {
+                $inventories[] = $inventory;
+
+                // Calculate price based on rental days
+                $days = $item->rental_days ?? 1;
+                $price = floatval($inventory->getBuyPrice() ?? 0) * $days;
+                $totalPrice += $price;
+
+                // Store rental dates for the view
+                $inventory->rental_start_date = $item->start_date ?? null;
+                $inventory->rental_end_date = $item->end_date ?? null;
+                $inventory->rental_days = $days;
+            }
+        }
+
+        return view('shop/cart', [
+            'inventories' => $inventories,
+            'totalPrice' => $totalPrice,
+        ]);
     }
 
-    public function checkOut()
+    public function addToCart($id)
     {
-        return view('shop/checkOut');
+        if (!Auth::check()) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'redirect' => route('login'),
+                ]
+            );
+        }
+
+        $userId = Auth::id();
+
+        $existingItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId)
+            ->where('inventory_id', $id);
+
+        if ($existingItems->isEmpty()) {
+            $this->purchaseListRepository->create(
+                [
+                    'user_id' => $userId,
+                    'inventory_id' => $id,
+                    'rental_days' => 1, // Default to 1 day
+                    'start_date' => null,
+                    'end_date' => null,
+                ]
+            );
+        }
+
+        $cartCount = $this->purchaseListRepository->all()
+            ->where('user_id', $userId)
+            ->count();
+
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Товар добавлен в корзину',
+                'cartCount' => $cartCount,
+            ]
+        );
+    }
+
+    public function updateCartDates(Request $request)
+    {
+        try {
+            Log::info('Метод updateCartDates вызван', $request->all());
+
+            // Проверка авторизации
+            if (!Auth::check()) {
+                Log::warning('Пользователь не авторизован');
+
+                return response()->json([
+                                            'success' => false,
+                                            'message' => 'Необходимо авторизоваться',
+                                        ]);
+            }
+
+            $userId = Auth::id();
+            $inventoryId = $request->input('inventory_id');
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+            $days = $request->input('days', 1);
+
+            Log::info('Данные запроса', [
+                'user_id' => $userId,
+                'inventory_id' => $inventoryId,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'days' => $days,
+            ]);
+
+            // Поиск элемента корзины
+            $cartItems = $this->purchaseListRepository->all()
+                ->where('user_id', $userId)
+                ->where('inventory_id', $inventoryId);
+
+            Log::info('Найдено элементов корзины: ' . $cartItems->count());
+
+            // Детальное логирование перед обновлением
+            foreach ($cartItems as $item) {
+                Log::info('Подготовка к обновлению элемента', [
+                    'item_id' => $item->id,
+                    'current_days' => $item->rental_days,
+                    'current_start' => $item->start_date,
+                    'current_end' => $item->end_date,
+                    'new_days' => $days,
+                    'new_start' => $startDate,
+                    'new_end' => $endDate,
+                ]);
+
+                // Отлов конкретной ошибки при обновлении
+                try {
+                    $this->purchaseListRepository->update($item->id, [
+                        'rental_days' => $days,
+                        'start_date' => $startDate,
+                        'end_date' => $endDate,
+                    ]);
+                    Log::info('Успешно обновлен элемент с ID: ' . $item->id);
+                } catch (\Exception $updateEx) {
+                    Log::error('Ошибка при обновлении элемента ' . $item->id . ': ' . $updateEx->getMessage());
+                    throw $updateEx;
+                }
+            }
+
+            // Пересчет общей стоимости - ДОБАВЛЕННАЯ ЧАСТЬ
+            $remainingItems = $this->purchaseListRepository->all()
+                ->where('user_id', $userId);
+
+            $totalPrice = 0;
+            foreach ($remainingItems as $item) {
+                $inventory = Inventory::find($item->inventory_id);
+                if ($inventory) {
+                    $rentalDays = $item->rental_days ?? 1;
+                    $price = floatval($inventory->getBuyPrice() ?? 0) * $rentalDays;
+                    $totalPrice += $price;
+                    Log::info('Расчет цены для элемента', [
+                        'inventory_id' => $item->inventory_id,
+                        'days' => $rentalDays,
+                        'price' => $price,
+                    ]);
+                }
+            }
+
+            // Возврат успешного ответа - ДОБАВЛЕННАЯ ЧАСТЬ
+            Log::info('Обновление завершено успешно, новая общая стоимость: ' . $totalPrice);
+
+            return response()->json([
+                                        'success' => true,
+                                        'message' => 'Даты аренды обновлены',
+                                        'totalPrice' => $totalPrice,
+                                    ]);
+        } catch (\Exception $e) {
+            Log::error('Ошибка в updateCartDates: ' . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Произошла ошибка при обновлении дат',
+                    'error' => $e->getMessage(),
+                ],
+                500
+            );
+        }
+    }
+
+    public function removeFromCart($id)
+    {
+        if (!Auth::check()) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'redirect' => route('login'),
+                ]
+            );
+        }
+
+        $userId = Auth::id();
+
+        $cartItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId)
+            ->where('inventory_id', $id);
+
+        foreach ($cartItems as $item) {
+            $this->purchaseListRepository->delete($item->id);
+        }
+
+        $remainingItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId);
+
+        $totalPrice = 0;
+        foreach ($remainingItems as $item) {
+            $inventory = Inventory::find($item->inventory_id);
+            if ($inventory) {
+                $totalPrice += floatval($inventory->getBuyPrice() ?? 0);
+            }
+        }
+
+        $cartCount = $remainingItems->count();
+
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Товар удален из корзины',
+                'totalPrice' => $totalPrice,
+                'cartCount' => $cartCount,
+            ]
+        );
+    }
+
+    public function checkOut(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::id();
+        $user = Auth::user();
+
+        // Получаем все товары из корзины пользователя
+        $cartItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId);
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart')->with('error', 'Ваша корзина пуста');
+        }
+
+        // Обрабатываем POST запрос (отправка формы заказа)
+        if ($request->isMethod('POST')) {
+            // Проверяем выбранный способ доставки и оплаты
+            $shippingMethod = $request->input('shipping_method', 'pickup');
+            $paymentMethod = $request->input('payment_method', 'card');
+            $deliveryCost = $request->input('delivery_cost', 0);
+            $finalPrice = $request->input('final_price', 0);
+
+            // Сохраняем данные в сессии для использования на странице оформления
+            session([
+                        'shipping_method' => $shippingMethod,
+                        'payment_method' => $paymentMethod,
+                        'delivery_cost' => $deliveryCost,
+                        'final_price' => $finalPrice
+                    ]);
+
+            // Просто перенаправляем на GET метод
+            return redirect()->route('checkOut');
+        }
+
+        // Обрабатываем GET запрос (отображение страницы)
+        $inventories = [];
+        $totalPrice = 0;
+        $itemsCount = 0;
+
+        // Получаем данные из сессии, если они есть
+        $shippingMethod = session('shipping_method', 'pickup');
+        $paymentMethod = session('payment_method', 'card');
+        $deliveryCost = (int)session('delivery_cost', 0);
+
+        foreach ($cartItems as $item) {
+            $inventory = Inventory::find($item->inventory_id);
+            if ($inventory) {
+                // Рассчитываем стоимость аренды для каждого товара
+                $days = $item->rental_days ?? 1;
+                $price = floatval($inventory->getBuyPrice() ?? 0) * $days;
+
+                $inventories[] = [
+                    'id' => $inventory->getId(),
+                    'title' => $inventory->getTitle(),
+                    'days' => $days,
+                    'price' => $price,
+                    'start_date' => $item->start_date,
+                    'end_date' => $item->end_date,
+                    'avatar' => $inventory->getAvatar()
+                ];
+
+                $totalPrice += $price;
+                $itemsCount++;
+            }
+        }
+
+        // Общая стоимость с учетом доставки
+        $finalPrice = $totalPrice + $deliveryCost;
+
+        // Получаем данные пользователя, если есть
+        $userData = [
+            'name' => $user->name ?? '',
+            'email' => $user->email ?? '',
+            'phone' => $user->phone ?? '',
+            'address' => $user->address ?? ''
+        ];
+
+        return view('shop/checkOut', [
+            'inventories' => $inventories,
+            'itemsCount' => $itemsCount,
+            'subtotalPrice' => $totalPrice,
+            'deliveryCost' => $deliveryCost,
+            'finalPrice' => $finalPrice,
+            'shippingMethod' => $shippingMethod,
+            'paymentMethod' => $paymentMethod,
+            'userData' => $userData
+        ]);
+    }
+
+    public function processOrder(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::id();
+
+        // Валидация данных
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'shipping_method' => 'required|in:pickup,delivery',
+            'payment_method' => 'required|in:card,cash,transfer,company'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Дополнительные проверки в зависимости от метода доставки и оплаты
+        if ($request->input('shipping_method') == 'delivery') {
+            $deliveryValidator = Validator::make($request->all(), [
+                'city' => 'required|string|max:255',
+                'postal_code' => 'required|string|max:20',
+                'address' => 'required|string|max:255'
+            ]);
+
+            if ($deliveryValidator->fails()) {
+                return redirect()->back()
+                    ->withErrors($deliveryValidator)
+                    ->withInput();
+            }
+        }
+
+        if ($request->input('payment_method') == 'company') {
+            $companyValidator = Validator::make($request->all(), [
+                'company_name' => 'required|string|max:255',
+                'inn' => 'required|string|max:20',
+                'legal_address' => 'required|string|max:255'
+            ]);
+
+            if ($companyValidator->fails()) {
+                return redirect()->back()
+                    ->withErrors($companyValidator)
+                    ->withInput();
+            }
+        }
+
+        // Получаем все товары из корзины
+        $cartItems = $this->purchaseListRepository->all()
+            ->where('user_id', $userId);
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart')->with('error', 'Ваша корзина пуста');
+        }
+
+        // Генерируем уникальный ID для заказа
+        $rentInHandId = 'RH-' . time() . rand(100, 999);
+
+        // Создаем записи аренды для каждого товара
+        $totalAmount = 0;
+        $inventoriesData = [];
+
+        try {
+            DB::beginTransaction();
+
+            foreach ($cartItems as $item) {
+                $inventory = Inventory::find($item->inventory_id);
+
+                if (!$inventory) {
+                    continue;
+                }
+
+                // Получаем даты аренды и количество дней
+                $startDate = $item->start_date ? new \DateTime($item->start_date) : new \DateTime();
+                $endDate = $item->end_date ? new \DateTime($item->end_date) : (new \DateTime())->modify('+1 day');
+                $rentalDays = $item->rental_days ?? 1;
+
+                // Рассчитываем стоимость аренды
+                $itemPrice = floatval($inventory->getBuyPrice() ?? 0) * $rentalDays;
+                $totalAmount += $itemPrice;
+
+                // Создаем запись аренды
+                $rent = new Rents();
+                $rent->setTimeStart($startDate);
+                $rent->setTimeEnd($endDate);
+                $rent->setUserId($userId);
+                $rent->setInventoryId($inventory->getId());
+                $rent->setTotalAmount($itemPrice);
+                $rent->save();
+
+                $inventoriesData[] = [
+                    'id' => $inventory->getId(),
+                    'title' => $inventory->getTitle(),
+                    'days' => $rentalDays,
+                    'price' => $itemPrice
+                ];
+            }
+
+            // Добавляем стоимость доставки
+            $deliveryCost = $request->input('delivery_cost', 0);
+            $finalPrice = $totalAmount + $deliveryCost;
+
+            // Создаем запись заказа (в зависимости от вашей структуры БД)
+            // Здесь вы можете использовать свою модель Order, если она есть
+
+            // Очищаем корзину пользователя
+            foreach ($cartItems as $item) {
+                $this->purchaseListRepository->delete($item->id);
+            }
+
+            DB::commit();
+
+            // Сохраняем данные заказа в сессии для отображения на странице "Спасибо"
+            session([
+                        'order_id' => $rentInHandId,
+                        'order_total' => $finalPrice,
+                        'order_items' => $inventoriesData,
+                        'shipping_method' => $request->input('shipping_method'),
+                        'payment_method' => $request->input('payment_method')
+                    ]);
+
+            // Перенаправляем на страницу "Спасибо"
+            return redirect()->route('thankyou')->with('success', 'Заказ успешно оформлен');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Ошибка при оформлении заказа: ' . $e->getMessage(), [
+                'user_id' => $userId,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return redirect()->back()
+                ->with('error', 'Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте еще раз.')
+                ->withInput();
+        }
     }
 
     public function fullWidthShop()
@@ -35,7 +505,6 @@ class ShopController extends Controller
 
         return view('shop.productDetails', compact('product', 'rents'));
     }
-
 
     public function productDetails2()
     {

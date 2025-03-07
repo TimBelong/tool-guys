@@ -16,11 +16,16 @@
 
             <div class="form-item">
                 <x-text-input id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" placeholder="Имя"/>
-                <x-input-error class="mt-10" :messages="$errors->get('name')" />
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
             </div>
 
             <div class="form-item">
-                <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" placeholder="email" />
+                <x-text-input id="surname" name="surname" type="text" class="form-control" :value="old('surname', $user->surname)" required autocomplete="surname" placeholder="Фамилия"/>
+                <x-input-error class="mt-2" :messages="$errors->get('surname')" />
+            </div>
+
+            <div class="form-item">
+                <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" placeholder="Email" />
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -42,6 +47,16 @@
                 @endif
             </div>
 
+            <div class="form-item">
+                <x-text-input id="passport_id" name="passport_id" type="text" class="form-control" :value="old('passport_id', $user->passport_id)" required placeholder="Номер паспорта"/>
+                <x-input-error class="mt-2" :messages="$errors->get('passport_id')" />
+            </div>
+
+            <div class="form-item">
+                <x-text-input id="phone" name="phone" type="tel" class="form-control" :value="old('phone', $user->phone)" required placeholder="Телефон"/>
+                <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+            </div>
+
             <div class="form mt-10">
                 <x-primary-button class="btn">{{ __('Сохранить') }}</x-primary-button>
             </div>
@@ -53,7 +68,7 @@
                         x-transition
                         x-init="setTimeout(() => show = false, 2000)"
                         class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Сохранено.') }}</p>
             @endif
         </form>
     </div>

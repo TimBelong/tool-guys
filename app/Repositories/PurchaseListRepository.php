@@ -8,7 +8,7 @@ use App\Models\UserHasPurchaseItems;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseListRepositoru extends AbstractRepository
+class PurchaseListRepository extends AbstractRepository
 {
     public function all(): Collection|array
     {

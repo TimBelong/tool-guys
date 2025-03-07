@@ -53,15 +53,14 @@
     </div>
     <!-- ..::Banner Section End Here::.. -->
 
-    з
     <!-- ..::Newsletter Section Start Here::.. -->
     <div class="rts-services-section section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-3 col-md-6">
                     <div class="service-item">
-                        <div class="service-icon"><img src="{{ asset('assets/images/icons/shipment.svg') }}"
-                                                       alt="service-icon"></div>
+                        <div class="service-icon">
+                            <img src="{{ asset('assets/images/icons/shipment.svg') }}" alt="service-icon"></div>
                         <div class="contents">
                             <h3 class="service-title">Выгодные цены</h3>
                             <p>Чем больше срок аренды тем дешевле</p>
@@ -70,8 +69,8 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="service-item">
-                        <div class="service-icon"><img src="{{ asset('assets/images/icons/support.svg') }}"
-                                                       alt="service-icon">
+                        <div class="service-icon">
+                            <img src="{{ asset('assets/images/icons/support.svg') }}" alt="service-icon">
                         </div>
                         <div class="contents">
                             <h3 class="service-title">Быстрая доставка</h3>
@@ -107,21 +106,27 @@
                         @foreach($topInventories as $inventory)
                             <div class="swiper-slide">
                                 <div class="product-item product-item4">
-                                    <a href="{{ route('productDetails', ['id' => $inventory->id]) }}" class="product-image">
-                                        <img src="{{ asset($inventory->getAvatar()) }}" alt="{{ $inventory->getTitle() }}">
+                                    <a href="{{ route('productDetails', ['id' => $inventory->getId()]) }}"
+                                       class="product-image">
+                                        <img src="{{ asset($inventory->getAvatar()) }}"
+                                             alt="{{ $inventory->getTitle() }}">
                                     </a>
                                     <div class="bottom-content">
                                         <span class="product-catagory">Инструмент</span>
-                                        <a href="{{ route('productDetails', ['id' => $inventory->id]) }}" class="product-name">
+                                        <a href="{{ route('productDetails', ['id' => $inventory->id]) }}"
+                                           class="product-name">
                                             {{ $inventory->getTitle() }}
                                         </a>
                                     </div>
                                     <div class="flex-wrap">
                                         <div class="action-wrap">
                                             <span class="product-price">от {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽</span>
-                                            <a href="{{ route('cart') }}" class="addto-cart">
-                                                <i class="fal fa-shopping-cart"></i> В корзину
-                                            </a>
+                                            <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}" class="add-to-cart-form" data-inventory-id="{{ $inventory->getId() }}" method="POST" style="display: inline">
+                                                @csrf
+                                                <button type="submit" class="addto-cart">
+                                                    <i class="fal fa-shopping-cart"></i> В корзину
+                                                </button>
+                                            </form>
                                         </div>
                                         <button class="wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($inventory->getId()) ? 'active' : '' }}"
                                                 data-inventory-id="{{ $inventory->getId() }}">
@@ -165,9 +170,12 @@
                                                             <h2 class="product-title">{{ $inventory->getTitle() }}</h2>
                                                             <span class="product-price">от {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽</span>
                                                             <div class="product-buttons">
-                                                                <button class="select-option-btn">
-                                                                    <i class="fal fa-shopping-cart mr--5"></i> В корзину
-                                                                </button>
+                                                                <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}" method="POST" class="add-to-cart-form" data-inventory-id="{{ $inventory->getId() }}" style="display: inline">
+                                                                    @csrf
+                                                                    <button type="submit" class="select-option-btn">
+                                                                        <i class="fal fa-shopping-cart mr--5"></i> В корзину
+                                                                    </button>
+                                                                </form>
                                                                 <button class="wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($inventory->getId()) ? 'active' : '' }}"
                                                                         data-inventory-id="{{ $inventory->getId() }}">
                                                                     <i class="rt-heart"></i>

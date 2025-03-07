@@ -1,5 +1,6 @@
 @php
     use App\Repositories\CategoriesRepository;
+    use App\Repositories\PurchaseListRepository;
 @endphp
 
 @php
@@ -32,7 +33,8 @@
                             <form action="{{ route('search.inventory') }}" method="GET" class="search-form">
                                 <div class="input-div">
                                     <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
-                                    <input class="search-input input5" type="text" name="query" id="live-search-input" placeholder="Поиск товаров..." autocomplete="off">
+                                    <input class="search-input input5" type="text" name="query" id="live-search-input"
+                                           placeholder="Поиск товаров..." autocomplete="off">
                                 </div>
                             </form>
                             <div class="live-search-results" id="live-search-results"></div>
@@ -53,13 +55,20 @@
                                     <div class="icon">
                                         <a href="{{route('cart')}}">
                                             <i class="rt-cart"></i>
-                                            <span class="wishlist-dot icon-dot">3</span>
+                                            <span class="wishlist-dot icon-dot">
+                                                {{ Auth::check() ?
+                                                    app(PurchaseListRepository::class)->all()
+                                                        ->where('user_id', Auth::id())
+                                                        ->count() : 0
+                                                }}
+                                            </span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="wishlist action-item">
-                                <div class="favourite-icon icon"><a href="{{ route('inventory') }}"><i class="rt-heart"></i></a></div>
+                                <div class="favourite-icon icon"><a href="{{ route('inventory') }}"><i
+                                                class="rt-heart"></i></a></div>
                             </div>
                             <a href="{{ route('profile.edit') }}" class="account"><i class="rt-user-2"></i></a>
                             <form method="POST" action="{{ route('logout') }}">
@@ -84,7 +93,8 @@
                                 </div>
                             </div>
                             <div class="wishlist action-item">
-                                <div class="favourite-icon icon"><a href="{{ route('login') }}"><i class="rt-heart"></i></a></div>
+                                <div class="favourite-icon icon"><a href="{{ route('login') }}"><i class="rt-heart"></i></a>
+                                </div>
                             </div>
                             <a href="{{ route('login') }}" class="account"><i class="rt-user-2"></i></a>
                         @endguest
@@ -99,10 +109,10 @@
             <div class="container">
                 <div class="navbar-inner">
                     <a href="{{route('indexFive')}}" class="logo">ToolGuys<span>.</span></a>
-{{--                    <div class="navbar-coupon-code">--}}
-{{--                        <div class="icon"><img src="{{ asset('assets/images/icons/percent-tag.png') }}" alt="tag-icon"></div>--}}
-{{--                        <span class="title">Лучшие цены у нас</span>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="navbar-coupon-code">--}}
+                    {{--                        <div class="icon"><img src="{{ asset('assets/images/icons/percent-tag.png') }}" alt="tag-icon"></div>--}}
+                    {{--                        <span class="title">Лучшие цены у нас</span>--}}
+                    {{--                    </div>--}}
 
                     <div class="rts-menu">
                         <nav class="menus menu-toggle">
@@ -121,7 +131,8 @@
                                                         <ul class="mega-dropdown-ul">
                                                             @foreach($chunk as $child)
                                                                 <li class="dropdown-li">
-                                                                    <a class="dropdown-link" href="{{ route('groupedProducts', ['category' => $child->title]) }}">{{ $child->title }}</a>
+                                                                    <a class="dropdown-link"
+                                                                       href="{{ route('groupedProducts', ['category' => $child->title]) }}">{{ $child->title }}</a>
                                                                 </li>
                                                             @endforeach
                                                         </ul>
@@ -142,7 +153,8 @@
     <!-- slide-bar start -->
     <aside class="slide-bar">
         <div class="offset-sidebar">
-            <a class="hamburger-1 mobile-hamburger-1 mobile-hamburger-2 ml--30" href="#" id="mobile-hamburger-1"><span><i class="rt-xmark"></i></span></a>
+            <a class="hamburger-1 mobile-hamburger-1 mobile-hamburger-2 ml--30" href="#"
+               id="mobile-hamburger-1"><span><i class="rt-xmark"></i></span></a>
         </div>
         <nav class="side-mobile-menu side-mobile-menu1 side-mobile-menu2">
             <ul id="mobile-menu-active">

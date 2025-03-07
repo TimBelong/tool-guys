@@ -22,8 +22,12 @@
 
 <script src="{{  asset('assets/js/vendors/zoom.js') }}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('live-search-input');
         const resultsContainer = document.getElementById('live-search-results');
         let typingTimer;
@@ -80,24 +84,24 @@
         }
 
         // События для обработки ввода
-        searchInput.addEventListener('keyup', function() {
+        searchInput.addEventListener('keyup', function () {
             clearTimeout(typingTimer);
             typingTimer = setTimeout(performLiveSearch, doneTypingInterval);
         });
 
-        searchInput.addEventListener('keydown', function() {
+        searchInput.addEventListener('keydown', function () {
             clearTimeout(typingTimer);
         });
 
         // Закрываем результаты при клике вне поля поиска
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!searchInput.contains(event.target) && !resultsContainer.contains(event.target)) {
                 resultsContainer.style.display = 'none';
             }
         });
 
         // Показываем результаты при фокусе, если есть текст
-        searchInput.addEventListener('focus', function() {
+        searchInput.addEventListener('focus', function () {
             if (searchInput.value.trim().length >= 2) {
                 performLiveSearch();
             }
@@ -105,6 +109,151 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+
+        addToCartForms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const url = this.getAttribute('action');
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showNotification(data.message);
+
+                            updateCartCounter(data.cartCount);
+                        } else if (data.redirect) {
+                            window.location.href = data.redirect;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
+            });
+        });
+
+        function updateCartCounter(count) {
+            const cartCounters = document.querySelectorAll('.wishlist-dot.icon-dot');
+            cartCounters.forEach(counter => {
+                counter.textContent = count;
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification-toast';
+            notification.innerHTML = `
+            <div class="notification-content">
+                <i class="rt-check-circle"></i>
+                <span>${message}</span>
+            </div>
+        `;
+
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = 'rgba(76, 175, 80, 0.7)';
+            notification.style.color = '#ffffff';
+            notification.style.padding = '15px';
+            notification.style.borderRadius = '4px';
+            notification.style.zIndex = '9999';
+            notification.style.display = 'flex';
+            notification.style.alignItems = 'center';
+            notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+
+            document.body.appendChild(notification);
+
+            const allElements = notification.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.style.color = '#ffffff';
+            });
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+
+        const removeFromCartForms = document.querySelectorAll('.remove-from-cart-form');
+
+        // Обрабатываем отправку форм
+        removeFromCartForms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Предотвращаем стандартную отправку формы
+
+                const formData = new FormData(this);
+                const url = this.getAttribute('action');
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Удаляем строку таблицы
+                            const row = this.closest('tr');
+                            row.remove();
+
+                            // Обновляем общую сумму
+                            updateTotalPrice(data.totalPrice);
+
+                            // Обновляем счетчик товаров в корзине
+                            updateCartCounter(data.cartCount);
+
+                            // Показываем уведомление об успешном удалении
+                            showNotification(data.message);
+
+                            // Если корзина пуста, показываем сообщение
+                            if (data.cartCount === 0) {
+                                const tbody = document.querySelector('.cart-table-area tbody');
+                                tbody.innerHTML = '<tr><td colspan="5" class="text-center">Ваша корзина пуста</td></tr>';
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
+            });
+        });
+
+        // Функция для обновления общей суммы
+        function updateTotalPrice(totalPrice) {
+            const subtotalElements = document.querySelectorAll('.subtotal-price');
+            const totalElements = document.querySelectorAll('.total-price');
+
+            subtotalElements.forEach(el => {
+                el.textContent = formatPrice(totalPrice) + ' ₽';
+            });
+
+            totalElements.forEach(el => {
+                el.textContent = formatPrice(totalPrice) + ' ₽';
+            });
+        }
+
+        // Функция для форматирования цены
+        function formatPrice(price) {
+            return new Intl.NumberFormat('ru-RU').format(price);
+        }
+    });
+</script>
 
 @stack('script')
 

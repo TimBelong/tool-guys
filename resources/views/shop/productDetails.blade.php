@@ -33,9 +33,12 @@
                         {{--                                <button class="button plus">+<i class="fal fa-plus plus"></i></button>--}}
                         {{--                            </div>--}}
                         {{--                        </div>--}}
-                        <a href="{{ route('cart') }}" class="addto-cart-btn action-item">
-                            <i class="rt-basket-shopping"></i> В корзину
-                        </a>
+                        <form action="{{ route('shop.add-to-cart', ['id' => $product->getId()]) }}" class="add-to-cart-form" data-inventory-id="{{ $product->getId() }}" method="POST" style="display: inline">
+                            @csrf
+                            <button type="submit" class="addto-cart-btn action-item">
+                                <i class="fal fa-shopping-cart"></i> В корзину
+                            </button>
+                        </form>
                     </div>
 
                     <div class="product-uniques">
