@@ -1,5 +1,25 @@
 @extends('layout.layout')
 @section('content')
+    <style>
+        .date-validation-error {
+            animation: fadeInShake 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInShake {
+            0% { opacity: 0; transform: translateY(-5px); }
+            50% { opacity: 1; transform: translateY(0); }
+            60% { transform: translateX(-2px); }
+            70% { transform: translateX(2px); }
+            80% { transform: translateX(-2px); }
+            90% { transform: translateX(0); }
+            100% { opacity: 1; }
+        }
+
+        .rental-date-range {
+            transition: border-color 0.3s ease;
+        }
+    </style>
+
     <!-- ..::Cart Section Start Here::.. -->
     <div class="rts-cart-section">
         <div class="container">
@@ -133,15 +153,15 @@
                             <div class="payment-method" style="padding: 15px 0; border-bottom: 1px solid #eee;">
                                 <h6 style="font-size: 1rem; margin-bottom: 12px; color: #333;">Способ оплаты:</h6>
                                 <div class="payment-options">
-                                    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">
-                                        <input type="radio" name="payment_method" id="card" value="card" style="margin-right: 10px;" checked>
-                                        <label class="check-title" for="card" style="margin-bottom: 0; cursor: pointer;">
-                                            Банковской картой онлайн
-                                        </label>
-                                    </div>
+                                    {{--                                    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">--}}
+                                    {{--                                        <input type="radio" name="payment_method" id="card" value="card" style="margin-right: 10px;" checked>--}}
+                                    {{--                                        <label class="check-title" for="card" style="margin-bottom: 0; cursor: pointer;">--}}
+                                    {{--                                            Банковской картой онлайн--}}
+                                    {{--                                        </label>--}}
+                                    {{--                                    </div>--}}
 
                                     <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">
-                                        <input type="radio" name="payment_method" id="cash" value="cash" style="margin-right: 10px;">
+                                        <input type="radio" name="payment_method" id="cash" value="cash" style="margin-right: 10px;" checked>
                                         <label class="check-title" for="cash" style="margin-bottom: 0; cursor: pointer;">
                                             Наличными при получении
                                         </label>
@@ -173,7 +193,7 @@
                             <form action="{{ route('checkOut') }}" method="POST" id="checkout-form">
                                 @csrf
                                 <input type="hidden" name="shipping_method" id="shipping_method_input" value="pickup">
-                                <input type="hidden" name="payment_method" id="payment_method_input" value="card">
+                                <input type="hidden" name="payment_method" id="payment_method_input" value="cash">
                                 <input type="hidden" name="delivery_cost" id="delivery_cost_input" value="0">
                                 <input type="hidden" name="final_price" id="final_price_input" value="{{ $totalPrice }}">
                                 <button type="submit" class="procced-btn"
@@ -235,6 +255,16 @@
                 formData.append('days', days);
                 formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
 
+                // Находим элемент dateRange
+                const dateRangeEl = document.querySelector(`.rental-date-range[data-inventory-id="${inventoryId}"]`);
+                const row = dateRangeEl.closest('tr');
+
+                // Удаляем предыдущие сообщения об ошибках
+                const existingError = row.querySelector('.date-validation-error');
+                if (existingError) {
+                    existingError.remove();
+                }
+
                 fetch('/shop/update-cart-dates', {
                     method: 'POST',
                     body: formData,
@@ -246,12 +276,53 @@
                     .then(data => {
                         if (data.success) {
                             console.log('Cart dates updated successfully');
+
+                            // Обновляем отображение цены на странице
+                            if (data.totalPrice !== undefined) {
+                                document.querySelectorAll('.subtotal-price').forEach(el => {
+                                    el.textContent = new Intl.NumberFormat('ru-RU').format(data.totalPrice) + ' ₽';
+                                });
+
+                                // Обновляем общую стоимость с учетом доставки
+                                const deliveryCost = parseInt(document.getElementById('delivery_cost_input').value) || 0;
+                                const totalPrice = data.totalPrice + deliveryCost;
+
+                                document.querySelectorAll('.total-price').forEach(el => {
+                                    el.textContent = new Intl.NumberFormat('ru-RU').format(totalPrice) + ' ₽';
+                                });
+
+                                document.getElementById('final_price_input').value = totalPrice;
+                            }
                         } else {
-                            console.error('Failed to update cart dates');
+                            console.error('Failed to update cart dates:', data.message);
+
+                            // Добавляем сообщение об ошибке
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'date-validation-error';
+                            errorDiv.style.color = '#e63946';
+                            errorDiv.style.fontSize = '0.85rem';
+                            errorDiv.style.marginTop = '5px';
+                            errorDiv.textContent = data.message || 'Ошибка при выборе дат аренды';
+
+                            // Вставляем сообщение об ошибке после поля с датами
+                            const dateRangeField = dateRangeEl.closest('.date-range-field');
+                            dateRangeField.parentNode.insertBefore(errorDiv, dateRangeField.nextSibling);
                         }
                     })
                     .catch(error => {
                         console.error('Error updating cart dates:', error);
+
+                        // Добавляем общее сообщение об ошибке
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'date-validation-error';
+                        errorDiv.style.color = '#e63946';
+                        errorDiv.style.fontSize = '0.85rem';
+                        errorDiv.style.marginTop = '5px';
+                        errorDiv.textContent = 'Произошла ошибка при обновлении дат аренды';
+
+                        // Вставляем сообщение об ошибке после поля с датами
+                        const dateRangeField = dateRangeEl.closest('.date-range-field');
+                        dateRangeField.parentNode.insertBefore(errorDiv, dateRangeField.nextSibling);
                     });
             }
 
@@ -289,6 +360,15 @@
                             rentalDaysInput.value = diffDays;
                             startDateInput.value = startDate.toISOString().split('T')[0];
                             endDateInput.value = endDate.toISOString().split('T')[0];
+
+                            // Убираем красный бордер, если он был
+                            dateRange.style.border = '1px solid #ddd';
+
+                            // Удаляем сообщение об ошибке, если оно есть
+                            const errorDiv = dateRange.closest('.rental-duration-selector').querySelector('.date-validation-error');
+                            if (errorDiv) {
+                                errorDiv.remove();
+                            }
 
                             calculateTotalPrice();
 
@@ -339,6 +419,55 @@
                     // Обновляем скрытое поле для формы
                     paymentMethodInput.value = this.value;
                 });
+            });
+
+            // Валидация формы перед отправкой
+            document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                // Проверяем, есть ли товары в корзине с пустыми датами
+                const emptyDates = [];
+
+                // Сначала удаляем все существующие сообщения об ошибках
+                document.querySelectorAll('.date-validation-error').forEach(errorDiv => {
+                    errorDiv.remove();
+                });
+
+                // Находим все товары и проверяем даты
+                document.querySelectorAll('.rental-date-range').forEach(dateRange => {
+                    const row = dateRange.closest('tr');
+                    const inventoryId = dateRange.dataset.inventoryId;
+                    const startDateInput = row.querySelector('.start-date-input');
+                    const endDateInput = row.querySelector('.end-date-input');
+
+                    // Проверяем, что даты выбраны
+                    if (!startDateInput.value || !endDateInput.value) {
+                        emptyDates.push(inventoryId);
+
+                        // Создаем сообщение об ошибке
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'date-validation-error';
+                        errorDiv.style.color = '#e63946';
+                        errorDiv.style.fontSize = '0.85rem';
+                        errorDiv.style.marginTop = '5px';
+                        errorDiv.style.fontWeight = '500';
+                        errorDiv.textContent = 'Необходимо выбрать даты аренды';
+
+                        // Добавляем визуальное выделение селектора
+                        dateRange.style.border = '1px solid #e63946';
+
+                        // Вставляем сообщение после поля с датами
+                        const dateRangeField = dateRange.closest('.date-range-field');
+                        dateRangeField.parentNode.insertBefore(errorDiv, dateRangeField.nextSibling);
+                    }
+                });
+
+                // Если есть товары с пустыми датами, останавливаем отправку формы
+                if (emptyDates.length > 0) {
+                    event.preventDefault();
+
+                    // Прокручиваем страницу к первому товару с пустыми датами
+                    const firstEmptyDateRow = document.querySelector(`.rental-date-range[data-inventory-id="${emptyDates[0]}"]`).closest('tr');
+                    firstEmptyDateRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             });
         });
     </script>

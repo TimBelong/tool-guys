@@ -75,7 +75,6 @@
                             </div>
                         @endif
 
-                        <!-- Поля для оплаты картой (показываются только если выбрана оплата картой) -->
                         @if($paymentMethod == 'card')
                             <div class="form-section payment-card-fields">
                                 <h5 class="subsection-title">Данные банковской карты</h5>
@@ -122,7 +121,6 @@
                             </div>
                         @endif
 
-                        <!-- Информация о банковском переводе (показывается только если выбран перевод) -->
                         @if($paymentMethod == 'transfer')
                             <div class="form-section bank-transfer-info">
                                 <h5 class="subsection-title">Реквизиты для оплаты</h5>
@@ -137,13 +135,13 @@
                                         <p><strong>Назначение платежа:</strong> Оплата за аренду инструментов по заказу №[номер заказа]</p>
                                     </div>
                                     <div class="transfer-notice">
-                                        <p>После оформления заказа вам будет отправлен счет на указанный email. Пожалуйста, оплатите его в течение 24 часов.</p>
+                                        <p><strong class="text-danger">Важно!</strong> На оплату заказа у вас есть <strong>1 час</strong>. Используйте указанные выше реквизиты для перевода средств.</p>
+                                        <p>Неоплаченный в течение 1 часа заказ будет автоматически отменен, а забронированные инструменты вернутся в свободный доступ.</p>
                                     </div>
                                 </div>
                             </div>
                         @endif
 
-                        <!-- Информация для юр. лиц (показывается только если выбран метод оплаты "company") -->
                         @if($paymentMethod == 'company')
                             <div class="form-section company-fields">
                                 <h5 class="subsection-title">Информация о компании</h5>

@@ -102,6 +102,16 @@ class SyncController extends Controller
                     );
                 }
 
+                // Продукты
+                if (isset($data['details']['products'])) {
+                    $products = $data['details']['products'];
+                    $html .= sprintf(
+                        '<li>Продукты: обработано %d, удалено %d</li>',
+                        $products['processed'] ?? 0,
+                        $products['deleted'] ?? 0
+                    );
+                }
+
                 $html .= '</ul>';
             }
         } else {

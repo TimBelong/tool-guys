@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoriesRepository;
 use App\Repositories\InventoryRepository;
+use App\Services\ProductsService;
 use App\Services\RentsService;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
         return view('home/index', compact('categories'));
     }
 
-    public function indexFive(InventoryRepository $inventoryRepository)
+    public function indexFive(InventoryRepository $inventoryRepository, ProductsService $marketService)
     {
         $latestInventories = $inventoryRepository->getLatestInventories(6);
         $topInventories = $inventoryRepository->getTopRentedInventories(5);

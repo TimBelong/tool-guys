@@ -23,13 +23,13 @@
                         Обновить пароль
                     </button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="purchase-history-tab" data-bs-toggle="tab"
-                            data-bs-target="#purchase-history" type="button" role="tab" aria-controls="purchase-history"
-                            aria-selected="false">
-                        История заказов
-                    </button>
-                </li>
+                {{--                <li class="nav-item" role="presentation">--}}
+                {{--                    <button class="nav-link" id="purchase-history-tab" data-bs-toggle="tab"--}}
+                {{--                            data-bs-target="#purchase-history" type="button" role="tab" aria-controls="purchase-history"--}}
+                {{--                            aria-selected="false">--}}
+                {{--                        История заказов--}}
+                {{--                    </button>--}}
+                {{--                </li>--}}
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites"
                             type="button" role="tab" aria-controls="favorites" aria-selected="false">
@@ -162,56 +162,68 @@
                 <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="update-password-tab">
                     <div class="rts-wishlist-section section-gap">
                         <div class="container">
-                            <table class="table table-bordered table-hover">
-                                <tbody>
-                                <tr class="heading">
-                                    <th></th>
-                                    <th>Название инструмента</th>
-                                    <th>Цена</th>
-                                    <th>Статус</th>
-                                    <th></th>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                @foreach($favorites as $inventory)
-                                    <tr>
-                                        <td class="first-td">
-                                            <button class="remove-btn wishlist-btn active"
-                                                    data-inventory-id="{{ $inventory->getId() }}">
-                                                <i class="fal fa-times"></i>
-                                            </button>
-                                        </td>
-
-                                        <td class="first-child">
-                                            <a href="{{ route('productDetails', ['id' => $inventory->id]) }}">
-                                                <img src="{{ asset($inventory->getAvatar()) }}"
-                                                     alt="{{ $inventory->getTitle() }}">
-                                            </a>
-                                            <a href="{{ route('productDetails', ['id' => $inventory->id]) }}"
-                                               class="pretitle">
-                                                {{ $inventory->getTitle() }}
-                                            </a>
-                                        </td>
-
-                                        <td>
-                                            <span class="product-price">
-                                                {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽
-                                            </span>
-                                        </td>
-
-                                        <td class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'stock' : 'stock1' }}">
-                                            {{ $inventory->state?->getTitle() }}
-                                        </td>
-
-                                        <td class="last-td">
-                                            <button class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'cart-btn' : 'cart-btn1' }}">
-                                                <i class="rt-basket-shopping"></i> В корзину
-                                            </button>
-                                        </td>
+                            @if(count($favorites) > 0)
+                                <table class="table table-bordered table-hover">
+                                    <tbody>
+                                    <tr class="heading">
+                                        <th></th>
+                                        <th>Название инструмента</th>
+                                        <th>Цена</th>
+                                        <th>Статус</th>
+                                        <th></th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                    <tbody>
+                                    @foreach($favorites as $inventory)
+                                        <tr>
+                                            <td class="first-td">
+                                                <button class="remove-btn wishlist-btn active"
+                                                        data-inventory-id="{{ $inventory->getId() }}">
+                                                    <i class="fal fa-times"></i>
+                                                </button>
+                                            </td>
+
+                                            <td class="first-child">
+                                                <a href="{{ route('productDetails', ['id' => $inventory->id]) }}">
+                                                    <img src="{{ asset($inventory->getAvatar()) }}"
+                                                         alt="{{ $inventory->getTitle() }}">
+                                                </a>
+                                                <a href="{{ route('productDetails', ['id' => $inventory->id]) }}"
+                                                   class="pretitle">
+                                                    {{ $inventory->getTitle() }}
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                <span class="product-price">
+                                    {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽
+                                </span>
+                                            </td>
+
+                                            <td class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'stock' : 'stock1' }}">
+                                                {{ $inventory->state?->getTitle() }}
+                                            </td>
+
+                                            <td class="last-td">
+                                                <button class="{{ $inventory->state?->getTitle() === 'Свободен' ? 'cart-btn' : 'cart-btn1' }}">
+                                                    <i class="rt-basket-shopping"></i> В корзину
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <div class="empty-favorites">
+                                    <div class="empty-favorites-content text-center py-5">
+                                        <i class="far fa-heart empty-icon mb-4"
+                                           style="font-size: 3.5rem; color: #dadada;"></i>
+                                        <h3 class="mb-3">Список избранного пуст</h3>
+                                        <p class="text-muted mb-4">Добавляйте товары в избранное, чтобы не потерять их
+                                            из виду</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -440,6 +452,11 @@
                                         statusHtml += `<li>Аренды: создано ${rents.created || 0}, пропущено ${rents.skipped || 0}</li>`;
                                     }
 
+                                    if (data.details.products) {
+                                        const products = data.details.products;
+                                        statusHtml += `<li>Продукты: обработано ${products.processed || 0}, удалено ${products.deleted || 0}</li>`;
+                                    }
+
                                     statusHtml += '</ul>';
                                 }
 
@@ -452,16 +469,37 @@
                                 syncBtn.disabled = false;
 
                                 syncStatusContainer.innerHTML = `
-                            <div class="alert alert-danger">
-                                <h6>Ошибка синхронизации</h6>
-                                <p>${error.message}</p>
-                            </div>
-                        `;
+                <div class="alert alert-danger">
+                    <h6>Ошибка синхронизации</h6>
+                    <p>${error.message}</p>
+                </div>
+            `;
                                 console.error('Error:', error);
                             });
                     });
                 }
             });
+        </script>
+
+        <script>
+            if (window.location.hash) {
+                const tabId = window.location.hash.substring(1);
+                const tabElement = document.getElementById(tabId);
+
+                if (tabElement) {
+                    const tabButton = document.querySelector(`[aria-controls="${tabId}"]`);
+                    if (tabButton) {
+                        document.querySelectorAll('.tab-pane').forEach(function (tab) {
+                            tab.classList.remove('show', 'active');
+                        });
+                        document.querySelectorAll('.nav-link').forEach(function (button) {
+                            button.classList.remove('active');
+                        });
+                        tabElement.classList.add('show', 'active');
+                        tabButton.classList.add('active');
+                    }
+                }
+            }
         </script>
 
     @endpush

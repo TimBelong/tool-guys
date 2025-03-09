@@ -30,6 +30,13 @@
                 <div class="navbar-inner navbar-inner5">
                     <div class="navbar-search-area">
                         <div class="search-input-inner">
+                            <div class="select">
+                                <a href="{{ route('groupedProducts', ['category' => 'market']) }}">
+                                    <select class="custom-select select-hidden">
+                                        <option value="hide">Магазин Товаров</option>
+                                    </select>
+                                </a>
+                            </div>
                             <form action="{{ route('search.inventory') }}" method="GET" class="search-form">
                                 <div class="input-div">
                                     <div class="search-input-icon"><i class="rt-search mr--10"></i>Поиск</div>
@@ -67,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="wishlist action-item">
-                                <div class="favourite-icon icon"><a href="{{ route('inventory') }}"><i
+                                <div class="favourite-icon icon"><a href="{{ route('profile.edit') }}#favorites"><i
                                                 class="rt-heart"></i></a></div>
                             </div>
                             <a href="{{ route('profile.edit') }}" class="account"><i class="rt-user-2"></i></a>

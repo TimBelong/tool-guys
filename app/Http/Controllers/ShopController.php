@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Inventory;
+use App\Models\Product;
 use App\Models\Rents;
 use App\Models\UserHasPurchaseItems;
 use App\Repositories\PurchaseListRepository;
@@ -127,6 +128,14 @@ class ShopController extends Controller
             $endDate = $request->input('end_date');
             $days = $request->input('days', 1);
 
+            // Простая валидация: даты не должны быть пустыми
+            if (empty($startDate) || empty($endDate)) {
+                return response()->json([
+                                            'success' => false,
+                                            'message' => 'Необходимо выбрать даты аренды',
+                                        ], 422);
+            }
+
             Log::info('Данные запроса', [
                 'user_id' => $userId,
                 'inventory_id' => $inventoryId,
@@ -142,19 +151,8 @@ class ShopController extends Controller
 
             Log::info('Найдено элементов корзины: ' . $cartItems->count());
 
-            // Детальное логирование перед обновлением
+            // Обновляем элементы корзины
             foreach ($cartItems as $item) {
-                Log::info('Подготовка к обновлению элемента', [
-                    'item_id' => $item->id,
-                    'current_days' => $item->rental_days,
-                    'current_start' => $item->start_date,
-                    'current_end' => $item->end_date,
-                    'new_days' => $days,
-                    'new_start' => $startDate,
-                    'new_end' => $endDate,
-                ]);
-
-                // Отлов конкретной ошибки при обновлении
                 try {
                     $this->purchaseListRepository->update($item->id, [
                         'rental_days' => $days,
@@ -168,7 +166,7 @@ class ShopController extends Controller
                 }
             }
 
-            // Пересчет общей стоимости - ДОБАВЛЕННАЯ ЧАСТЬ
+            // Пересчет общей стоимости
             $remainingItems = $this->purchaseListRepository->all()
                 ->where('user_id', $userId);
 
@@ -179,15 +177,10 @@ class ShopController extends Controller
                     $rentalDays = $item->rental_days ?? 1;
                     $price = floatval($inventory->getBuyPrice() ?? 0) * $rentalDays;
                     $totalPrice += $price;
-                    Log::info('Расчет цены для элемента', [
-                        'inventory_id' => $item->inventory_id,
-                        'days' => $rentalDays,
-                        'price' => $price,
-                    ]);
                 }
             }
 
-            // Возврат успешного ответа - ДОБАВЛЕННАЯ ЧАСТЬ
+            // Возврат успешного ответа
             Log::info('Обновление завершено успешно, новая общая стоимость: ' . $totalPrice);
 
             return response()->json([
@@ -199,7 +192,6 @@ class ShopController extends Controller
             Log::error('Ошибка в updateCartDates: ' . $e->getMessage(), [
                 'file' => $e->getFile(),
                 'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json(
@@ -332,6 +324,7 @@ class ShopController extends Controller
         // Получаем данные пользователя, если есть
         $userData = [
             'name' => $user->name ?? '',
+            'surname' => $user->surname ?? '',
             'email' => $user->email ?? '',
             'phone' => $user->phone ?? '',
             'address' => $user->address ?? ''
@@ -533,15 +526,137 @@ class ShopController extends Controller
 
     public function groupedProducts(?string $category = null)
     {
+        // Получаем значения фильтров из запроса
+        $priceMin = request('price_min');
+        $priceMax = request('price_max');
+        $inStock = request('in_stock');
+        $sort = request('sort');
+
+        // Дополнительные фильтры для специфических категорий
+        $powerMin = request('power_min');
+        $powerMax = request('power_max');
+        $tankMin = request('tank_min');
+        $tankMax = request('tank_max');
+        $starterType = request('starter_type');
+        $manufacturers = request('manufacturer', []);
+
+        if ($category === 'market') {
+            // Начинаем с базового запроса для рыночных продуктов
+            $query = Product::query();
+
+            // Применяем фильтр по цене
+            if ($priceMin !== null && $priceMax !== null) {
+                $query->whereBetween('price', [$priceMin, $priceMax]);
+            }
+
+            // Применяем фильтр "в наличии"
+            if ($inStock) {
+                $query->where('count', '>', 0);
+            }
+
+            // Применяем сортировку
+            if ($sort) {
+                switch ($sort) {
+                    case 'price_asc':
+                        $query->orderBy('price', 'asc');
+                        break;
+                    case 'price_desc':
+                        $query->orderBy('price', 'desc');
+                        break;
+                    case 'name_asc':
+                        $query->orderBy('title', 'asc');
+                        break;
+                    case 'name_desc':
+                        $query->orderBy('title', 'desc');
+                        break;
+                    default:
+                        // По умолчанию без сортировки
+                        break;
+                }
+            }
+
+            // Получаем отфильтрованные продукты с пагинацией
+            $products = $query->paginate(12)->withQueryString();
+            $totalCount = Product::count(); // Общее количество всех продуктов
+
+            return view('shop.marketProducts', compact('products', 'category', 'totalCount'));
+        }
+
+        // Обработка для инвентаря по категориям
         $categoryModel = Categories::where('title', $category)->first();
 
         if (!$categoryModel) {
             abort(404);
         }
 
-        $products = Inventory::where('category_id', $categoryModel->id)->paginate(12);
-        $totalCount = Inventory::where('category_id', $categoryModel->id)->count(); // Общее количество товаров
+        // Начинаем с базового запроса для инвентаря
+        $query = Inventory::where('category_id', $categoryModel->id);
 
-        return view('shop.sidebarLeft', compact('products', 'category', 'totalCount'));
+        // Применяем фильтр по цене
+        // Примечание: предполагается, что buy_price - это поле в таблице или вычисляемое значение
+        // Если это не так, нужно адаптировать запрос под вашу структуру данных
+        if ($priceMin !== null && $priceMax !== null) {
+            // Примечание: если getBuyPrice - это метод, который не отображается напрямую на столбец,
+            // вам может потребоваться изменить этот запрос
+            $query->whereBetween('buy_price', [$priceMin, $priceMax]);
+        }
+
+        // Применяем фильтр "в наличии"
+        if ($inStock) {
+            // Предполагается, что есть поле count или аналогичное для отслеживания наличия
+            $query->where('count', '>', 0);
+        }
+
+        // Применяем фильтр по мощности
+        if ($powerMin !== null && $powerMax !== null) {
+            $query->whereBetween('power', [$powerMin, $powerMax]);
+        }
+
+        // Применяем фильтр по объему бака
+        if ($tankMin !== null && $tankMax !== null) {
+            $query->whereBetween('tank_capacity', [$tankMin, $tankMax]);
+        }
+
+        // Применяем фильтр по типу стартера
+        if ($starterType) {
+            $query->where('starter_type', $starterType);
+        }
+
+        // Применяем фильтр по производителю
+        if (!empty($manufacturers)) {
+            $query->whereIn('manufacturer', $manufacturers);
+        }
+
+        // Применяем сортировку
+        if ($sort) {
+            switch ($sort) {
+                case 'price_asc':
+                    $query->orderBy('buy_price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('buy_price', 'desc');
+                    break;
+                case 'name_asc':
+                    $query->orderBy('title', 'asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('title', 'desc');
+                    break;
+                default:
+                    // По умолчанию без сортировки
+                    break;
+            }
+        }
+
+        // Получаем отфильтрованные продукты с пагинацией
+        // withQueryString сохраняет параметры запроса при пагинации
+        $products = $query->paginate(12)->withQueryString();
+        $totalCount = Inventory::where('category_id', $categoryModel->id)->count();
+
+        // В зависимости от категории, можно возвращать разные представления
+        // Например, для категорий с дополнительными фильтрами, можно вернуть другой шаблон
+        $viewName = 'shop.sidebarLeft';
+
+        return view($viewName, compact('products', 'category', 'totalCount'));
     }
 }

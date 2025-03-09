@@ -16,14 +16,19 @@
                             <div class="action-item">
                                 <span class="action-title">Фильтр</span>
 
+                                <!-- Скрытые поля для хранения значений фильтров -->
+                                <input type="hidden" id="price_min" value="{{ request('price_min', 0) }}">
+                                <input type="hidden" id="price_max" value="{{ request('price_max', 20000) }}">
                             </div>
+
+                            <!-- Фильтр по цене -->
                             <div class="action-item">
                                 <div class="action-top">
                                     <span class="action-title">Цена</span>
                                 </div>
-                                <div class="nstSlider" data-range_min="700" data-range_max="20000" data-cur_min="20"
-                                     data-cur_max="10000">
-
+                                <div class="nstSlider" data-range_min="0" data-range_max="20000"
+                                     data-cur_min="{{ request('price_min', 0) }}"
+                                     data-cur_max="{{ request('price_max', 20000) }}">
                                     <div class="bar"></div>
                                     <div class="leftGrip price-range-grip"></div>
                                     <div class="rightGrip price-range-grip"></div>
@@ -31,85 +36,30 @@
                                 <div class="range-label-area">
                                     <div class="min-price d-flex">
                                         <span class="currency-symbol">₽</span>
-
-                                        <div class="leftLabel price-range-label"></div>
+                                        <div class="leftLabel price-range-label">{{ request('price_min', 0) }}</div>
                                     </div>
                                     <div class="min-price d-flex">
                                         <span class="currency-symbol">₽</span>
-
-                                        <div class="rightLabel price-range-label"></div>
+                                        <div class="rightLabel price-range-label">{{ request('price_max', 20000) }}</div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Наличие -->
                             <div class="action-item">
                                 <div class="action-top">
-                                    <span class="action-title">Производитель</span>
+                                    <span class="action-title">Наличие</span>
                                 </div>
                                 <div class="color-item">
-                                    <input type="checkbox">
-                                    <span class="color-name" style="margin-left: 10px">Atlas Copco</span>
-                                </div>
-                                <div class="color-item">
-                                    <input type="checkbox">
-
-                                    <span class="color-name" style="margin-left: 10px">FUBAG</span>
+                                    <input type="checkbox" id="in_stock" {{ request('in_stock') ? 'checked' : '' }}>
+                                    <span class="color-name" style="margin-left: 10px">В наличии</span>
                                 </div>
                             </div>
 
+                            <!-- Кнопка применения фильтров -->
                             <div class="action-item">
-                                <div class="action-top">
-                                    <span class="action-title">Мощность, Вт</span>
-                                </div>
-                                <div class="nstSlider" data-range_min="2000" data-range_max="8500" data-cur_min="20"
-                                     data-cur_max="10000">
-
-                                    <div class="bar"></div>
-                                    <div class="leftGrip price-range-grip"></div>
-                                    <div class="rightGrip price-range-grip"></div>
-                                </div>
-                                <div class="range-label-area">
-                                    <div class="min-price d-flex">
-                                        <div class="leftLabel price-range-label"></div>
-                                    </div>
-                                    <div class="min-price d-flex">
-                                        <div class="rightLabel price-range-label"></div>
-                                    </div>
-                                </div>
+                                <button id="apply_filters" class="btn rts-btn btn-primary">Применить фильтр</button>
                             </div>
-
-                            <div class="action-item">
-                                <div class="action-top">
-                                    <span class="action-title">Стартер</span>
-                                </div>
-                                <div class="color-item">
-                                    <input type="checkbox">
-                                    <span class="color-name"
-                                          style="margin-left: 10px">ручной стартер/электростартер</span>
-                                </div>
-                            </div>
-
-                            <div class="action-item">
-                                <div class="action-top">
-                                    <span class="action-title">Объем топливного бака. л</span>
-                                </div>
-                                <div class="nstSlider" data-range_min="2000" data-range_max="8500" data-cur_min="20"
-                                     data-cur_max="10000">
-
-                                    <div class="bar"></div>
-                                    <div class="leftGrip price-range-grip"></div>
-                                    <div class="rightGrip price-range-grip"></div>
-                                </div>
-                                <div class="range-label-area">
-                                    <div class="min-price d-flex">
-                                        <div class="leftLabel price-range-label"></div>
-                                    </div>
-                                    <div class="min-price d-flex">
-                                        <div class="rightLabel price-range-label"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -117,7 +67,7 @@
                     <div class="shop-product-topbar justify-content-between">
                         <span class="items-onlist">Показано {{ $products->count() }} из {{ $totalCount }} результатов</span>
                         <div class="product-status">
-                            <span class="all-products-category ">{{$category}}</span>
+                            <span class="all-products-category">{{ $category ?? 'Магазин товаров' }}</span>
                         </div>
                     </div>
 
@@ -127,14 +77,18 @@
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="product-item product-item2 element-item3 sidebar-left">
                                         <a href="{{ route('productDetails', ['id' => $product->getId()]) }}" class="product-image">
-                                            <img src="{{ $product->getAvatar() }}" alt="product-image">
+                                            @if($product->getAvatar())
+                                                <img src="{{ $product->getAvatar() }}" alt="product-image">
+                                            @else
+                                                <img src="{{ asset('assets/images/products/no-image.jpg') }}" alt="product-image">
+                                            @endif
                                         </a>
                                         <div class="bottom-content">
                                             <a href="{{ route('productDetails', ['id' => $product->getId()]) }}"
-                                               class="product-name">{{$product->getTitle()}}</a>
+                                               class="product-name">{{ $product->getTitle() }}</a>
                                             <div class="action-wrap">
-                                                <span class="product-price">от {{$product->getBuyPrice()}} ₽</span>
-                                                <a href="{{ route('cart') }}" class="addto-cart">
+                                                <span class="product-price">{{ number_format($product->getBuyPrice(), 0, ',', ' ') }} ₽</span>
+                                                <a href="#" class="addto-cart" data-product-id="{{ $product->getId() }}">
                                                     <i class="fal fa-shopping-cart"></i> В корзину
                                                 </a>
                                             </div>
@@ -142,7 +96,7 @@
                                         <div class="product-actions">
                                             <a class="product-action wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($product->getId()) ? 'active' : '' }}"
                                                style="cursor:pointer;"
-                                               data-inventory-id="{{ $product->getId() }}">
+                                               data-product-id="{{ $product->getId() }}">
                                                 <i class="rt-heart"></i>
                                             </a>
                                             <button class="product-action product-details-popup-btn"><i
@@ -176,53 +130,21 @@
                             <div class="product-thumb zoom" onmousemove="zoom(event)"
                                  style="background-image: url('{{ asset('assets/images/products/product-details.jpg') }}')">
                                 <img src="{{ asset('assets/images/products/product-details.jpg') }}"
-                                        alt="product-thumb">
+                                     alt="product-thumb">
                             </div>
-                        </div>
-                        <div class="thumb-wrapper two filterd-items hide">
-                            <div class="product-thumb zoom" onmousemove="zoom(event)"
-                                 style="background-image: url('{{ asset('assets/images/products/product-filt2.jpg') }}')">
-                                <img
-                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}"
-                                        alt="product-thumb">
-                            </div>
-                        </div>
-                        <div class="thumb-wrapper three filterd-items hide">
-                            <div class="product-thumb zoom" onmousemove="zoom(event)"
-                                 style="background-image: url('{{ asset('assets/images/products/product-filt3.jpg') }}')">
-                                <img
-                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}"
-                                        alt="product-thumb">
-                            </div>
-                        </div>
-                        <div class="product-thumb-filter-group">
-                            <div class="thumb-filter filter-btn active" data-show=".one"><img
-                                        src="{{ asset('assets/images/products/product-filt1.jpg') }}"
-                                        alt="product-thumb-filter"></div>
-                            <div class="thumb-filter filter-btn" data-show=".two"><img
-                                        src="{{ asset('assets/images/products/product-filt2.jpg') }}"
-                                        alt="product-thumb-filter"></div>
-                            <div class="thumb-filter filter-btn" data-show=".three"><img
-                                        src="{{ asset('assets/images/products/product-filt3.jpg') }}"
-                                        alt="product-thumb-filter"></div>
                         </div>
                     </div>
                     <div class="contents">
                         <div class="product-status">
-                            <span class="product-catagory">Dress</span>
-                            <div class="rating-stars-group">
-                                <div class="rating-star"><i class="fas fa-star"></i></div>
-                                <div class="rating-star"><i class="fas fa-star"></i></div>
-                                <div class="rating-star"><i class="fas fa-star-half-alt"></i></div>
-                                <span>10 Reviews</span>
+                            <span class="product-catagory">Товар</span>
+                            <div class="stock-status">
+                                <span class="in-stock">В наличии</span>
                             </div>
                         </div>
-                        <h2 class="product-title">Wide Cotton Tunic Dress <span class="stock">In Stock</span></h2>
-                        <span class="product-price"><span class="old-price">$9.35</span> $7.25</span>
-                        <p>
-                            Priyoshop has brought to you the Hijab 3 Pieces Combo Pack PS23. It is a
-                            completely modern design and you feel comfortable to put on this hijab.
-                            Buy it at the best price.
+                        <h2 class="product-title">Название товара</h2>
+                        <span class="product-price">0 ₽</span>
+                        <p class="product-description">
+                            Описание товара
                         </p>
                         <div class="product-bottom-action">
                             <div class="cart-edit">
@@ -232,29 +154,10 @@
                                     <button class="button plus">+<i class="fal fa-plus plus"></i></button>
                                 </div>
                             </div>
-                            <a href="{{ route('cart') }}" class="addto-cart-btn action-item"><i
+                            <a href="#" class="addto-cart-btn action-item"><i
                                         class="rt-basket-shopping"></i>
-                                Add To
-                                Cart</a>
-                            <a href="{{ route('wishlist') }}" class="wishlist-btn action-item"><i class="rt-heart"></i></a>
-                        </div>
-                        <div class="product-uniques">
-                            <span class="sku product-unipue"><span>SKU: </span> BO1D0MX8SJ</span>
-                            <span class="catagorys product-unipue"><span>Categories: </span> T-Shirts, Tops, Mens</span>
-                            <span class="tags product-unipue"><span>Tags: </span> fashion, t-shirts, Men</span>
-                        </div>
-                        <div class="share-social">
-                            <span>Share:</span>
-                            <a class="platform" href="http://facebook.com" target="_blank"><i
-                                        class="fab fa-facebook-f"></i></a>
-                            <a class="platform" href="http://twitter.com" target="_blank"><i
-                                        class="fab fa-twitter"></i></a>
-                            <a class="platform" href="http://behance.com" target="_blank"><i
-                                        class="fab fa-behance"></i></a>
-                            <a class="platform" href="http://youtube.com" target="_blank"><i
-                                        class="fab fa-youtube"></i></a>
-                            <a class="platform" href="http://linkedin.com" target="_blank"><i
-                                        class="fab fa-linkedin"></i></a>
+                                Добавить в корзину</a>
+                            <a href="#" class="wishlist-btn action-item"><i class="rt-heart"></i></a>
                         </div>
                     </div>
                 </div>
@@ -262,44 +165,148 @@
         </div>
     </div>
     <!-- ..::Product-details Section End Here::.. -->
+
     @push('script')
         <script>
-            document.querySelectorAll('.wishlist-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    let inventoryId = this.dataset.inventoryId;
-                    console.log("Clicked inventory ID:", inventoryId);
+            document.addEventListener('DOMContentLoaded', function() {
+                // Инициализация слайдера цены
+                if (typeof $.fn.nstSlider !== 'undefined') {
+                    $('.nstSlider').nstSlider({
+                        "left_grip_selector": ".leftGrip",
+                        "right_grip_selector": ".rightGrip",
+                        "value_bar_selector": ".bar",
+                        "value_changed_callback": function(cause, leftValue, rightValue) {
+                            // Обновляем отображаемые значения
+                            $(this).parent().find(".leftLabel").text(leftValue);
+                            $(this).parent().find(".rightLabel").text(rightValue);
 
-                    if (!inventoryId) {
-                        console.error("Inventory ID not found");
-                        return;
+                            // Обновляем скрытые поля для фильтрации
+                            document.getElementById('price_min').value = leftValue;
+                            document.getElementById('price_max').value = rightValue;
+                        }
+                    });
+                }
+
+                // Обработчик для кнопки применения фильтра
+                document.getElementById('apply_filters').addEventListener('click', function() {
+                    // Получаем значения фильтров
+                    const priceMin = document.getElementById('price_min').value;
+                    const priceMax = document.getElementById('price_max').value;
+                    const inStock = document.getElementById('in_stock').checked ? 1 : 0;
+
+                    // Создаем объект URL с текущим путем
+                    const url = new URL(window.location.href);
+                    const params = url.searchParams;
+
+                    // Устанавливаем параметры фильтрации
+                    params.set('price_min', priceMin);
+                    params.set('price_max', priceMax);
+
+                    if (inStock) {
+                        params.set('in_stock', inStock);
+                    } else {
+                        params.delete('in_stock');
                     }
 
-                    let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-                    if (!csrfTokenElement) {
-                        console.error("CSRF token meta tag not found");
-                        return;
+                    // Сбрасываем страницу на первую при применении нового фильтра
+                    if (params.has('page')) {
+                        params.set('page', 1);
                     }
 
-                    let csrfToken = csrfTokenElement.getAttribute('content');
+                    // Переходим на URL с установленными параметрами
+                    window.location.href = url.toString();
+                });
 
-                    fetch(`/favorites/${inventoryId}`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({})
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log("Server response:", data);
-                            if (data.status === 'added') {
-                                button.classList.add('active');
-                            } else if (data.status === 'removed') {
-                                button.classList.remove('active');
-                            }
+                // Обработчик для кнопки избранного
+                document.querySelectorAll('.wishlist-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        let productId = this.dataset.productId;
+                        console.log("Clicked product ID:", productId);
+
+                        if (!productId) {
+                            console.error("Product ID not found");
+                            return;
+                        }
+
+                        let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+                        if (!csrfTokenElement) {
+                            console.error("CSRF token meta tag not found");
+                            return;
+                        }
+
+                        let csrfToken = csrfTokenElement.getAttribute('content');
+
+                        fetch(`/favorites/${productId}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({})
                         })
-                        .catch(error => console.error("Error:", error));
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Server response:", data);
+                                if (data.status === 'added') {
+                                    button.classList.add('active');
+                                } else if (data.status === 'removed') {
+                                    button.classList.remove('active');
+                                }
+                            })
+                            .catch(error => console.error("Error:", error));
+                    });
+                });
+
+                // Обработчик для кнопки "В корзину"
+                document.querySelectorAll('.addto-cart').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        let productId = this.dataset.productId;
+                        console.log("Adding to cart product ID:", productId);
+
+                        if (!productId) {
+                            console.error("Product ID not found");
+                            return;
+                        }
+
+                        let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+                        if (!csrfTokenElement) {
+                            console.error("CSRF token meta tag not found");
+                            return;
+                        }
+
+                        let csrfToken = csrfTokenElement.getAttribute('content');
+
+                        fetch('/cart/add-product', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                product_id: productId,
+                                quantity: 1
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Server response:", data);
+                                if (data.success) {
+                                    alert('Товар добавлен в корзину!');
+                                } else {
+                                    if (data.redirect) {
+                                        window.location.href = data.redirect;
+                                    } else {
+                                        alert(data.message || 'Произошла ошибка при добавлении товара в корзину');
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Error:", error);
+                                alert('Произошла ошибка при добавлении товара в корзину');
+                            });
+                    });
                 });
             });
         </script>

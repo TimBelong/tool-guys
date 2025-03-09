@@ -16,6 +16,7 @@ class SyncService
     private MediaService $mediaService;
     private OptionsService $optionsService;
     private RentsService $rentsService;
+    private ProductsService $productsService;
 
     public function __construct(
         CategoriesService $categoriesService,
@@ -23,7 +24,8 @@ class SyncService
         InventoryService $inventoryService,
         MediaService $mediaService,
         OptionsService $optionsService,
-        RentsService $rentsService
+        RentsService $rentsService,
+        ProductsService $productsService
     ) {
         $this->categoriesService = $categoriesService;
         $this->stateService = $stateService;
@@ -31,6 +33,7 @@ class SyncService
         $this->mediaService = $mediaService;
         $this->optionsService = $optionsService;
         $this->rentsService = $rentsService;
+        $this->productsService = $productsService;
     }
 
     public function syncAll(): JsonResponse
@@ -46,6 +49,7 @@ class SyncService
             $mediaResult = $this->mediaService->syncMedia();
             $optionsResult = $this->optionsService->syncOptions();
             $rentsResult = $this->rentsService->syncRents();
+            $productsResult = $this->productsService->syncProducts();
 
             DB::commit();
 
@@ -62,6 +66,7 @@ class SyncService
                         'media' => json_decode($mediaResult->getContent(), true),
                         'options' => json_decode($optionsResult->getContent(), true),
                         'rents' => json_decode($rentsResult->getContent(), true),
+                        'products' => json_decode($productsResult->getContent(), true),
                     ],
                 ]
             );

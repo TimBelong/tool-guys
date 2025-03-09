@@ -172,7 +172,6 @@
 
                             &.active {
                                 background: transparent;
-
                                 &::before {
                                     transform: rotate(180deg) translateY(6px);
                                 }
@@ -1572,7 +1571,6 @@
 .lower-navbar-sticky {
     top: 0;
     .logo {
-        margin-left: 60px;
         color: #fff;
         font-size: 28px;
         span{
@@ -1644,15 +1642,6 @@
             color: $white-color;
             font-weight: 700;
 
-            &::after {
-                position: relative;
-                left: unset;
-                right: unset;
-                top: 12px;
-                margin-left: 5px;
-                margin-bottom: -20px;
-                border-color: $white-color transparent transparent transparent;
-            }
         }
 
         .header-action-items {
@@ -1789,7 +1778,7 @@
         .search-input-inner {
             input {
                 background: #071e34;
-                max-width: 375px;
+                max-width: 300px;
                 color: #47637d;
 
                 &::-webkit-input-placeholder {
@@ -1821,7 +1810,8 @@
     }
 
     .logo {
-        margin-left: 60px;
+        margin-left: 0px !important;
+        margin-right: 60px;
         color: #fff !important;
         font-size: 38px;
         span{
@@ -1846,6 +1836,10 @@
             .select-styled {
                 background: var(--theme-color);
                 font-weight: 700;
+                text-align: center;
+                &::after{
+                    display: none !important;
+                }
             }
         }
     }
@@ -2651,15 +2645,6 @@
 
     .select-styled {
         padding-left: 30px;
-
-        &::after {
-            position: relative;
-            left: unset;
-            right: unset;
-            top: 14px;
-            margin-left: 5px;
-            margin-bottom: -20px;
-        }
     }
 
     .search-input-icon {
@@ -2670,8 +2655,8 @@
         font-style: normal;
         font-weight: 700;
         background: $whiteSmokeF8;
-        padding: 15px 30px;
-        padding-right: 30px;
+        padding: 15px 15px;
+        padding-right: 15px;
 
         i {
             margin-right: 3px;
@@ -2708,14 +2693,6 @@
             font-weight: 700;
             color: $text-color1;
 
-            &::after {
-                position: relative;
-                left: unset;
-                right: unset;
-                top: 12px;
-                margin-left: 5px;
-                margin-bottom: -20px;
-            }
         }
 
         .select-options {
