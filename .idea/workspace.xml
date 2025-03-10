@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a7b7242-7a6e-4692-9f3e-cb64e7240344" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/hot" beforeDir="false" />
-    </list>
+    <list default="true" id="1a7b7242-7a6e-4692-9f3e-cb64e7240344" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -503,6 +500,7 @@
       <workItem from="1741171256814" duration="19598000" />
       <workItem from="1741270519886" duration="19144000" />
       <workItem from="1741363746757" duration="82000" />
+      <workItem from="1741519121904" duration="13354000" />
     </task>
     <servers />
   </component>
@@ -527,14 +525,19 @@
           <line>28</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/shop/marketProducts.blade.php</url>
+          <line>187</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/ShopController.php</url>
-          <line>259</line>
+          <url>file://$PROJECT_DIR$/app/Repositories/ProductsRepository.php</url>
+          <line>41</line>
           <properties>
-            <option name="className" value="\App\Http\Controllers\ShopController" />
-            <option name="methodName" value="checkOut" />
+            <option name="className" value="\App\Repositories\ProductsRepository" />
+            <option name="methodName" value="createFromApiData" />
           </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -400,11 +400,6 @@
                 display: block;
             }
 
-            .action-item {
-                margin-bottom: 20px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 15px;
-            }
 
             .action-item:last-child {
                 border-bottom: none;
