@@ -4069,8 +4069,72 @@ tr.fade-out {
   }
 }
 
+// Стили для пагинации
+.pagination {
+  margin-top: 20px;
 
+  .page-item {
+    &.active {
+      border-color: #ffbd27;
 
+      .page-link {
+        background-color: #ffbd27;
+        border-color: #ffbd27;
+        color: #fff;
+      }
+    }
+  }
+
+  .page-link {
+    border-radius: 4px;
+    color: #ffbd27;
+    border: 1px solid #ffbd27;
+    margin: 0 3px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #ffbd27;
+      color: white !important;
+      border-color: #ffbd27;
+    }
+  }
+}
+
+// Стили для фильтров
+.shop-side-action {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+
+  .action-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .action-item {
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+}
+
+// Стиль для кнопки корзины
+.cart-btn {
+  background-color: #ff6e5a;
+  border-color: #ff6e5a;
+  color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #e85a47;
+    border-color: #e85a47;
+    color: white;
+  }
+}
 // -----------------------------------------------------------------------------
 // Base End Here
 // -----------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+@php use App\Enums\PurchaseTypes; @endphp
 @extends('layout.layout')
 @section('content')
     <style>
@@ -6,13 +7,29 @@
         }
 
         @keyframes fadeInShake {
-            0% { opacity: 0; transform: translateY(-5px); }
-            50% { opacity: 1; transform: translateY(0); }
-            60% { transform: translateX(-2px); }
-            70% { transform: translateX(2px); }
-            80% { transform: translateX(-2px); }
-            90% { transform: translateX(0); }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            60% {
+                transform: translateX(-2px);
+            }
+            70% {
+                transform: translateX(2px);
+            }
+            80% {
+                transform: translateX(-2px);
+            }
+            90% {
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .rental-date-range {
@@ -29,7 +46,8 @@
                     <div class="cart-table-area">
                         <table class="table table-bordered table-hover">
                             <tbody>
-                            @if(count($inventories) > 0)
+                            @if(count($inventories) > 0 || count($products) > 0)
+                                <!-- Сначала выводим инвентарь -->
                                 @foreach($inventories as $inventory)
                                     <tr>
                                         <td style="vertical-align: middle; text-align: center; width: 15%;">
@@ -44,9 +62,11 @@
                                                 <span class="pretitle"
                                                       style="font-size: 0.85rem; color: #666;">Аренда</span>
                                                 <h4 class="product-title"
-                                                    style="margin-top: 5px; font-size: 1.1rem; font-weight: 600;">{{ $inventory->getTitle() }}</h4>
+                                                    style="margin-top: 5px; font-size: 1.1rem; font-weight: 600;">
+                                                    {{ $inventory->getTitle() }}
+                                                </h4>
 
-                                                <!-- Rental duration selector -->
+                                                <!-- Rental duration selector для инвентаря -->
                                                 <div class="rental-duration-selector" style="margin-top: 10px;">
                                                     <div class="date-range-field"
                                                          style="display: flex; align-items: center; margin-bottom: 5px;">
@@ -59,28 +79,100 @@
                                                                style="flex-grow: 1; padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px;">
                                                     </div>
                                                     <div class="rental-info" style="font-size: 0.85rem; color: #666;">
-                                                        <span class="rental-days">0 дн.</span> ×
+                                                        <span class="rental-days">{{ $inventory->rental_days ?? 0 }} дн.</span>
+                                                        ×
                                                         <span class="daily-price">{{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td style="vertical-align: middle; text-align: center; width: 20%;">
-                                        <span class="product-price" data-base-price="{{ $inventory->getBuyPrice() }}"
-                                              style="font-weight: bold; font-size: 1.1rem;">
-                                            {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽
-                                        </span>
+                <span class="product-price" data-base-price="{{ $inventory->getBuyPrice() }}"
+                      style="font-weight: bold; font-size: 1.1rem;">
+                    {{ number_format($inventory->price, 0, ',', ' ') }} ₽
+                </span>
                                         </td>
                                         <td style="vertical-align: middle; text-align: center; width: 20%;">
-                                            <form action="{{ route('shop.remove-from-cart', ['id' => $inventory->getId()]) }}"
+                                            <form action="{{ route('shop.remove-from-cart', ['type' => PurchaseTypes::INVENTORY, 'id' => $inventory->getId()]) }}"
                                                   method="POST" class="remove-from-cart-form" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="rental_days" class="rental-days-input"
-                                                       value="1">
+                                                       value="{{ $inventory->rental_days ?? 1 }}">
                                                 <input type="hidden" name="start_date" class="start-date-input"
-                                                       value="">
-                                                <input type="hidden" name="end_date" class="end-date-input" value="">
+                                                       value="{{ $inventory->rental_start_date }}">
+                                                <input type="hidden" name="end_date" class="end-date-input"
+                                                       value="{{ $inventory->rental_end_date }}">
+                                                <button type="submit" class="remove-btn"
+                                                        style="padding: 8px 15px; border-radius: 4px;">Удалить
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                <!-- Затем выводим продукты -->
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td style="vertical-align: middle; text-align: center; width: 15%;">
+                                            <div class="product-thumb">
+                                                <img src="{{ asset($product->getAvatar()) }}"
+                                                     alt="{{ $product->getTitle() }}"
+                                                     style="max-width: 100px; max-height: 100px; object-fit: contain;">
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle; width: 45%;">
+                                            <div class="product-title-area">
+                                                <span class="pretitle"
+                                                      style="font-size: 0.85rem; color: #666;">Покупка</span>
+                                                <h4 class="product-title"
+                                                    style="margin-top: 5px; font-size: 1.1rem; font-weight: 600;">
+                                                    {{ $product->getTitle() }}
+                                                </h4>
+
+                                                <!-- Quantity selector для продуктов -->
+                                                <div class="quantity-selector" style="margin-top: 10px;">
+                                                    <div style="display: flex; align-items: center;">
+                                                        <label style="margin-right: 10px; font-size: 0.9rem; color: #666;">Количество:</label>
+                                                        <div class="quantity-edit"
+                                                             style="display: flex; align-items: center;">
+                                                            <button class="quantity-decrease"
+                                                                    data-product-id="{{ $product->getId() }}"
+                                                                    style="padding: 2px 8px; border: 1px solid #ddd; border-radius: 4px 0 0 4px;">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="quantity-input"
+                                                                   value="{{ $product->quantity }}"
+                                                                   style="width: 40px; text-align: center; padding: 3px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; border-left: none; border-right: none;"
+                                                                   readonly>
+                                                            <button class="quantity-increase"
+                                                                    data-product-id="{{ $product->getId() }}"
+                                                                    style="padding: 2px 8px; border: 1px solid #ddd; border-radius: 0 4px 4px 0;">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-info" style="font-size: 0.85rem; color: #666;">
+                                                        <span class="quantity">{{ $product->quantity ?? 1 }} шт.</span>
+                                                        ×
+                                                        <span class="unit-price">{{ number_format($product->getBuyPrice(), 0, ',', ' ') }} ₽</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: center; width: 20%;">
+                                            <span class="product-price" data-base-price="{{ $product->getBuyPrice() }}"
+                                                  style="font-weight: bold; font-size: 1.1rem;">
+                                                {{ number_format($product->price, 0, ',', ' ') }} ₽
+                                            </span>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: center; width: 20%;">
+                                            <form action="{{ route('shop.remove-from-cart', ['type' => PurchaseTypes::PRODUCT, 'id' => $product->getId()]) }}"
+                                                  method="POST" class="remove-from-cart-form" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="quantity" class="quantity-input"
+                                                       value="{{ $product->quantity ?? 1 }}">
                                                 <button type="submit" class="remove-btn"
                                                         style="padding: 8px 15px; border-radius: 4px;">Удалить
                                                 </button>
@@ -129,12 +221,14 @@
                                 <div class="check-options">
                                     <div class="form-group"
                                          style="display: flex; align-items: center; margin-bottom: 10px;">
-                                        <input type="radio" id="delivery" name="shipping_method" value="delivery" style="margin-right: 10px;">
+                                        <input type="radio" id="delivery" name="shipping_method" value="delivery"
+                                               style="margin-right: 10px;">
                                         <label class="check-title" for="delivery"
                                                style="margin-bottom: 0; cursor: pointer;">Доставка</label>
                                     </div>
                                     <div class="form-group" style="display: flex; align-items: center;">
-                                        <input type="radio" id="pickup" name="shipping_method" value="pickup" style="margin-right: 10px;" checked>
+                                        <input type="radio" id="pickup" name="shipping_method" value="pickup"
+                                               style="margin-right: 10px;" checked>
                                         <label class="check-title" for="pickup"
                                                style="margin-bottom: 0; cursor: pointer;">Самовывоз</label>
                                     </div>
@@ -142,7 +236,8 @@
                             </div>
 
                             <!-- Стоимость доставки (показывается только при выборе доставки) -->
-                            <div id="delivery-cost-row" class="delivery-cost" style="display: none; padding: 15px 0; border-bottom: 1px solid #eee;">
+                            <div id="delivery-cost-row" class="delivery-cost"
+                                 style="display: none; padding: 15px 0; border-bottom: 1px solid #eee;">
                                 <div style="display: flex; justify-content: space-between;">
                                     <span class="title" style="font-size: 1rem; color: #666;">Доставка</span>
                                     <span class="delivery-price" style="font-weight: 600;">1 000 ₽</span>
@@ -160,23 +255,32 @@
                                     {{--                                        </label>--}}
                                     {{--                                    </div>--}}
 
-                                    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">
-                                        <input type="radio" name="payment_method" id="cash" value="cash" style="margin-right: 10px;" checked>
-                                        <label class="check-title" for="cash" style="margin-bottom: 0; cursor: pointer;">
+                                    <div class="form-group"
+                                         style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <input type="radio" name="payment_method" id="cash" value="cash"
+                                               style="margin-right: 10px;" checked>
+                                        <label class="check-title" for="cash"
+                                               style="margin-bottom: 0; cursor: pointer;">
                                             Наличными при получении
                                         </label>
                                     </div>
 
-                                    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 10px;">
-                                        <input type="radio" name="payment_method" id="transfer" value="transfer" style="margin-right: 10px;">
-                                        <label class="check-title" for="transfer" style="margin-bottom: 0; cursor: pointer;">
+                                    <div class="form-group"
+                                         style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <input type="radio" name="payment_method" id="transfer" value="transfer"
+                                               style="margin-right: 10px;">
+                                        <label class="check-title" for="transfer"
+                                               style="margin-bottom: 0; cursor: pointer;">
                                             Банковским переводом
                                         </label>
                                     </div>
 
-                                    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 0;">
-                                        <input type="radio" name="payment_method" id="company" value="company" style="margin-right: 10px;">
-                                        <label class="check-title" for="company" style="margin-bottom: 0; cursor: pointer;">
+                                    <div class="form-group"
+                                         style="display: flex; align-items: center; margin-bottom: 0;">
+                                        <input type="radio" name="payment_method" id="company" value="company"
+                                               style="margin-right: 10px;">
+                                        <label class="check-title" for="company"
+                                               style="margin-bottom: 0; cursor: pointer;">
                                             Счет для компании
                                         </label>
                                     </div>
@@ -195,9 +299,12 @@
                                 <input type="hidden" name="shipping_method" id="shipping_method_input" value="pickup">
                                 <input type="hidden" name="payment_method" id="payment_method_input" value="cash">
                                 <input type="hidden" name="delivery_cost" id="delivery_cost_input" value="0">
-                                <input type="hidden" name="final_price" id="final_price_input" value="{{ $totalPrice }}">
+                                <input type="hidden" name="final_price" id="final_price_input"
+                                       value="{{ $totalPrice }}">
                                 <button type="submit" class="procced-btn"
-                                        style="display: block; width: 100%; padding: 12px; text-align: center; background-color: #28a745; color: white; border-radius: 4px; margin-bottom: 15px; font-weight: 600; border: none; cursor: pointer;">Перейти к оплате</button>
+                                        style="display: block; width: 100%; padding: 12px; text-align: center; background-color: #28a745; color: white; border-radius: 4px; margin-bottom: 15px; font-weight: 600; border: none; cursor: pointer;">
+                                    Перейти к оплате
+                                </button>
                             </form>
                             <a href="{{ route('indexFive') }}" class="continue-shopping"
                                style="display: block; text-align: center; padding: 10px; color: #666; text-decoration: none;">
@@ -390,7 +497,7 @@
             const deliveryCostInput = document.getElementById('delivery_cost_input');
 
             shippingMethods.forEach(method => {
-                method.addEventListener('change', function() {
+                method.addEventListener('change', function () {
                     // Обновляем скрытое поле для формы
                     shippingMethodInput.value = this.value;
 
@@ -415,14 +522,14 @@
             const paymentMethodInput = document.getElementById('payment_method_input');
 
             paymentMethods.forEach(method => {
-                method.addEventListener('change', function() {
+                method.addEventListener('change', function () {
                     // Обновляем скрытое поле для формы
                     paymentMethodInput.value = this.value;
                 });
             });
 
             // Валидация формы перед отправкой
-            document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            document.getElementById('checkout-form').addEventListener('submit', function (event) {
                 // Проверяем, есть ли товары в корзине с пустыми датами
                 const emptyDates = [];
 
@@ -466,9 +573,105 @@
 
                     // Прокручиваем страницу к первому товару с пустыми датами
                     const firstEmptyDateRow = document.querySelector(`.rental-date-range[data-inventory-id="${emptyDates[0]}"]`).closest('tr');
-                    firstEmptyDateRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstEmptyDateRow.scrollIntoView({behavior: 'smooth', block: 'center'});
                 }
             });
+
+            // Обработчики для кнопок изменения количества продуктов
+            const quantityDecreaseBtns = document.querySelectorAll('.quantity-decrease');
+            const quantityIncreaseBtns = document.querySelectorAll('.quantity-increase');
+
+            quantityDecreaseBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    updateProductQuantity(productId, 'decrease');
+                });
+            });
+
+            quantityIncreaseBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    updateProductQuantity(productId, 'increase');
+                });
+            });
+
+            function updateProductQuantity(productId, action) {
+                // Находим элементы для этого продукта
+                const row = document.querySelector(`.quantity-decrease[data-product-id="${productId}"]`).closest('tr');
+                const quantityInput = row.querySelector('.quantity-input');
+                const quantityDisplay = row.querySelector('.quantity');
+                const unitPrice = parseFloat(row.querySelector('.unit-price').textContent.replace(/\s+/g, '').replace('₽', '').replace(',', '.'));
+                const productPriceEl = row.querySelector('.product-price');
+
+                // Текущее количество
+                let currentQuantity = parseInt(quantityInput.value, 10);
+
+                // Изменяем количество в зависимости от действия
+                if (action === 'increase') {
+                    currentQuantity++;
+                } else if (action === 'decrease' && currentQuantity > 1) {
+                    currentQuantity--;
+                }
+
+                // Обновляем отображение количества
+                quantityInput.value = currentQuantity;
+                quantityDisplay.textContent = currentQuantity + ' шт.';
+
+                // Обновляем отображаемую цену
+                const newPrice = unitPrice * currentQuantity;
+                productPriceEl.textContent = new Intl.NumberFormat('ru-RU').format(newPrice) + ' ₽';
+
+                // Отправляем запрос на сервер для обновления
+                sendUpdateQuantityRequest(productId, currentQuantity);
+
+                // Пересчитываем общую стоимость
+                calculateTotalPrice();
+            }
+
+            function sendUpdateQuantityRequest(productId, quantity) {
+                const formData = new FormData();
+                formData.append('product_id', productId);
+                formData.append('quantity', quantity);
+                formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
+
+                fetch('/shop/update-product-quantity', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Product quantity updated successfully');
+
+                            // Обновляем общую стоимость
+                            if (data.totalPrice !== undefined) {
+                                document.querySelectorAll('.subtotal-price').forEach(el => {
+                                    el.textContent = new Intl.NumberFormat('ru-RU').format(data.totalPrice) + ' ₽';
+                                });
+
+                                // Обновляем итоговую стоимость с учетом доставки
+                                const deliveryCost = parseInt(document.getElementById('delivery_cost_input').value) || 0;
+                                const totalPrice = data.totalPrice + deliveryCost;
+
+                                document.querySelectorAll('.total-price').forEach(el => {
+                                    el.textContent = new Intl.NumberFormat('ru-RU').format(totalPrice) + ' ₽';
+                                });
+
+                                document.getElementById('final_price_input').value = totalPrice;
+                            }
+                        } else {
+                            console.error('Failed to update product quantity:', data.message);
+                            alert(data.message || 'Произошла ошибка при обновлении количества');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating product quantity:', error);
+                        alert('Произошла ошибка при обновлении количества');
+                    });
+            }
         });
     </script>
 @endsection

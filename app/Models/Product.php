@@ -117,7 +117,7 @@ class Product extends Model
         $this->count = $count;
     }
 
-    public function getPrice(): string
+    public function getBuyPrice(): string
     {
         return $this->price;
     }

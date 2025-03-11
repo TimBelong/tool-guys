@@ -1,3 +1,5 @@
+@php use App\Enums\PurchaseTypes; @endphp
+
 @extends('layout.layout')
 
 @section('content')
@@ -26,15 +28,29 @@
                         <span class="old-price">от</span> {{ number_format($product->getBuyPrice(), 0, ',', ' ') }} ₽
                     </span>
                     <div class="product-bottom-action">
-                        {{--                        <div class="cart-edit">--}}
-                        {{--                            <div class="quantity-edit action-item">--}}
-                        {{--                                <button class="button"><i class="fal fa-minus minus"></i></button>--}}
-                        {{--                                <input type="text" class="input" value="01"/>--}}
-                        {{--                                <button class="button plus">+<i class="fal fa-plus plus"></i></button>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-                        <form action="{{ route('shop.add-to-cart', ['id' => $product->getId()]) }}" class="add-to-cart-form" data-inventory-id="{{ $product->getId() }}" method="POST" style="display: inline">
+                        @if($type === PurchaseTypes::PRODUCT)
+                            <div class="product-info mb-3 mx-10">
+                                <div class="stock-info">
+                                    <span class="in-stock">В наличии: {{ $product->getCount() }} шт.</span>
+                                </div>
+                            </div>
+                            <div class="cart-edit">
+                                <div class="quantity-edit action-item">
+                                    <button class="button minus"><i class="fal fa-minus minus"></i></button>
+                                    <input type="text" name="quantity" class="input" value="1" min="1"
+                                           max="{{ $product->getCount() }}"/>
+                                    <button class="button plus">+<i class="fal fa-plus plus"></i></button>
+                                </div>
+                            </div>
+                        @endif
+
+                        <form action="{{ route('shop.add-to-cart', ['type' => $type, 'id' => $product->getId()]) }}"
+                              class="add-to-cart-form" data-inventory-id="{{ $product->getId() }}" method="POST"
+                              style="display: inline">
                             @csrf
+                            @if($type === PurchaseTypes::PRODUCT)
+                                <input type="hidden" name="quantity" class="quantity-input" value="1">
+                            @endif
                             <button type="submit" class="addto-cart-btn action-item">
                                 <i class="fal fa-shopping-cart"></i> В корзину
                             </button>
@@ -42,7 +58,7 @@
                     </div>
 
                     <div class="product-uniques">
-                        @if($product->options->isNotEmpty())
+                        @if($product->options !== null && $product->options->count() > 0)
                             @foreach($product->options as $option)
                                 <span class="tags product-unipue"><span>{{$option->getTitle()}}</span> {{ $option->getValue()}}</span>
                             @endforeach
@@ -64,7 +80,7 @@
                 </div>
                 <div class="full-details dls-two filterd-items hide">
                     <div class="full-details-inner">
-                        @if($product->media->isNotEmpty())
+                        @if($product->media !== null && $product->media->isNotEmpty())
                             <div class="product-gallery">
                                 @foreach($product->media as $media)
                                     <img src="{{ $media->getUrl() }}"
@@ -86,130 +102,132 @@
                 </div>
 
 
-                <div class="full-details dls-three filterd-items hide">
-                    <div id="calendar" class="mt-4"></div>
-                </div>
+                @if($type === PurchaseTypes::INVENTORY)
+                    <div class="full-details dls-three filterd-items hide">
+                        <div id="calendar" class="mt-4"></div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <!-- ..::Product-details Section End Here::.. -->
 
     <!-- ..::Related Product Section Start Here::.. -->
-{{--    <div class="rts-featured-product-section1 related-product related-product1">--}}
-{{--        <div class="container">--}}
-{{--            <div class="section-header section-header4">--}}
-{{--                <span class="section-title section-title-2 mb--5 ">Похожие товары</span>--}}
-{{--                <a href="shop-main" class="go-btn"> <i class="fal fa-long-arrow-right"></i></a>--}}
-{{--            </div>--}}
-{{--            <div class="products-area">--}}
-{{--                <div class="swiper rts-fiveSlide">--}}
-{{--                    <div class="swiper-wrapper">--}}
-{{--                        <div class="swiper-slide">--}}
-{{--                            <div class="product-item product-item4">--}}
-{{--                                <a href="#" class="product-image col-3">--}}
-{{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/6e0/250_250_1/6ns0asz5owoiqh38p276p2d3wlmvpzrl.webp') }}"--}}
-{{--                                         alt="product-image">--}}
-{{--                                </a>--}}
-{{--                                <div class="bottom-content">--}}
-{{--                                    <span class="product-catagory">Инструмент</span>--}}
-{{--                                    <a href="#" class="product-name">Генератор бензиновый--}}
-{{--                                        Fubag BS6600 6,0 кВт в аренду</a>--}}
-{{--                                    <div class="flex-wrap">--}}
-{{--                                        <div class="action-wrap">--}}
-{{--                                            <span class="product-price">от 1 200 ₽</span>--}}
-{{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
-{{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
-{{--                                        </div>--}}
-{{--                                        --}}{{--                                        <button class="wishlist-btn"><i class="rt-heart"></i></button>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="swiper-slide">--}}
-{{--                            <div class="product-item product-item4">--}}
-{{--                                <a href="#" class="product-image">--}}
-{{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/158/250_250_1/o0sf1q1tw7cs11pd325btaje621xbn9y.png') }}"--}}
-{{--                                         alt="product-image">--}}
-{{--                                </a>--}}
-{{--                                <div class="bottom-content">--}}
-{{--                                    <span class="product-catagory">Инструмент</span>--}}
-{{--                                    <a href="#" class="product-name">Инверторный цифровой--}}
-{{--                                        генератор FUBAG TI 2000 в аренду</a>--}}
-{{--                                    <div class="flex-wrap">--}}
-{{--                                        <div class="action-wrap">--}}
-{{--                                            <span class="product-price">от 750 ₽</span>--}}
-{{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
-{{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="swiper-slide">--}}
-{{--                            <div class="product-item product-item4">--}}
-{{--                                <a href="#" class="product-image">--}}
-{{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/116/250_250_1/3smfcm15p0m2bc2eqyxbua2j672aq4jn.png') }}"--}}
-{{--                                         alt="product-image">--}}
-{{--                                </a>--}}
-{{--                                <div class="bottom-content">--}}
-{{--                                    <span class="product-catagory">Инструмент</span>--}}
-{{--                                    <a href="#" class="product-name">Генератор бензиновый с--}}
-{{--                                        электростартером FUBAG BS 5500 A ES в аренду</a>--}}
-{{--                                    <div class="flex-wrap">--}}
-{{--                                        <div class="action-wrap">--}}
-{{--                                            <span class="product-price">от 1 100 ₽</span>--}}
-{{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
-{{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="swiper-slide">--}}
-{{--                            <div class="product-item product-item4">--}}
-{{--                                <a href="#" class="product-image">--}}
-{{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg') }}"--}}
-{{--                                         alt="product-image">--}}
-{{--                                </a>--}}
-{{--                                <div class="bottom-content">--}}
-{{--                                    <span class="product-catagory">Инструмент</span>--}}
-{{--                                    <a href="#" class="product-name">Газовый монтажный--}}
-{{--                                        пистолет GNG1000 в аренду</a>--}}
-{{--                                    <div class="flex-wrap">--}}
-{{--                                        <div class="action-wrap">--}}
-{{--                                            <span class="product-price">от 1 000 ₽</span>--}}
-{{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
-{{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="swiper-slide">--}}
-{{--                            <div class="product-item product-item4">--}}
-{{--                                <a href="#" class="product-image">--}}
-{{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/96d/250_250_1/7rdx6u8o1dnknj3fij8w38elw53hrwu6.png') }}"--}}
-{{--                                         alt="product-image">--}}
-{{--                                </a>--}}
-{{--                                <div class="bottom-content">--}}
-{{--                                    <span class="product-catagory">Инструмент</span>--}}
-{{--                                    <a href="#" class="product-name">Скарификатор-аэратор--}}
-{{--                                        Patriot бензиновый в аренду</a>--}}
-{{--                                    <div class="flex-wrap">--}}
-{{--                                        <div class="action-wrap">--}}
-{{--                                            <span class="product-price">от 2 000 ₽</span>--}}
-{{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
-{{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="rts-featured-product-section1 related-product related-product1">--}}
+    {{--        <div class="container">--}}
+    {{--            <div class="section-header section-header4">--}}
+    {{--                <span class="section-title section-title-2 mb--5 ">Похожие товары</span>--}}
+    {{--                <a href="shop-main" class="go-btn"> <i class="fal fa-long-arrow-right"></i></a>--}}
+    {{--            </div>--}}
+    {{--            <div class="products-area">--}}
+    {{--                <div class="swiper rts-fiveSlide">--}}
+    {{--                    <div class="swiper-wrapper">--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <div class="product-item product-item4">--}}
+    {{--                                <a href="#" class="product-image col-3">--}}
+    {{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/6e0/250_250_1/6ns0asz5owoiqh38p276p2d3wlmvpzrl.webp') }}"--}}
+    {{--                                         alt="product-image">--}}
+    {{--                                </a>--}}
+    {{--                                <div class="bottom-content">--}}
+    {{--                                    <span class="product-catagory">Инструмент</span>--}}
+    {{--                                    <a href="#" class="product-name">Генератор бензиновый--}}
+    {{--                                        Fubag BS6600 6,0 кВт в аренду</a>--}}
+    {{--                                    <div class="flex-wrap">--}}
+    {{--                                        <div class="action-wrap">--}}
+    {{--                                            <span class="product-price">от 1 200 ₽</span>--}}
+    {{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
+    {{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
+    {{--                                        </div>--}}
+    {{--                                        --}}{{--                                        <button class="wishlist-btn"><i class="rt-heart"></i></button>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <div class="product-item product-item4">--}}
+    {{--                                <a href="#" class="product-image">--}}
+    {{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/158/250_250_1/o0sf1q1tw7cs11pd325btaje621xbn9y.png') }}"--}}
+    {{--                                         alt="product-image">--}}
+    {{--                                </a>--}}
+    {{--                                <div class="bottom-content">--}}
+    {{--                                    <span class="product-catagory">Инструмент</span>--}}
+    {{--                                    <a href="#" class="product-name">Инверторный цифровой--}}
+    {{--                                        генератор FUBAG TI 2000 в аренду</a>--}}
+    {{--                                    <div class="flex-wrap">--}}
+    {{--                                        <div class="action-wrap">--}}
+    {{--                                            <span class="product-price">от 750 ₽</span>--}}
+    {{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
+    {{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <div class="product-item product-item4">--}}
+    {{--                                <a href="#" class="product-image">--}}
+    {{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/116/250_250_1/3smfcm15p0m2bc2eqyxbua2j672aq4jn.png') }}"--}}
+    {{--                                         alt="product-image">--}}
+    {{--                                </a>--}}
+    {{--                                <div class="bottom-content">--}}
+    {{--                                    <span class="product-catagory">Инструмент</span>--}}
+    {{--                                    <a href="#" class="product-name">Генератор бензиновый с--}}
+    {{--                                        электростартером FUBAG BS 5500 A ES в аренду</a>--}}
+    {{--                                    <div class="flex-wrap">--}}
+    {{--                                        <div class="action-wrap">--}}
+    {{--                                            <span class="product-price">от 1 100 ₽</span>--}}
+    {{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
+    {{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <div class="product-item product-item4">--}}
+    {{--                                <a href="#" class="product-image">--}}
+    {{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/7d9/250_250_1/mgvid2ol2ehuipzhpz68skhc26txx4fy.jpg') }}"--}}
+    {{--                                         alt="product-image">--}}
+    {{--                                </a>--}}
+    {{--                                <div class="bottom-content">--}}
+    {{--                                    <span class="product-catagory">Инструмент</span>--}}
+    {{--                                    <a href="#" class="product-name">Газовый монтажный--}}
+    {{--                                        пистолет GNG1000 в аренду</a>--}}
+    {{--                                    <div class="flex-wrap">--}}
+    {{--                                        <div class="action-wrap">--}}
+    {{--                                            <span class="product-price">от 1 000 ₽</span>--}}
+    {{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
+    {{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <div class="product-item product-item4">--}}
+    {{--                                <a href="#" class="product-image">--}}
+    {{--                                    <img src="{{ asset('https://gorrent.ru/upload/resize_cache/iblock/96d/250_250_1/7rdx6u8o1dnknj3fij8w38elw53hrwu6.png') }}"--}}
+    {{--                                         alt="product-image">--}}
+    {{--                                </a>--}}
+    {{--                                <div class="bottom-content">--}}
+    {{--                                    <span class="product-catagory">Инструмент</span>--}}
+    {{--                                    <a href="#" class="product-name">Скарификатор-аэратор--}}
+    {{--                                        Patriot бензиновый в аренду</a>--}}
+    {{--                                    <div class="flex-wrap">--}}
+    {{--                                        <div class="action-wrap">--}}
+    {{--                                            <span class="product-price">от 2 000 ₽</span>--}}
+    {{--                                            <a href="{{ route('cart') }}" class="addto-cart"><i--}}
+    {{--                                                        class="fal fa-shopping-cart"></i> В корзину</a>--}}
+    {{--                                        </div>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <!-- ..::Related Product Section End Here::.. -->
 
     <div class="rts-account-section"></div>
@@ -264,7 +282,7 @@
                 events: events,
 
                 // Настройки для мобильных устройств
-                viewDidMount: function(viewInfo) {
+                viewDidMount: function (viewInfo) {
                     if (isMobile && viewInfo.view.type === 'dayGridMonth') {
                         // Переключаемся на список для мобильных, если пользователь все же выбрал сетку
                         setTimeout(() => {
@@ -277,7 +295,7 @@
                 },
 
                 // Обработка нажатия на дату
-                dateClick: function(info) {
+                dateClick: function (info) {
                     // Проверяем, доступна ли дата для аренды
                     const clickedDate = info.date;
                     let isAvailable = true;
@@ -305,11 +323,11 @@
                 },
 
                 // Настройки для списочного представления
-                listDayFormat: { weekday: 'long', month: 'long', day: 'numeric' },
+                listDayFormat: {weekday: 'long', month: 'long', day: 'numeric'},
                 noEventsContent: 'Нет занятых дат',
 
                 // Обработка изменения размера окна
-                windowResize: function(arg) {
+                windowResize: function (arg) {
                     const newIsMobile = window.innerWidth <= 768;
                     if (newIsMobile !== isMobile) {
                         window.location.reload();
@@ -351,5 +369,55 @@
                 }
             });
         })
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Существующий код календаря...
+
+            // Добавляем обработчики для кнопок выбора количества товара
+            if ('{{ $type }}' === '{{ PurchaseTypes::PRODUCT }}') {
+                const minusBtn = document.querySelector('.button.minus');
+                const plusBtn = document.querySelector('.button.plus');
+                const quantityInput = document.querySelector('input[name="quantity"]');
+                const quantityHiddenInput = document.querySelector('.quantity-input');
+                const maxQuantity = {{ $product->getCount() }};
+
+                if (minusBtn && plusBtn && quantityInput && quantityHiddenInput) {
+                    // Обработчик для кнопки уменьшения количества
+                    minusBtn.addEventListener('click', function () {
+                        let currentValue = parseInt(quantityInput.value, 10);
+                        if (currentValue > 1) {
+                            currentValue--;
+                            quantityInput.value = currentValue;
+                            quantityHiddenInput.value = currentValue;
+                        }
+                    });
+
+                    // Обработчик для кнопки увеличения количества
+                    plusBtn.addEventListener('click', function () {
+                        let currentValue = parseInt(quantityInput.value, 10);
+                        if (currentValue < maxQuantity) {
+                            currentValue++;
+                            quantityInput.value = currentValue;
+                            quantityHiddenInput.value = currentValue;
+                        }
+                    });
+
+                    // Обработчик для прямого ввода значения
+                    quantityInput.addEventListener('change', function () {
+                        let currentValue = parseInt(this.value, 10);
+                        if (isNaN(currentValue) || currentValue < 1) {
+                            currentValue = 1;
+                        } else if (currentValue > maxQuantity) {
+                            currentValue = maxQuantity;
+                        }
+                        this.value = currentValue;
+                        quantityHiddenInput.value = currentValue;
+                    });
+                }
+            }
+        });
+    </script>
     </script>
 @endpush

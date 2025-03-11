@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PurchaseTypes;
 use App\Models\Categories;
 use App\Models\Inventory;
 use App\Models\Product;
@@ -35,76 +36,174 @@ class ShopController extends Controller
         }
 
         $userId = Auth::id();
-
         $cartItems = $this->purchaseListRepository->all()
             ->where('user_id', $userId);
 
         $inventories = [];
+        $products = [];
         $totalPrice = 0;
 
         foreach ($cartItems as $item) {
-            $inventory = Inventory::find($item->inventory_id);
-            if ($inventory) {
-                $inventories[] = $inventory;
+            // Обработка инвентаря
+            if ($item->type === PurchaseTypes::INVENTORY && $item->inventory_id) {
+                $inventory = Inventory::find($item->inventory_id);
+                if ($inventory) {
+                    // Calculate price based on rental days
+                    $days = $item->rental_days ?? 1;
+                    $price = floatval($inventory->getBuyPrice() ?? 0) * $days;
+                    $totalPrice += $price;
 
-                // Calculate price based on rental days
-                $days = $item->rental_days ?? 1;
-                $price = floatval($inventory->getBuyPrice() ?? 0) * $days;
-                $totalPrice += $price;
+                    // Store rental dates for the view
+                    $inventory->rental_start_date = $item->start_date ?? null;
+                    $inventory->rental_end_date = $item->end_date ?? null;
+                    $inventory->rental_days = $days;
+                    $inventory->price = $price;
 
-                // Store rental dates for the view
-                $inventory->rental_start_date = $item->start_date ?? null;
-                $inventory->rental_end_date = $item->end_date ?? null;
-                $inventory->rental_days = $days;
+                    $inventories[] = $inventory;
+                }
+            } elseif ($item->type === PurchaseTypes::PRODUCT && $item->product_id) {
+                $product = Product::find($item->product_id);
+                if ($product) {
+                    // Получаем количество и цену
+                    $quantity = $item->quantity ?? 1;
+                    $price = floatval($product->getBuyPrice() ?? 0) * $quantity;
+                    $totalPrice += $price;
+
+                    // Добавляем информацию о количестве к продукту
+                    $product->quantity = $quantity;
+                    $product->price = $price;
+
+                    $products[] = $product;
+                }
             }
         }
 
         return view('shop/cart', [
             'inventories' => $inventories,
+            'products' => $products,
             'totalPrice' => $totalPrice,
         ]);
     }
 
-    public function addToCart($id)
+    public function addToCart($type, $id)
     {
         if (!Auth::check()) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'redirect' => route('login'),
-                ]
-            );
+            if (request()->ajax()) {
+                return response()->json([
+                                            'success' => false,
+                                            'redirect' => route('login'),
+                                        ]);
+            }
+
+            return redirect()->route('login');
         }
 
         $userId = Auth::id();
+        $quantity = request('quantity', 1);
 
-        $existingItems = $this->purchaseListRepository->all()
-            ->where('user_id', $userId)
-            ->where('inventory_id', $id);
+        // Для продуктов проверяем доступное количество
+        if ($type === PurchaseTypes::PRODUCT) {
+            $product = Product::find($id);
+            if (!$product) {
+                if (request()->ajax()) {
+                    return response()->json(
+                        [
+                            'success' => false,
+                            'message' => 'Товар не найден',
+                        ]
+                    );
+                }
 
-        if ($existingItems->isEmpty()) {
-            $this->purchaseListRepository->create(
-                [
-                    'user_id' => $userId,
-                    'inventory_id' => $id,
-                    'rental_days' => 1, // Default to 1 day
-                    'start_date' => null,
-                    'end_date' => null,
-                ]
-            );
+                return back()->with('error', 'Товар не найден');
+            }
+
+            // Проверяем доступное количество
+            if ($product->getCount() < $quantity) {
+                if (request()->ajax()) {
+                    return response()->json([
+                                                'success' => false,
+                                                'message' => 'Недостаточно товара в наличии',
+                                            ]);
+                }
+
+                return back()->with('error', 'Недостаточно товара в наличии');
+            }
+
+            $existingItems = $this->purchaseListRepository->all()
+                ->where('user_id', $userId)
+                ->where('product_id', $id)
+                ->where('type', PurchaseTypes::PRODUCT);
+
+            // Если товар уже есть в корзине, увеличиваем количество
+            if (!$existingItems->isEmpty()) {
+                $item = $existingItems->first();
+                $currentQuantity = $item->quantity ?? 1;
+                $newQuantity = $currentQuantity + $quantity;
+
+                // Проверяем, не превышаем ли доступное количество
+                if ($newQuantity > $product->getCount()) {
+                    $newQuantity = $product->getCount();
+                }
+
+                $this->purchaseListRepository->update($item->id, [
+                    'quantity' => $newQuantity,
+                ]);
+            } else {
+                // Создаем новую запись
+                $this->purchaseListRepository->create([
+                                                          'user_id' => $userId,
+                                                          'product_id' => $id,
+                                                          'type' => $type,
+                                                          'quantity' => $quantity,
+                                                      ]);
+            }
+        } else {
+            // Код для инвентаря остается без изменений
+            $inventory = Inventory::find($id);
+            if (!$inventory) {
+                if (request()->ajax()) {
+                    return response()->json([
+                                                'success' => false,
+                                                'message' => 'Товар не найден',
+                                            ]);
+                }
+
+                return back()->with('error', 'Товар не найден');
+            }
+
+            $existingItems = $this->purchaseListRepository->all()
+                ->where('user_id', $userId)
+                ->where('inventory_id', $id)
+                ->where('type', PurchaseTypes::INVENTORY);
+
+            if ($existingItems->isEmpty()) {
+                $this->purchaseListRepository->create([
+                                                          'user_id' => $userId,
+                                                          'inventory_id' => $id,
+                                                          'type' => $type,
+                                                          'rental_days' => 1,
+                                                          'start_date' => null,
+                                                          'end_date' => null,
+                                                      ]);
+            }
         }
 
+        // Подсчитываем количество товаров в корзине
         $cartCount = $this->purchaseListRepository->all()
             ->where('user_id', $userId)
             ->count();
 
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'Товар добавлен в корзину',
-                'cartCount' => $cartCount,
-            ]
-        );
+        // Для AJAX-запросов возвращаем JSON
+        if (request()->ajax()) {
+            return response()->json([
+                                        'success' => true,
+                                        'message' => 'Товар добавлен в корзину',
+                                        'cartCount' => $cartCount,
+                                    ]);
+        }
+
+        // Для обычных запросов делаем редирект
+        return back()->with('success', 'Товар добавлен в корзину');
     }
 
     public function updateCartDates(Request $request)
@@ -279,7 +378,7 @@ class ShopController extends Controller
                         'shipping_method' => $shippingMethod,
                         'payment_method' => $paymentMethod,
                         'delivery_cost' => $deliveryCost,
-                        'final_price' => $finalPrice
+                        'final_price' => $finalPrice,
                     ]);
 
             // Просто перенаправляем на GET метод
@@ -310,7 +409,7 @@ class ShopController extends Controller
                     'price' => $price,
                     'start_date' => $item->start_date,
                     'end_date' => $item->end_date,
-                    'avatar' => $inventory->getAvatar()
+                    'avatar' => $inventory->getAvatar(),
                 ];
 
                 $totalPrice += $price;
@@ -327,7 +426,7 @@ class ShopController extends Controller
             'surname' => $user->surname ?? '',
             'email' => $user->email ?? '',
             'phone' => $user->phone ?? '',
-            'address' => $user->address ?? ''
+            'address' => $user->address ?? '',
         ];
 
         return view('shop/checkOut', [
@@ -338,7 +437,7 @@ class ShopController extends Controller
             'finalPrice' => $finalPrice,
             'shippingMethod' => $shippingMethod,
             'paymentMethod' => $paymentMethod,
-            'userData' => $userData
+            'userData' => $userData,
         ]);
     }
 
@@ -357,7 +456,7 @@ class ShopController extends Controller
             'phone' => 'required|string|max:20',
             'email' => 'required|email|max:255',
             'shipping_method' => 'required|in:pickup,delivery',
-            'payment_method' => 'required|in:card,cash,transfer,company'
+            'payment_method' => 'required|in:card,cash,transfer,company',
         ]);
 
         if ($validator->fails()) {
@@ -371,7 +470,7 @@ class ShopController extends Controller
             $deliveryValidator = Validator::make($request->all(), [
                 'city' => 'required|string|max:255',
                 'postal_code' => 'required|string|max:20',
-                'address' => 'required|string|max:255'
+                'address' => 'required|string|max:255',
             ]);
 
             if ($deliveryValidator->fails()) {
@@ -385,7 +484,7 @@ class ShopController extends Controller
             $companyValidator = Validator::make($request->all(), [
                 'company_name' => 'required|string|max:255',
                 'inn' => 'required|string|max:20',
-                'legal_address' => 'required|string|max:255'
+                'legal_address' => 'required|string|max:255',
             ]);
 
             if ($companyValidator->fails()) {
@@ -442,7 +541,7 @@ class ShopController extends Controller
                     'id' => $inventory->getId(),
                     'title' => $inventory->getTitle(),
                     'days' => $rentalDays,
-                    'price' => $itemPrice
+                    'price' => $itemPrice,
                 ];
             }
 
@@ -466,18 +565,17 @@ class ShopController extends Controller
                         'order_total' => $finalPrice,
                         'order_items' => $inventoriesData,
                         'shipping_method' => $request->input('shipping_method'),
-                        'payment_method' => $request->input('payment_method')
+                        'payment_method' => $request->input('payment_method'),
                     ]);
 
             // Перенаправляем на страницу "Спасибо"
             return redirect()->route('thankyou')->with('success', 'Заказ успешно оформлен');
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Ошибка при оформлении заказа: ' . $e->getMessage(), [
                 'user_id' => $userId,
                 'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return redirect()->back()
@@ -491,12 +589,18 @@ class ShopController extends Controller
         return view('shop/fullWidthShop');
     }
 
-    public function productDetails(int $id)
+    public function productDetails(string $type, int $id)
     {
-        $product = Inventory::findOrFail($id);
-        $rents = $product->rents()->get(['id', 'time_start', 'time_end']);
+        if ($type === PurchaseTypes::PRODUCT) {
+            $product = Product::findOrFail($id);
+            // Для продуктов не нужна информация о рентах
+            $rents = collect();
+        } else {
+            $product = Inventory::findOrFail($id);
+            $rents = $product->rents()->get(['id', 'time_start', 'time_end']);
+        }
 
-        return view('shop.productDetails', compact('product', 'rents'));
+        return view('shop.productDetails', compact('product', 'rents', 'type'));
     }
 
     public function productDetails2()

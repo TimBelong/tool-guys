@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int    $id
  * @property int    $inventory_id
  * @property int    $user_id
+ * @property string $type
+ * @property int    $product_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -24,11 +26,18 @@ class UserHasFavorites extends Model
         = [
             'inventory_id',
             'user_id',
+            'type',
+            'product_id',
         ];
 
     public function inventory()
     {
         return $this->belongsTo(Inventory::class, 'inventory_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function user()
@@ -59,5 +68,25 @@ class UserHasFavorites extends Model
     public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    public function getProductId(): int
+    {
+        return $this->product_id;
+    }
+
+    public function setProductId(int $product_id): void
+    {
+        $this->product_id = $product_id;
     }
 }

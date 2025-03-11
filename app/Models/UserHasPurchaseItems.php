@@ -13,9 +13,12 @@ class UserHasPurchaseItems extends Model
     protected $fillable = [
         'user_id',
         'inventory_id',
+        'product_id',
+        'type',
         'rental_days',
         'start_date',
         'end_date',
+        'quantity'
     ];
 
 
@@ -33,5 +36,10 @@ class UserHasPurchaseItems extends Model
     public function inventory()
     {
         return $this->belongsTo(Inventory::class, 'inventory_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

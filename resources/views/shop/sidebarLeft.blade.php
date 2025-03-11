@@ -1,4 +1,8 @@
 @php
+    use App\Enums\PurchaseTypes;
+@endphp
+
+@php
     $css='<link rel="stylesheet" href="' . asset('assets/css/jquery.nstSlider.min.css') . '"/>
           <link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
     $header='flase';
@@ -76,21 +80,26 @@
                             @foreach($products as $product)
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="product-item product-item2 element-item3 sidebar-left">
-                                        <a href="{{ route('productDetails', ['id' => $product->getId()]) }}" class="product-image">
+                                        <a href="{{ route('productDetails', ['type' => PurchaseTypes::INVENTORY, 'id' => $product->getId()]) }}"
+                                           class="product-image">
                                             @if($product->getAvatar())
                                                 <img src="{{ $product->getAvatar() }}" alt="product-image">
                                             @else
-                                                <img src="{{ asset('assets/images/products/no-image.jpg') }}" alt="product-image">
+                                                <img src="{{ asset('assets/images/products/no-image.jpg') }}"
+                                                     alt="product-image">
                                             @endif
                                         </a>
                                         <div class="bottom-content">
-                                            <a href="{{ route('productDetails', ['id' => $product->getId()]) }}"
+                                            <a href="{{ route('productDetails', ['type' => PurchaseTypes::INVENTORY, 'id' => $product->getId()]) }}"
                                                class="product-name">{{ $product->getTitle() }}</a>
                                             <div class="action-wrap">
                                                 <span class="product-price">{{ number_format($product->getBuyPrice(), 0, ',', ' ') }} ₽</span>
-                                                <a href="#" class="addto-cart" data-product-id="{{ $product->getId() }}">
-                                                    <i class="fal fa-shopping-cart"></i> В корзину
-                                                </a>
+                                                <form method="POST" action="{{ route('shop.add-to-cart', ['type' => PurchaseTypes::INVENTORY, 'id' => $product->getId()]) }}" class="add-to-cart-form" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="addto-cart" style="background:none;border:none;cursor:pointer;">
+                                                        <i class="fal fa-shopping-cart"></i> В корзину
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="product-actions">
@@ -99,10 +108,6 @@
                                                data-product-id="{{ $product->getId() }}">
                                                 <i class="rt-heart"></i>
                                             </a>
-                                            <button class="product-action product-details-popup-btn"><i
-                                                        class="fal fa-eye">
-                                                </i>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -168,14 +173,14 @@
 
     @push('script')
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 // Инициализация слайдера цены
                 if (typeof $.fn.nstSlider !== 'undefined') {
                     $('.nstSlider').nstSlider({
                         "left_grip_selector": ".leftGrip",
                         "right_grip_selector": ".rightGrip",
                         "value_bar_selector": ".bar",
-                        "value_changed_callback": function(cause, leftValue, rightValue) {
+                        "value_changed_callback": function (cause, leftValue, rightValue) {
                             // Обновляем отображаемые значения
                             $(this).parent().find(".leftLabel").text(leftValue);
                             $(this).parent().find(".rightLabel").text(rightValue);
@@ -188,7 +193,7 @@
                 }
 
                 // Обработчик для кнопки применения фильтра
-                document.getElementById('apply_filters').addEventListener('click', function() {
+                document.getElementById('apply_filters').addEventListener('click', function () {
                     // Получаем значения фильтров
                     const priceMin = document.getElementById('price_min').value;
                     const priceMax = document.getElementById('price_max').value;
@@ -254,58 +259,6 @@
                                 }
                             })
                             .catch(error => console.error("Error:", error));
-                    });
-                });
-
-                // Обработчик для кнопки "В корзину"
-                document.querySelectorAll('.addto-cart').forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        let productId = this.dataset.productId;
-                        console.log("Adding to cart product ID:", productId);
-
-                        if (!productId) {
-                            console.error("Product ID not found");
-                            return;
-                        }
-
-                        let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-                        if (!csrfTokenElement) {
-                            console.error("CSRF token meta tag not found");
-                            return;
-                        }
-
-                        let csrfToken = csrfTokenElement.getAttribute('content');
-
-                        fetch('/cart/add-product', {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': csrfToken,
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                product_id: productId,
-                                quantity: 1
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log("Server response:", data);
-                                if (data.success) {
-                                    alert('Товар добавлен в корзину!');
-                                } else {
-                                    if (data.redirect) {
-                                        window.location.href = data.redirect;
-                                    } else {
-                                        alert(data.message || 'Произошла ошибка при добавлении товара в корзину');
-                                    }
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Error:", error);
-                                alert('Произошла ошибка при добавлении товара в корзину');
-                            });
                     });
                 });
             });

@@ -1,4 +1,8 @@
 @php
+    use App\Enums\PurchaseTypes;
+@endphp
+
+@php
     $css='<link rel="stylesheet" href="' . asset('assets/css/jquery.nstSlider.min.css') . '"/>
           <link rel="stylesheet" href="' . asset('assets/css/variables/variable4.css') . '"/>';
     $header='flase';
@@ -64,10 +68,18 @@
                                 </div>
                                 <select id="sort_option" class="form-control">
                                     <option value="">Без сортировки</option>
-                                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Цена по возрастанию</option>
-                                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Цена по убыванию</option>
-                                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Название А-Я</option>
-                                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Название Я-А</option>
+                                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
+                                        Цена по возрастанию
+                                    </option>
+                                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
+                                        Цена по убыванию
+                                    </option>
+                                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>
+                                        Название А-Я
+                                    </option>
+                                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>
+                                        Название Я-А
+                                    </option>
                                 </select>
                             </div>
 
@@ -91,35 +103,42 @@
                             @foreach($products as $product)
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="product-item product-item2 element-item3 sidebar-left">
-                                        <a href="{{ route('productDetails', ['id' => $product->getId()]) }}" class="product-image">
+                                        <a href="{{ route('productDetails', ['type' => PurchaseTypes::PRODUCT, 'id' => $product->getId()]) }}"
+                                           class="product-image">
                                             <div class="img-container">
                                                 @if($product->getAvatar())
-                                                    <img src="{{ $product->getAvatar() }}" alt="{{ $product->getTitle() }}">
+                                                    <img src="{{ $product->getAvatar() }}"
+                                                         alt="{{ $product->getTitle() }}">
                                                 @else
-                                                    <img src="{{ asset('assets/images/products/no-image.jpg') }}" alt="нет изображения">
+                                                    <img src="{{ asset('assets/images/products/no-image.jpg') }}"
+                                                         alt="нет изображения">
                                                 @endif
                                             </div>
                                         </a>
                                         <div class="bottom-content">
-                                            <a href="{{ route('productDetails', ['id' => $product->getId()]) }}"
-                                               class="product-name" title="{{ $product->getTitle() }}">{{ $product->getTitle() }}</a>
+                                            <a href="{{ route('productDetails', ['type' => PurchaseTypes::PRODUCT, 'id' => $product->getId()]) }}"
+                                               class="product-name"
+                                               title="{{ $product->getTitle() }}">{{ $product->getTitle() }}</a>
                                             <div class="action-wrap">
-                                                <span class="product-price">{{ number_format($product->getPrice(), 0, ',', ' ') }} ₽</span>
-                                                <a href="#" class="addto-cart" data-product-id="{{ $product->getId() }}">
-                                                    <i class="fal fa-shopping-cart"></i> В корзину
-                                                </a>
+                                                <span class="product-price">{{ number_format($product->getBuyPrice(), 0, ',', ' ') }} ₽</span>
+                                                <form method="POST" action="{{ route('shop.add-to-cart', ['type' => PurchaseTypes::PRODUCT, 'id' => $product->getId()]) }}" class="add-to-cart-form" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="addto-cart" style="background:none;border:none;cursor:pointer;">
+                                                        <i class="fal fa-shopping-cart"></i> В корзину
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
-                                        <div class="product-actions">
-                                            <a class="product-action wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($product->getId()) ? 'active' : '' }}"
-                                               style="cursor:pointer;"
-                                               data-product-id="{{ $product->getId() }}">
-                                                <i class="rt-heart"></i>
-                                            </a>
-{{--                                            <button class="product-action product-details-popup-btn">--}}
-{{--                                                <i class="fal fa-eye"></i>--}}
-{{--                                            </button>--}}
-                                        </div>
+{{--                                        <div class="product-actions">--}}
+{{--                                            <a class="product-action wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($product->getId()) ? 'active' : '' }}"--}}
+{{--                                               style="cursor:pointer;"--}}
+{{--                                               data-product-id="{{ $product->getId() }}">--}}
+{{--                                                <i class="rt-heart"></i>--}}
+{{--                                            </a>--}}
+{{--                                            --}}{{--                                            <button class="product-action product-details-popup-btn">--}}
+{{--                                            --}}{{--                                                <i class="fal fa-eye"></i>--}}
+{{--                                            --}}{{--                                            </button>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             @endforeach
@@ -172,9 +191,10 @@
                                     <button class="button plus">+<i class="fal fa-plus plus"></i></button>
                                 </div>
                             </div>
-                            <a href="#" class="addto-cart-btn action-item"><i
-                                        class="rt-basket-shopping"></i>
-                                Добавить в корзину</a>
+                            <a href="{{ route('shop.add-to-cart', ['type' => PurchaseTypes::PRODUCT, 'id' => $product->getId()]) }}"
+                               class="addto-cart">
+                                <i class="fal fa-shopping-cart"></i> В корзину
+                            </a>
                             <a href="#" class="wishlist-btn action-item"><i class="rt-heart"></i></a>
                         </div>
                     </div>
@@ -186,14 +206,14 @@
 
     @push('script')
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 // Инициализация слайдера цены
                 if (typeof $.fn.nstSlider !== 'undefined') {
                     $('.nstSlider').nstSlider({
                         "left_grip_selector": ".leftGrip",
                         "right_grip_selector": ".rightGrip",
                         "value_bar_selector": ".bar",
-                        "value_changed_callback": function(cause, leftValue, rightValue) {
+                        "value_changed_callback": function (cause, leftValue, rightValue) {
                             // Обновляем отображаемые значения
                             $(this).parent().find(".leftLabel").text(leftValue);
                             $(this).parent().find(".rightLabel").text(rightValue);
@@ -206,7 +226,7 @@
                 }
 
                 // Обработчик для кнопки применения фильтра
-                document.getElementById('apply_filters').addEventListener('click', function() {
+                document.getElementById('apply_filters').addEventListener('click', function () {
                     // Получаем значения фильтров
                     const priceMin = document.getElementById('price_min').value;
                     const priceMax = document.getElementById('price_max').value;
@@ -243,7 +263,7 @@
                 });
 
                 // Обработчик для выпадающего списка сортировки
-                document.getElementById('sort_option').addEventListener('change', function() {
+                document.getElementById('sort_option').addEventListener('change', function () {
                     document.getElementById('apply_filters').click();
                 });
 
@@ -287,57 +307,6 @@
                     });
                 });
 
-                // Обработчик для кнопки "В корзину"
-                document.querySelectorAll('.addto-cart').forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        let productId = this.dataset.productId;
-                        console.log("Adding to cart product ID:", productId);
-
-                        if (!productId) {
-                            console.error("Product ID not found");
-                            return;
-                        }
-
-                        let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-                        if (!csrfTokenElement) {
-                            console.error("CSRF token meta tag not found");
-                            return;
-                        }
-
-                        let csrfToken = csrfTokenElement.getAttribute('content');
-
-                        fetch('/cart/add-product', {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': csrfToken,
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                product_id: productId,
-                                quantity: 1
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log("Server response:", data);
-                                if (data.success) {
-                                    alert('Товар добавлен в корзину!');
-                                } else {
-                                    if (data.redirect) {
-                                        window.location.href = data.redirect;
-                                    } else {
-                                        alert(data.message || 'Произошла ошибка при добавлении товара в корзину');
-                                    }
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Error:", error);
-                                alert('Произошла ошибка при добавлении товара в корзину');
-                            });
-                    });
-                });
             });
         </script>
 
@@ -356,7 +325,7 @@
             .img-container img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover; /* Изображение заполняет контейнер, сохраняя пропорции */
+                object-fit: contain; /* Изображение заполняет контейнер, сохраняя пропорции */
             }
 
             /* Стиль для названия продукта в одну строку */
@@ -367,67 +336,6 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 margin-bottom: 10px;
-            }
-            /* Стили для пагинации */
-            .pagination {
-                margin-top: 20px;
-            }
-
-            .page-link {
-                border-radius: 4px;
-                color: #ffbd27;
-                border: 1px solid #ffbd27;
-                margin: 0 3px;
-                transition: all 0.3s ease;
-            }
-
-            .page-link:hover {
-                background-color: #ffbd27;
-                color: white !important;
-                border-color: #ffbd27;
-            }
-
-            /* Стили для фильтров */
-            .shop-side-action {
-                background-color: #f9f9f9;
-                border-radius: 8px;
-                padding: 20px;
-            }
-
-            .action-title {
-                font-weight: bold;
-                font-size: 18px;
-                color: #333;
-                margin-bottom: 10px;
-                display: block;
-            }
-
-
-            .action-item:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-
-            .cart-btn {
-                background-color: #ff6e5a;
-                border-color: #ff6e5a;
-                color: white;
-                transition: all 0.3s ease;
-            }
-
-            .cart-btn:hover {
-                background-color: #e85a47;
-                border-color: #e85a47;
-                color: white;
-            }
-
-            .page-item.active{
-                border-color: #ffbd27;
-            }
-
-            .page-item.active .page-link{
-                background-color: #ffbd27;
-                border-color: #ffbd27;
             }
         </style>
     @endpush
