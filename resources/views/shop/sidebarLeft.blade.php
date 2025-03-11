@@ -58,7 +58,7 @@
 
                             <!-- Кнопка применения фильтров -->
                             <div class="action-item">
-                                <button id="apply_filters" class="btn rts-btn btn-primary">Применить фильтр</button>
+                                <button id="apply_filters" class="btn rts-btn btn-warning">Применить фильтр</button>
                             </div>
                         </div>
                     </div>

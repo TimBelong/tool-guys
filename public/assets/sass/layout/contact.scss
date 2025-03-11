@@ -120,9 +120,9 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                 }
 
                 .form-btn {
-                    background: $bg--base2;
+                    background: #ffbd27;
                     color: #ffffff;
-                    border: 1px solid $bg--base2;
+                    border: 1px solid #ffbd27;
                     font-size: 16px;
                     font-weight: 700;
                     line-height: 1;
@@ -132,7 +132,7 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
 
                     &:hover {
                        background: none;
-                       color: $bg--base2;
+                       color: #ffbd27;
                     }
                     i{
                         margin-left: 10px;

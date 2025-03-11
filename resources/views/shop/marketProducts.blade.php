@@ -73,7 +73,7 @@
 
                             <!-- Кнопка применения фильтров -->
                             <div class="action-item">
-                                <button id="apply_filters" class="btn rts-btn btn-primary">Применить фильтр</button>
+                                <button id="apply_filters" class="btn rts-btn btn-warning">Применить фильтр</button>
                             </div>
                         </div>
                     </div>
@@ -375,14 +375,16 @@
 
             .page-link {
                 border-radius: 4px;
+                color: #ffbd27;
+                border: 1px solid #ffbd27;
                 margin: 0 3px;
                 transition: all 0.3s ease;
             }
 
             .page-link:hover {
-                background-color: #ff6e5a;
+                background-color: #ffbd27;
                 color: white !important;
-                border-color: #ff6e5a;
+                border-color: #ffbd27;
             }
 
             /* Стили для фильтров */
@@ -417,6 +419,15 @@
                 background-color: #e85a47;
                 border-color: #e85a47;
                 color: white;
+            }
+
+            .page-item.active{
+                border-color: #ffbd27;
+            }
+
+            .page-item.active .page-link{
+                background-color: #ffbd27;
+                border-color: #ffbd27;
             }
         </style>
     @endpush

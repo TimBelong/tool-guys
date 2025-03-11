@@ -86,11 +86,13 @@
                 <div class="col-lg-6">
                     <div class="map" id="map">
                         <p>
-                            <iframe src="https://yandex.com/map-widget/v1/?indoorLevel=1&ll=37.585036%2C55.886761&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Njc5ODgwNhJJ0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINCQ0LvRgtGD0YTRjNC10LLRgdC60L7QtSDRiNC-0YHRgdC1LCA3OdCQ0YEyNSIKDRRXFkIVDIxfQg%2C%2C&z=17.28"
+                            <iframe src="https://yandex.com/map-widget/v1/?ll=37.951324%2C55.751771&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTc5MDYxNzYzEo0B0KDQvtGB0YHQuNGPLCDQnNC-0YHQutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwg0JHQsNC70LDRiNC40YXQsCwg0LzQuNC60YDQvtGA0LDQudC-0L0g0JrRg9GH0LjQvdC-LCDQptC10L3RgtGA0LDQu9GM0L3QsNGPINGD0LvQuNGG0LAsIDY4IgoNJ84XQhXQAV9C&z=17.14"
                                height="500" style="border:0;" allowfullscreen="" loading="lazy"
                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </p>
                     </div>
+
+
                 </div>
             </div>
         </div>
