@@ -15,7 +15,7 @@
     }
 
     .footer-logo {
-        color: #fff;
+        color: #ffbd27;
         font-size: 28px;
         display: flex;
         gap: 5px;
@@ -976,11 +976,16 @@
 }
 
 .footer-4 {
-    background: #031424;
+    background: rgb(246, 246, 246);
 
-
+    .footer-widget-title {
+        color: #010d18;
+        &.title-2{
+            color: $bg--base1;
+        }
+    }
     .footer-box-widget {
-        background: #06192a;
+        background: $white-color;
 
         p {
             color: #82919f;
@@ -1020,7 +1025,7 @@
 
     .newsletter-widget {
         input {
-            background: #06192a;
+            background: #fff;
 
             &::-webkit-input-placeholder {
                 color: #395269;

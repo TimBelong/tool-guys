@@ -121,7 +121,9 @@
                                     <div class="flex-wrap">
                                         <div class="action-wrap">
                                             <span class="product-price">от {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽</span>
-                                            <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}" class="add-to-cart-form" data-inventory-id="{{ $inventory->getId() }}" method="POST" style="display: inline">
+                                            <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}"
+                                                  class="add-to-cart-form" data-inventory-id="{{ $inventory->getId() }}"
+                                                  method="POST" style="display: inline">
                                                 @csrf
                                                 <button type="submit" class="addto-cart">
                                                     <i class="fal fa-shopping-cart"></i> В корзину
@@ -170,10 +172,14 @@
                                                             <h2 class="product-title">{{ $inventory->getTitle() }}</h2>
                                                             <span class="product-price">от {{ number_format($inventory->getBuyPrice(), 0, ',', ' ') }} ₽</span>
                                                             <div class="product-buttons">
-                                                                <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}" method="POST" class="add-to-cart-form" data-inventory-id="{{ $inventory->getId() }}" style="display: inline">
+                                                                <form action="{{ route('shop.add-to-cart', ['id' => $inventory->getId()]) }}"
+                                                                      method="POST" class="add-to-cart-form"
+                                                                      data-inventory-id="{{ $inventory->getId() }}"
+                                                                      style="display: inline">
                                                                     @csrf
                                                                     <button type="submit" class="select-option-btn">
-                                                                        <i class="fal fa-shopping-cart mr--5"></i> В корзину
+                                                                        <i class="fal fa-shopping-cart mr--5"></i> В
+                                                                        корзину
                                                                     </button>
                                                                 </form>
                                                                 <button class="wishlist-btn {{ auth()->user() && auth()->user()->favorites->contains($inventory->getId()) ? 'active' : '' }}"
@@ -223,7 +229,7 @@
                             <div class="wrapper">
                                 <div class="sub-content">
                                     <img class="line-1" src="{{ asset('assets/images/banner/wvbo-icon.png') }}" alt="">
-                                    <span class="sub-text">На рынке с 1889</span>
+                                    <span class="sub-text">Инструменты под любую задачу</span>
                                     <img class="line-2" src="{{ asset('assets/images/banner/wvbo-icon.png') }}" alt="">
                                 </div>
                                 <h2 class="title">Компания ToolGuys</h2>
@@ -267,6 +273,38 @@
             </div>
         </section>
 
+        <div class="features-area">
+            <div class="container">
+                <div class="features-1">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="image-section">
+                                <a href="#"><img src="https://compariqo.com/wp-content/uploads/2024/03/trending-tools-uk-construction.jpg" alt="features-1"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="section-content">
+                                <div class="sub-content">
+                                    <img class="line-1" src="assets/images/banner/wvbo-icon.png" alt="">
+                                    <span class="sub-text">Строй, чини, твори – без переплат!</span>
+                                    <img class="line-2" src="assets/images/banner/wvbo-icon.png" alt="">
+                                </div>
+                                <h2 class="title">Профессиональный инструмент – доступен каждому!</h2>
+                                <p class="description">В ""ToolGuys"" мы уверены, что наша аренда и прокат инструмента –
+                                    это то, что вам нужно для достижения отличных результатов в ваших проектах. С нами
+                                    работать легко и выгодно! Свяжитесь с нами уже сегодня, чтобы получить больше
+                                    информации о том, как мы можем помочь вам в реализации ваших планов. Мы гарантируем,
+                                    что вы останетесь довольны своим выбором и качеством предоставляемых услуг!</p>
+                                <div class="section-button">
+                                    <a href="{{ route('contact') }}">Связаться</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{--        <!-- ..::Newsletter Popup Start Here::.. -->--}}
         {{--            <div class="rts-newsletter-popup">--}}
         {{--                <div class="newsletter-close-btn"><i class="fal fa-times"></i></div>--}}
@@ -300,98 +338,71 @@
                         <div class="faq-que-list mb-30">
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                            Перый вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dicta
-                                                dolorum incidunt ipsa odio sunt. Accusantium earum illo laborum libero
-                                                minus, quasi reprehenderit sint? Ab aspernatur dolorum in rem sit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                            Второй вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                         aria-labelledby="headingTwo"
-                                         data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nam nobis
-                                                tempora. Aperiam consequuntur delectus esse exercitationem laborum nisi
-                                                non numquam optio quibusdam, reiciendis repudiandae, sequi, sit sunt vel
-                                                voluptatum.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#collapseThree" aria-expanded="false"
                                                 aria-controls="collapseThree">
-                                            третий вопрос?
+                                            Сроки аренды
                                         </button>
                                     </h2>
                                     <div id="collapseThree" class="accordion-collapse collapse"
                                          aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
-                                                maiores placeat porro! Aliquid dolorem doloremque ex fugit harum
-                                                molestiae odit, officia quaerat quia reprehenderit unde velit
-                                                voluptatibus. Consectetur, labore, quo.</p>
+                                            <ol>
+                                                <li>Минимальный срок аренды – сутки. Клиент выбирает срок в зависимости
+                                                    от потребности в оборудовании. Менеджер согласовывает срок проката и
+                                                    его стоимость, эти данные вносятся в договор аренды.
+                                                </li>
+                                                <li>Выдача товара физическим лицам происходит по факту оплаты,
+                                                    юридическим лицам – при поступлении денежных средств на расчетный
+                                                    счет.
+                                                </li>
+                                                <li> В договоре указывается дата завершения аренды – в течение последних
+                                                    суток необходимо осуществить возврат в соответствии с графиком
+                                                    работы пункта аренды. При нарушении сроков арендодатель назначает
+                                                    дополнительную посуточную оплату в зависимости от длительности
+                                                    просрочки.
+                                                </li>
+                                                <li>Клиент может вернуть инструмент досрочно и получить возврат оплаты
+                                                    за неиспользованные дни. Размер скидки предоставляемой на срок
+                                                    аренды будет пересмотрен исходя из срока аренды.
+                                                </li>
+                                                <li>Арендодатель вправе отказать в продлении срока аренды в случае
+                                                    невыполнения арендатором своих обязательств по договору.
+                                                </li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseFour" aria-expanded="false"
-                                                aria-controls="collapseFour">
-                                            Четвертый вопрос?
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                            Продление аренды и возврат инструмента
                                         </button>
                                     </h2>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                         aria-labelledby="headingFour"
-                                         data-bs-parent="#accordionExample">
+                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi
-                                                autem beatae blanditiis corporis cumque ducimus ea harum ipsam iusto
-                                                maiores neque nulla porro quam, quas ratione sapiente unde
-                                                veritatis.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingFive">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseFive" aria-expanded="false"
-                                                aria-controls="collapseFive">
-                                            Пятый вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFive" class="accordion-collapse collapse"
-                                         aria-labelledby="headingFive"
-                                         data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem,
-                                                beatae cum doloribus, fugiat ipsam laboriosam laborum nisi odit
-                                                quibusdam ratione tempora voluptas? Dolores illo incidunt nihil porro
-                                                quas velit?</p>
+                                            <ol>
+                                                <li>Если вы хотите продлить срок, позвоните менеджеру ToolGuys и
+                                                    согласуйте дополнительные сутки аренды.
+                                                </li>
+                                                <li>Оплатите дополнительный срок аренды: юридические лица по счету,
+                                                    физические лица наличными либо по ссылке на оплату.
+                                                </li>
+                                                <li>Если Вы заранее не позвонили сами по вопросу продления, за день до
+                                                    окончания аренды менеджер ToolGuys позвонит Вам и напомнит о
+                                                    возврате или предложит продление аренды.
+                                                </li>
+                                                <li>Для передачи инструмента в пункт проката оборудования ToolGuys Вы
+                                                    можете выбрать доставку или самовывоз – это не зависит от того,
+                                                    каким способом Вы получали заказ.
+                                                </li>
+                                                <li>При сдаче сотрудник ToolGuys проверяет инструмент.</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
@@ -402,97 +413,109 @@
                         <div class="faq-que-list mb-30">
                             <div class="accordion" id="accordionExample2">
                                 <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingSix">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseSix" aria-expanded="true"
-                                                aria-controls="collapseSix">
-                                            Шестой вопрос?
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwo" aria-expanded="true"
+                                                aria-controls="collapseTwo">
+                                            Возврат инструмента
                                         </button>
                                     </h2>
-                                    <div id="collapseSix" class="accordion-collapse collapse show"
-                                         aria-labelledby="headingSix" data-bs-parent="#accordionExample2">
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                         aria-labelledby="headingTwo"
+                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam,
-                                                asperiores blanditiis corporis culpa fugiat iste non possimus quidem rem
-                                                voluptatum? Adipisci beatae dolorem, inventore nihil officiis quibusdam
-                                                rerum unde voluptatibus.</p>
+                                            <ol>
+                                                <li>При сдаче оборудования подписывается акт приема-передачи.</li>
+                                                <li>Клиент возвращает оборудование, указанное в договоре аренды.</li>
+                                                <li>Если у пункта проката ToolGuys есть замечания к состоянию
+                                                    инструмента, они фиксируются.
+                                                </li>
+                                                <li>Инструмент должен быть сдан в том же состоянии, в котором был выдан
+                                                    клиенту.
+                                                </li>
+                                                <li>Перед сдачей инструмент и оборудование необходимо очистить от
+                                                    загрязнений.
+                                                </li>
+                                                <li>При эксплуатации и очистке важно сохранить заводские этикетки и
+                                                    пломбы на корпусе.
+                                                </li>
+                                                <li>Если клиент по каким-то причинам не может очистить инструмент
+                                                    самостоятельно, он оплачивает услугу дополнительно.
+                                                </li>
+                                                <li>При выявлении дефектов у инструмента его передают на диагностику в
+                                                    сервисный центр, затем принимается решение о ремонте. Если причина
+                                                    неисправности/поломки - заводской брак или естественный износ,
+                                                    ремонт оплачивает ToolGuys. Если инструментом неправильно
+                                                    пользовались или он имеет следы механических повреждений, то ремонт
+                                                    оплачивает клиент.
+                                                </li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingSeven">
+                                    <h2 class="accordion-header" id="headingFour">
                                         <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse"
-                                                data-bs-target="#collapseSeven" aria-expanded="false"
-                                                aria-controls="collapseSeven">
-                                            Седьмой вопрос?
+                                                data-bs-target="#collapseFour" aria-expanded="false"
+                                                aria-controls="collapseFour">
+                                            Преимущества аренды инструментов в "ToolGuys"
                                         </button>
                                     </h2>
-                                    <div id="collapseSeven" class="accordion-collapse collapse"
-                                         aria-labelledby="headingSeven" data-bs-parent="#accordionExample2">
+                                    <div id="collapseFour" class="accordion-collapse collapse"
+                                         aria-labelledby="headingFour"
+                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa
-                                                distinctio dolores, dolorum eaque, eius, enim eos eum facilis laborum
-                                                magnam nihil perferendis quaerat quasi quia saepe suscipit unde ut.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingEight">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseEight" aria-expanded="false"
-                                                aria-controls="collapseEight">
-                                            Восьмой вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseEight" class="accordion-collapse collapse"
-                                         aria-labelledby="headingEight" data-bs-parent="#accordionExample2">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
-                                                consectetur deleniti deserunt dolore facere fugit labore laboriosam
-                                                libero molestiae molestias nesciunt non odit placeat possimus quis quo
-                                                quos rerum tempore.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingNine">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseNine" aria-expanded="false"
-                                                aria-controls="collapseNine">
-                                            Девятый вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseNine" class="accordion-collapse collapse"
-                                         aria-labelledby="headingNine"
-                                         data-bs-parent="#accordionExample2">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis enim
-                                                excepturi facere fugiat iusto, laboriosam laborum nam numquam repellat
-                                                sunt! Alias aliquam delectus enim nemo nisi porro quasi tempora,
-                                                voluptate.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-20">
-                                    <h2 class="accordion-header" id="headingTen">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTen" aria-expanded="false"
-                                                aria-controls="collapseTen">
-                                            Десятый вопрос?
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTen" class="accordion-collapse collapse"
-                                         aria-labelledby="headingTen"
-                                         data-bs-parent="#accordionExample2">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa enim nemo
-                                                neque perspiciatis quia repellendus voluptates voluptatibus. Eos eveniet
-                                                facilis fuga fugit, ipsum iste itaque necessitatibus qui sequi vero
-                                                voluptatibus.</p>
+                                            <ol>
+                                                <li>Аренда без залога: Как часто арендаторы сталкиваются с
+                                                    необходимостью вносить залог на арендуемое оборудование? Мы решили
+                                                    эту проблему, предлагая возможность аренды без залога. Это делает
+                                                    процесс аренды более доступным и удобным. Вам не нужно беспокоиться
+                                                    о дополнительных расходах, которые могут возникнуть из-за временного
+                                                    хранения оборудования.
+                                                </li>
+                                                <li>Доставка* инструмента на объект: Мы понимаем, как важно сэкономить
+                                                    время, когда первоочередной задачей является выполнение работы.
+                                                    Поэтому ToolGuys"" предлагает услуги по доставке арендованного
+                                                    инструмента прямо на ваш объект. Это особенно удобно для жителей
+                                                    Балашихи, Железнодорожного, Реутова, Люберец, Москвы, Мытищи,
+                                                    Электросталь, Щелково, Купавна, Электроугли и Ногинск. Просто
+                                                    закажите нужный инструмент, и мы берём на себя все заботы о
+                                                    транспортировке. <br>
+                                                    * - доставка платная, услуги по забору инструмента в стоимость
+                                                    доставки не входит и оплачиваются исходя из тарифа.
+                                                </li>
+                                                <li>
+                                                    Широкий ассортимент качественного инструмента: Наша компания
+                                                    предлагает разнообразие инструментов для выполнения различных задач
+                                                    - от мелкого ремонта в домашних условиях до крупных строительных
+                                                    проектов. Модельный ряд включает строительные машины,
+                                                    электроприборы, садовый инструментарий и многое другое, чтобы
+                                                    удовлетворить потребности каждого клиента. Мы гарантируем, что все
+                                                    оборудование находится в отличном состоянии и готово к работе.
+                                                </li>
+                                                <li>
+                                                    Программа лояльности для постоянных клиентов: Мы ценим наших
+                                                    клиентов и стремимся предоставить лучшие условия для тех, кто
+                                                    работает с нами на постоянной основе. Наша программа лояльности
+                                                    включает специальные предложения, такие как скидки на аренду и
+                                                    приоритетное обслуживание. Вы можете экономить деньги и получать
+                                                    дополнительные преимущества, сотрудничая с ""ToolGuys"".
+                                                </li>
+                                                <li>Гибкие условия аренды: Мы понимаем, что каждый клиент уникален и
+                                                    имеет свои потребности в аренде. Именно поэтому мы предлагаем гибкие
+                                                    условия аренды с возможностью выбрать необходимый срок - от одних
+                                                    суток до года. Это позволит вам адаптировать аренду под конкретные
+                                                    задачи.
+                                                </li>
+                                                <li>Качество обслуживания: Наша команда профессионалов готова помочь
+                                                    вам на каждом этапе: от выбора необходимые инструмента до
+                                                    консультаций по его использованию. Мы убеждены, что качественное
+                                                    обслуживание – это залог длительного сотрудничества, и стараемся
+                                                    сделать это для вас как можно лучше.
+                                                </li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>

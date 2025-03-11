@@ -23,7 +23,7 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                 border-radius: 7px;
                 background-color: transparent;
                 margin-bottom: 25px;
-                
+
 
                 button:focus,
                 input:focus,
@@ -65,8 +65,6 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                         padding: 21px 15px;
                         font-size: 18px;
                     }
-
-
 
                     &:not(.collapsed) {
                         color: unset;
@@ -126,11 +124,71 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                         line-height: 28px;
                     }
 
-                    @media(max-width:767px) {
-                        padding: 0 15px 24px 15px;
+                    /* Стили для нумерованного списка */
+                    ol {
+                        counter-reset: item;
+                        padding-left: 0;
+                        margin-top: 15px;
+
+                        li {
+                            position: relative;
+                            padding-left: 45px;
+                            margin-bottom: 20px;
+                            list-style-type: none;
+                            color: #555555;
+                            font-size: 16px;
+                            line-height: 1.6;
+                            counter-increment: item;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+
+                            &::before {
+                                content: counter(item);
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 30px;
+                                height: 30px;
+                                background-color: #ffbd27;
+                                color: white;
+                                border-radius: 50%;
+                                font-weight: 600;
+                                font-size: 14px;
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+
+                            /* Стиль для вложенных списков */
+                            ol {
+                                margin-top: 15px;
+
+                                li {
+                                    &::before {
+                                        background-color: #010d18;
+                                    }
+                                }
+                            }
+                        }
                     }
 
+                    @media(max-width:767px) {
+                        padding: 0 15px 24px 15px;
 
+                        ol li {
+                            padding-left: 35px;
+                            font-size: 15px;
+
+                            &::before {
+                                width: 25px;
+                                height: 25px;
+                                font-size: 12px;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -172,8 +230,6 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                             padding-right: 15px;
                         }
 
-
-
                         &::before {
                             color: #fff;
                             right: 0;
@@ -190,10 +246,19 @@ $xs-landscape: "only screen and (min-width: 540px) and (max-width: 767px) and (o
                             line-height: 28px;
                         }
 
+                        /* Стили для темного фона */
+                        ol li {
+                            color: rgba(255, 255, 255, 0.9);
+
+                            &::before {
+                                background-color: rgba(255, 255, 255, 0.2);
+                                color: white;
+                            }
+                        }
+
                         @media(max-width:767px) {
                             padding: 0 15px 20px 0;
                         }
-
 
                         p {
                             color: rgba(255, 255, 255, 0.8);
